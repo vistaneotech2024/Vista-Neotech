@@ -1,0 +1,582 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== LIGHT THEME (default) ========== */
+:root {
+  /* Brand palette – fixed hues, used in both themes */
+  --color-brand-orange: #e65100;
+  --color-brand-orange-light: #ff833a;
+  --color-brand-cyan: #0097a7;
+  --color-brand-cyan-light: #4dd0e1;
+  --color-brand-green: #689f38;
+  --color-brand-green-light: #9ccc65;
+  --color-brand-amber: #ff8f00;
+  --color-brand-teal: #00897b;
+
+  /* Semantic – light theme */
+  --color-bg: #ffffff;
+  --color-bg-elevated: #fafafa;
+  --color-bg-muted: #f5f5f5;
+  --color-text: #1a1a1a;
+  --color-text-muted: #545454;
+  --color-text-subtle: #737373;
+  --color-border: #e5e5e5;
+  --color-border-muted: #eeeeee;
+
+  /* Accents – visible in light theme */
+  --color-accent-1: #e65100;
+  --color-accent-1-muted: rgba(230, 81, 0, 0.12);
+  --color-accent-2: #0097a7;
+  --color-accent-2-muted: rgba(0, 151, 167, 0.12);
+  --color-accent-3: #689f38;
+  --color-accent-3-muted: rgba(104, 159, 56, 0.12);
+  --color-accent-4: #ff8f00;
+  --color-accent-4-muted: rgba(255, 143, 0, 0.12);
+  --color-accent-5: #00897b;
+  --color-accent-5-muted: rgba(0, 137, 123, 0.12);
+
+  --font-primary: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Hero – light theme: soft gradient */
+  --color-hero-bg: #f5f5f7;
+  --color-hero-text: #1a1a1a;
+  --color-hero-text-muted: #545454;
+}
+
+/* ========== DARK THEME ========== */
+.dark {
+  --color-bg: #0c0c0e;
+  --color-bg-elevated: #141416;
+  --color-bg-muted: #1a1a1d;
+  --color-text: #fafafa;
+  --color-text-muted: #a3a3a3;
+  --color-text-subtle: #737376;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-muted: rgba(255, 255, 255, 0.05);
+
+  /* Brighter accents for dark theme visibility */
+  --color-accent-1: #ff833a;
+  --color-accent-1-muted: rgba(255, 131, 58, 0.15);
+  --color-accent-2: #4dd0e1;
+  --color-accent-2-muted: rgba(77, 208, 225, 0.15);
+  --color-accent-3: #9ccc65;
+  --color-accent-3-muted: rgba(156, 204, 101, 0.15);
+  --color-accent-4: #ffb74d;
+  --color-accent-4-muted: rgba(255, 183, 77, 0.15);
+  --color-accent-5: #26a69a;
+  --color-accent-5-muted: rgba(38, 166, 154, 0.15);
+
+  /* Hero – dark theme */
+  --color-hero-bg: #0c0c0e;
+  --color-hero-text: #fafafa;
+  --color-hero-text-muted: rgba(250, 250, 250, 0.7);
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-primary);
+    @apply antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+}
+
+@layer components {
+  .container-tight {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+  .container-wide {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  /* 8px scale: tighter section gaps (32/40/48) – less empty space between sections */
+  .section-padding {
+    @apply py-8 md:py-10 lg:py-12;
+  }
+  .bg-elevated {
+    background-color: var(--color-bg-elevated);
+  }
+  .bg-muted {
+    background-color: var(--color-bg-muted);
+  }
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+  .text-subtle {
+    color: var(--color-text-subtle);
+  }
+  .border-default {
+    border-color: var(--color-border);
+  }
+
+  /* ========== TYPOGRAPHY SYSTEM (Senior UI/UX) ========== */
+  .display {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .display-1 {
+    @apply display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl;
+  }
+  .display-2 {
+    @apply display text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+  }
+  .display-3 {
+    @apply display text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+  .overline {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+  }
+  .overline-lg {
+    @apply overline;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+  }
+  .prose-lead {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+  @media (min-width: 768px) {
+    .prose-lead {
+      font-size: 1.25rem;
+    }
+  }
+  .prose-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text);
+  }
+  .prose-caption {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-text-subtle);
+  }
+
+  /* Page content (WordPress/builder import) – modern typography & blocks */
+  .prose-page {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-text);
+  }
+  .prose-page h2 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+  .prose-page h3 {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 1.375rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+  .prose-page h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+  .prose-page p {
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+  }
+  .prose-page ul, .prose-page ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    padding-left: 1.25rem;
+  }
+  .prose-page li {
+    margin-bottom: 0.5rem;
+  }
+  .prose-page li::marker {
+    color: var(--color-accent-1);
+  }
+  .prose-page a {
+    color: var(--color-accent-1);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-page a:hover {
+    opacity: 0.9;
+  }
+  .prose-page blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--color-accent-1);
+    background: var(--color-bg-muted);
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+  .prose-page strong {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .prose-page hr {
+    border: none;
+    height: 1px;
+    background: var(--color-border);
+    margin: 2rem 0;
+  }
+  .prose-page table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+  .prose-page th,
+  .prose-page td {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+  .prose-page th {
+    font-weight: 600;
+    background: var(--color-bg-muted);
+    color: var(--color-text);
+  }
+  .prose-page td img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Images – responsive, framed for document-style content */
+  .prose-page img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+  }
+  .prose-page figure {
+    margin: 1.25rem 0;
+  }
+  .prose-page figure img {
+    margin-bottom: 0;
+  }
+  .prose-page figcaption {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* Row of 4 images (e.g. Legal Documents) – side-by-side on desktop */
+  .prose-page div:has(> img:nth-child(4):last-child),
+  .prose-page div:has(> figure:nth-child(4):last-child) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    align-items: start;
+  }
+  .prose-page div:has(> img:nth-child(4):last-child) img,
+  .prose-page div:has(> figure:nth-child(4):last-child) figure {
+    margin: 0;
+  }
+  .prose-page div:has(> figure:nth-child(4):last-child) figure {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+  }
+  .prose-page div:has(> figure:nth-child(4):last-child) img {
+    border: none;
+    border-radius: 0.25rem;
+  }
+  @media (max-width: 1024px) {
+    .prose-page div:has(> img:nth-child(4):last-child),
+    .prose-page div:has(> figure:nth-child(4):last-child) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .prose-page div:has(> img:nth-child(4):last-child),
+    .prose-page div:has(> figure:nth-child(4):last-child) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* WordPress-style gallery / row of 2 or 3 images */
+  .prose-page .wp-block-gallery,
+  .prose-page .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    list-style: none;
+    padding-left: 0;
+  }
+  .prose-page .wp-block-gallery .wp-block-image,
+  .prose-page .gallery figure,
+  .prose-page .gallery li {
+    margin: 0;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+  }
+  .prose-page .wp-block-gallery img,
+  .prose-page .gallery img {
+    border: none;
+    border-radius: 0.25rem;
+  }
+
+  /* Row of 4 wrapped images (e.g. div > div > img × 4) */
+  .prose-page div:has(> div:nth-child(4):last-child > img) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    align-items: start;
+  }
+  .prose-page div:has(> div:nth-child(4):last-child > img) > div {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+  }
+  .prose-page div:has(> div:nth-child(4):last-child > img) img {
+    border: none;
+    border-radius: 0.25rem;
+  }
+  @media (max-width: 1024px) {
+    .prose-page div:has(> div:nth-child(4):last-child > img) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .prose-page div:has(> div:nth-child(4):last-child > img) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Section heading above document rows – e.g. LEGAL DOCUMENTS */
+  .prose-page h2 + div:has(> img:nth-child(4):last-child),
+  .prose-page h2 + div:has(> figure:nth-child(4):last-child),
+  .prose-page h2 + div:has(> div:nth-child(4):last-child > img) {
+    margin-top: 1rem;
+  }
+}
+
+/* Tech grid – theme-aware */
+.tech-grid {
+  background-image: radial-gradient(circle at 1px 1px, var(--color-border) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+.tech-grid-light {
+  background-image: radial-gradient(circle at 1px 1px, var(--color-border-muted) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Section label – uses accent 1 (orange) by default, overridable */
+.section-label {
+  color: var(--color-accent-1);
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em];
+}
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-accent-1), transparent);
+}
+
+.section-label-accent-2 { color: var(--color-accent-2); }
+.section-label-accent-2::before { background: linear-gradient(to right, var(--color-accent-2), transparent); }
+.section-label-accent-3 { color: var(--color-accent-3); }
+.section-label-accent-3::before { background: linear-gradient(to right, var(--color-accent-3), transparent); }
+
+/* Gradient border card – multi-accent */
+.gradient-border {
+  position: relative;
+  background: var(--color-bg-elevated);
+  border-radius: 1rem;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2), var(--color-accent-3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Accent gradient text */
+.gradient-text-1 {
+  background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-2 {
+  background: linear-gradient(135deg, var(--color-accent-2), var(--color-accent-5));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+@keyframes drawPath {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(230, 81, 0, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(230, 81, 0, 0.5);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

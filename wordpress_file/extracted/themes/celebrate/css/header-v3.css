@@ -1,0 +1,7 @@
+.tc-header-wiget-area .tc-social { margin-top: -2px; margin-left: 30px; }
+.main-navigation { text-align: center; }
+.main-navigation ul.sf-menu { float: none; margin-left: -15px; }
+.sf-menu:first-child > li a { height: 70px; line-height: 70px; padding: 0; margin-right: 35px; }
+#tc-header-secondary .tc-header-secondary-inner { padding: 30px 0; position: relative; min-height: 50px; }
+.tc-logo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; display: block; }
+#header-sticky .tc-logo { position: relative; left: 0; top: 0; transform: none; }

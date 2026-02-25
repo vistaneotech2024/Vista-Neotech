@@ -1,0 +1,16 @@
+/**
+ * Stylesheet for custom redux styles
+ *
+ */
+#redux-intro-text { padding: 0; }
+#footer-thankyou, .rAds { display: none !important; }
+.redux-notice-field { box-shadow: none !important; }
+.redux-info-field p { padding: 5px 0; margin: 0; font-weight: bold; }
+.redux-notice-field { padding: 5px 20px; background-color: #eee; border-color:#ccc; color:#666; border: 0; font-weight: bold; }
+.redux-notice-field p { padding: 0; }
+.redux-warning.redux-notice-field { padding: 0 20px; }
+.redux-notice-field.redux-success { padding: 0 20px; border-left: 0; }
+.redux-notice-field.redux-success p { margin: 5px 0; padding: 0; }
+#info-celebrate_themebase_color_first.redux-field-info { padding: 5px 20px; background-color: #333b59;border: none !important;color:#fff; }
+#info-celebrate_themebase_color_second.redux-field-info { padding: 5px 20px; background-color: #01d193;border: none !important;color:#fff; }
+#info-celebrate_themebase_color_third.redux-field-info { padding: 5px 20px; background-color: #08349b;border: none !important;color:#fff; }

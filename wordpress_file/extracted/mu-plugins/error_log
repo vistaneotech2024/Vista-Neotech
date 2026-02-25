@@ -1,0 +1,20 @@
+[04-Oct-2024 17:56:43 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php:69
+Stack trace:
+#0 {main}
+  thrown in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php on line 69
+[06-Oct-2024 16:31:43 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php:69
+Stack trace:
+#0 {main}
+  thrown in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php on line 69
+[10-Oct-2024 18:06:58 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php:69
+Stack trace:
+#0 {main}
+  thrown in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php on line 69
+[03-Nov-2024 02:53:58 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php:69
+Stack trace:
+#0 {main}
+  thrown in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php on line 69
+[04-Nov-2024 11:08:31 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function add_action() in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php:69
+Stack trace:
+#0 {main}
+  thrown in /home2/abgjqsmy/public_html/vista2023/wp-content/mu-plugins/sso.php on line 69

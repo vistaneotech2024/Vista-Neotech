@@ -1,0 +1,4 @@
+[21-May-2021 21:22:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/customer/www/vistaneotech.com/public_html/wp-content/themes/celebrate/404.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/vistaneotech.com/public_html/wp-content/themes/celebrate/404.php on line 1

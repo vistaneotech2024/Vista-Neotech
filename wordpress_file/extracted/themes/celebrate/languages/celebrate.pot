@@ -1,0 +1,4956 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Celebrate WordPress Theme\n"
+"POT-Creation-Date: 2017-03-15 19:29+0530\n"
+"PO-Revision-Date: 2017-03-15 19:31+0530\n"
+"Last-Translator: Tansh <creative.tansh@gmail.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext;__ngettext_noop;_n_noop;_x;_nx;"
+"_nx_noop;_ex;esc_attr__;esc_attr_e;esc_attr_x;esc_html__;esc_html_e;"
+"esc_html_x;_c;_nc;translate_nooped_plural\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: celebrate\n"
+
+#: celebrate/404.php:8
+msgid "404"
+msgstr ""
+
+#: celebrate/404.php:11 celebrate/includes/templates/content-none.php:19
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Try with search."
+msgstr ""
+
+#: celebrate/404.php:14
+msgid "Back to Home"
+msgstr ""
+
+#: celebrate/comments.php:37
+msgid "Previous Comments"
+msgstr ""
+
+#: celebrate/comments.php:41
+msgid "Next Comments"
+msgstr ""
+
+#: celebrate/comments.php:49 twentyseventeen/comments.php:75
+msgid "Comments are closed."
+msgstr ""
+
+#: celebrate/comments.php:56
+msgid "Name (required)"
+msgstr ""
+
+#: celebrate/comments.php:57
+msgid "Email (required)"
+msgstr ""
+
+#: celebrate/comments.php:58 celebrate/comments.php:70
+msgid "Website (if any)"
+msgstr ""
+
+#: celebrate/comments.php:59
+msgid "Comment here"
+msgstr ""
+
+#: celebrate/comments.php:62
+msgid "Name"
+msgstr ""
+
+#: celebrate/comments.php:66
+msgid "Email"
+msgstr ""
+
+#: celebrate/comments.php:77
+msgid "Leave a Reply"
+msgstr ""
+
+#: celebrate/comments.php:78
+msgid "Post comment"
+msgstr ""
+
+#: celebrate/comments.php:79
+msgid "Comment"
+msgstr ""
+
+#: celebrate/functions.php:284
+msgid "Pingback:"
+msgstr ""
+
+#: celebrate/functions.php:284
+msgid "Edit"
+msgstr ""
+
+#: celebrate/functions.php:297
+#, php-format
+msgid "<cite class=\"fn custom-fn\">%s</cite>"
+msgstr ""
+
+#: celebrate/functions.php:298
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: celebrate/functions.php:308
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: celebrate/functions.php:326
+msgid "On "
+msgstr ""
+
+#: celebrate/functions.php:330
+#, php-format
+msgid "Permalink to %s"
+msgstr ""
+
+#: celebrate/functions.php:350
+msgid "By "
+msgstr ""
+
+#: celebrate/functions.php:353
+#, php-format
+msgid "View all posts by %s"
+msgstr ""
+
+#: celebrate/functions.php:359
+msgid " "
+msgstr ""
+
+#: celebrate/functions.php:360
+msgid "In "
+msgstr ""
+
+#: celebrate/functions.php:378
+msgid "Tags: "
+msgstr ""
+
+#: celebrate/functions.php:459
+msgid "Please Select..."
+msgstr ""
+
+#: celebrate/functions.php:482
+msgid ""
+"Please be patient...click on the Import button only once and wait, "
+"<strong>it may take - few - minutes.</strong><br><br>After demo data import, "
+"you will have to import sliders separately via - Revoution slider import."
+"<br>Refer for details: <a href=\"http://knowledgebase.tanshcreative.com/how-"
+"to-import-revolution-slider/\" target=\"_blank\">Slider Import</"
+"a><br><br>Demo Data Import not working? <a href=\"http://knowledgebase."
+"tanshcreative.com/how-to-import-revolution-slider/\" target=\"_blank"
+"\">Please check help document for more details.</a>"
+msgstr ""
+
+#: celebrate/functions.php:507
+msgid "Celebrate Demo Import"
+msgstr ""
+
+#: celebrate/functions.php:508
+msgid "Import Demo Data"
+msgstr ""
+
+#: celebrate/functions.php:562 celebrate/includes/woocommerce/ajaxcart.php:6
+msgid "View your shopping cart"
+msgstr ""
+
+#: celebrate/include-plugins.php:20
+msgid "Celebrate Core"
+msgstr ""
+
+#: celebrate/include-plugins.php:32
+msgid "WPBakery Visual Composer"
+msgstr ""
+
+#: celebrate/include-plugins.php:44
+msgid "Revolution Slider"
+msgstr ""
+
+#: celebrate/include-plugins.php:56
+msgid "Redux Framework"
+msgstr ""
+
+#: celebrate/include-plugins.php:66
+msgid "Contact Form 7"
+msgstr ""
+
+#: celebrate/include-plugins.php:73
+msgid "Breadcrumb NavXT"
+msgstr ""
+
+#: celebrate/include-plugins.php:80
+msgid "WooSidebars"
+msgstr ""
+
+#: celebrate/includes/bk-compatiblity.php:23
+#, php-format
+msgid ""
+"Theme requires at least WordPress version 4.1 You have version %s. Please "
+"upgrade and try again."
+msgstr ""
+
+#: celebrate/includes/bk-compatiblity.php:33
+#, php-format
+msgid ""
+"Theme requires at least WordPress version 4.1. You have version %s. Please "
+"upgrade and try again."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:334
+msgid "Install Required Plugins"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:335
+msgid "Install Plugins"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:337
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:339
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:340
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:343
+#, php-format
+msgid "This theme requires the following plugin: %1$s."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:349
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:355
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:361
+#, php-format
+msgid "There is an update available for: %1$s."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:367
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:373
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:378
+msgid "Begin installing plugin"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:383
+msgid "Begin updating plugin"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:388
+msgid "Begin activating plugin"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:392
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:393
+#: celebrate/includes/class-tgm-plugin-activation.php:912
+#: celebrate/includes/class-tgm-plugin-activation.php:2618
+#: celebrate/includes/class-tgm-plugin-activation.php:3665
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:394
+#: celebrate/includes/class-tgm-plugin-activation.php:3244
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:395
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:397
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:399
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:401
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:403
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:607
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:608
+msgid "Update Required"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:1019
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:1019
+#: celebrate/includes/class-tgm-plugin-activation.php:1022
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:1022
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:1206
+#: celebrate/includes/class-tgm-plugin-activation.php:3033
+msgid "and"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2067
+#, php-format
+msgid "TGMPA v%s"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2358
+msgid "Required"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2361
+msgid "Recommended"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2377
+msgid "WordPress Repository"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2380
+msgid "External Source"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2383
+msgid "Pre-Packaged"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2400
+msgid "Not Installed"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2404
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2406
+msgid "Active"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2412
+msgid "Required Update not Available"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2415
+msgid "Requires Update"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2418
+msgid "Update recommended"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2427
+#, php-format
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2473
+#, php-format
+msgid "All <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2567
+msgid "unknown"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2575
+msgid "Installed version:"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2583
+msgid "Minimum required version:"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2595
+msgid "Available version:"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2618
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2632
+msgid "Plugin"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2633
+msgid "Source"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2634
+msgid "Type"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2638
+msgid "Version"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2639
+msgid "Status"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2688
+#, php-format
+msgid "Install %2$s"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2693
+#, php-format
+msgid "Update %2$s"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2699
+#, php-format
+msgid "Activate %2$s"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2769
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2802
+msgid "Install"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2808
+msgid "Update"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2811
+msgid "Activate"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2842
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2844
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2885
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2887
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:2993
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3019
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3243
+msgid "Plugin activation failed."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3583
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3586
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3588
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3592
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3594
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3594
+#: celebrate/includes/class-tgm-plugin-activation.php:3602
+msgid "Show Details"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3594
+#: celebrate/includes/class-tgm-plugin-activation.php:3602
+msgid "Hide Details"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3595
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3597
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3600
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3602
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3603
+msgid "All installations have been completed."
+msgstr ""
+
+#: celebrate/includes/class-tgm-plugin-activation.php:3605
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: celebrate/includes/github.php:87 celebrate/includes/github.php:97
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: celebrate/includes/github.php:294
+#, php-format
+msgid ""
+"%sActivate the Envato Market plugin%s to get updates for your ThemeForest "
+"and CodeCanyon items."
+msgstr ""
+
+#: celebrate/includes/github.php:305
+#, php-format
+msgid ""
+"%sInstall the Envato Market plugin%s to get updates for your ThemeForest and "
+"CodeCanyon items."
+msgstr ""
+
+#: celebrate/includes/helpers.php:20 celebrate/includes/helpers.php:58
+#: twentyseventeen/comments.php:66 twentyseventeen/single.php:31
+msgid "Previous"
+msgstr ""
+
+#: celebrate/includes/helpers.php:26 celebrate/includes/helpers.php:62
+#: twentyseventeen/comments.php:67 twentyseventeen/single.php:32
+msgid "Next"
+msgstr ""
+
+#: celebrate/includes/options-config.php:109
+msgid "Section via hook"
+msgstr ""
+
+#: celebrate/includes/options-config.php:162
+#, php-format
+msgid "Customize &#8220;%s&#8221;"
+msgstr ""
+
+#: celebrate/includes/options-config.php:180
+#: celebrate/includes/options-config.php:188
+msgid "Current theme preview"
+msgstr ""
+
+#: celebrate/includes/options-config.php:199
+#, php-format
+msgid "By %s"
+msgstr ""
+
+#: celebrate/includes/options-config.php:202
+#, php-format
+msgid "Version %s"
+msgstr ""
+
+#: celebrate/includes/options-config.php:205
+#: celebrate/includes/widgets/custom-widgets.php:161
+#: twentyseventeen/inc/template-tags.php:88
+msgid "Tags"
+msgstr ""
+
+#: celebrate/includes/options-config.php:215
+#, php-format
+msgid "This <a href=\"%1$s\">child theme</a> requires its parent theme, %2$s."
+msgstr ""
+
+#: celebrate/includes/options-config.php:215
+msgid "http://codex.wordpress.org/Child_Themes"
+msgstr ""
+
+#: celebrate/includes/options-config.php:236
+#: celebrate/includes/options-config.php:537
+#: celebrate/vc_extend/vc_extend.php:93 celebrate/vc_extend/vc_extend.php:104
+#: celebrate/vc_extend/vc_extend.php:125 celebrate/vc_extend/vc_extend.php:137
+#: celebrate/vc_extend/vc_extend.php:150 celebrate/vc_extend/vc_extend.php:163
+#: celebrate/vc_extend/vc_extend.php:171 celebrate/vc_extend/vc_extend.php:185
+#: celebrate/vc_extend/vc_extend.php:202 celebrate/vc_extend/vc_extend.php:237
+#: celebrate/vc_extend/vc_extend.php:248 celebrate/vc_extend/vc_extend.php:322
+#: celebrate/vc_extend/vc_extend.php:341 celebrate/vc_extend/vc_extend.php:351
+#: celebrate/vc_extend/vc_extend.php:359 celebrate/vc_extend/vc_extend.php:373
+#: celebrate/vc_extend/vc_extend.php:536 celebrate/vc_extend/vc_extend.php:543
+#: celebrate/vc_extend/vc_extend.php:559 celebrate/vc_extend/vc_extend.php:580
+#: celebrate/vc_extend/vc_extend.php:591 celebrate/vc_extend/vc_extend.php:603
+#: celebrate/vc_extend/vc_extend.php:612 celebrate/vc_extend/vc_extend.php:620
+#: celebrate/vc_extend/vc_extend.php:629 celebrate/vc_extend/vc_extend.php:638
+#: celebrate/vc_extend/vc_extend.php:646 celebrate/vc_extend/vc_extend.php:654
+#: celebrate/vc_extend/vc_extend.php:662 celebrate/vc_extend/vc_extend.php:669
+#: celebrate/vc_extend/vc_extend.php:678 celebrate/vc_extend/vc_extend.php:687
+#: celebrate/vc_extend/vc_extend.php:865 celebrate/vc_extend/vc_extend.php:877
+#: celebrate/vc_extend/vc_extend.php:888 celebrate/vc_extend/vc_extend.php:896
+#: celebrate/vc_extend/vc_extend.php:908 celebrate/vc_extend/vc_extend.php:916
+#: celebrate/vc_extend/vc_extend.php:924 celebrate/vc_extend/vc_extend.php:932
+#: celebrate/vc_extend/vc_extend.php:939 celebrate/vc_extend/vc_extend.php:948
+#: celebrate/vc_extend/vc_extend.php:957 celebrate/vc_extend/vc_extend.php:1176
+#: celebrate/vc_extend/vc_extend.php:1182
+#: celebrate/vc_extend/vc_extend.php:1193
+#: celebrate/vc_extend/vc_extend.php:1201
+#: celebrate/vc_extend/vc_extend.php:1209
+#: celebrate/vc_extend/vc_extend.php:1217
+#: celebrate/vc_extend/vc_extend.php:1225
+#: celebrate/vc_extend/vc_extend.php:1234
+#: celebrate/vc_extend/vc_extend.php:1916
+#: celebrate/vc_extend/vc_extend.php:2010
+#: celebrate/vc_extend/vc_extend.php:2021
+#: celebrate/vc_extend/vc_extend.php:2029
+#: celebrate/vc_extend/vc_extend.php:2037
+#: celebrate/vc_extend/vc_extend.php:2044
+#: celebrate/vc_extend/vc_extend.php:2051
+#: celebrate/vc_extend/vc_extend.php:2058
+#: celebrate/vc_extend/vc_extend.php:2066
+#: celebrate/vc_extend/vc_extend.php:2074
+#: celebrate/vc_extend/vc_extend.php:2081
+#: celebrate/vc_extend/vc_extend.php:2093
+#: celebrate/vc_extend/vc_extend.php:2104
+#: celebrate/vc_extend/vc_extend.php:2124
+#: celebrate/vc_extend/vc_extend.php:2131
+#: celebrate/vc_extend/vc_extend.php:2142
+#: celebrate/vc_extend/vc_extend.php:2239
+#: celebrate/vc_extend/vc_extend.php:2250
+#: celebrate/vc_extend/vc_extend.php:2258
+#: celebrate/vc_extend/vc_extend.php:2266
+#: celebrate/vc_extend/vc_extend.php:2273
+#: celebrate/vc_extend/vc_extend.php:2280
+#: celebrate/vc_extend/vc_extend.php:2288
+#: celebrate/vc_extend/vc_extend.php:2296
+#: celebrate/vc_extend/vc_extend.php:2304
+#: celebrate/vc_extend/vc_extend.php:2311
+#: celebrate/vc_extend/vc_extend.php:2324
+#: celebrate/vc_extend/vc_extend.php:2341
+#: celebrate/vc_extend/vc_extend.php:2352
+#: celebrate/vc_extend/vc_extend.php:2358
+#: celebrate/vc_extend/vc_extend.php:3071
+#: celebrate/vc_extend/vc_extend.php:3083
+#: celebrate/vc_extend/vc_extend.php:3088
+#: celebrate/vc_extend/vc_extend.php:3100
+#: celebrate/vc_extend/vc_extend.php:3110
+#: celebrate/vc_extend/vc_extend.php:3120
+#: celebrate/vc_extend/vc_extend.php:3130
+#: celebrate/vc_extend/vc_extend.php:3857
+#: celebrate/vc_extend/vc_extend.php:3867
+#: celebrate/vc_extend/vc_extend.php:3875
+#: celebrate/vc_extend/vc_extend.php:3883
+#: celebrate/vc_extend/vc_extend.php:3891
+#: celebrate/vc_extend/vc_extend.php:3899
+#: celebrate/vc_extend/vc_extend.php:3907
+#: celebrate/vc_extend/vc_extend.php:3915
+#: celebrate/vc_extend/vc_extend.php:3923
+msgid "General"
+msgstr ""
+
+#: celebrate/includes/options-config.php:243
+msgid ""
+"Fill in the fields in Options Panel if need to change default settings. Ok "
+"to leave blank otherwise."
+msgstr ""
+
+#: celebrate/includes/options-config.php:248
+msgid "Responsive"
+msgstr ""
+
+#: celebrate/includes/options-config.php:253
+msgid "Responsiveness"
+msgstr ""
+
+#: celebrate/includes/options-config.php:261
+msgid "Code in Header"
+msgstr ""
+
+#: celebrate/includes/options-config.php:262
+msgid ""
+"This will be added into the header of theme and useful for tracking code "
+"etc. Add Tracking Code and not the Tracking ID or User ID."
+msgstr ""
+
+#: celebrate/includes/options-config.php:269
+msgid ""
+"Comments on Pages (not blog posts). Enable by default, please disable if not "
+"required."
+msgstr ""
+
+#: celebrate/includes/options-config.php:274
+msgid "Comments on pages"
+msgstr ""
+
+#: celebrate/includes/options-config.php:283
+msgid "Layout"
+msgstr ""
+
+#: celebrate/includes/options-config.php:284
+msgid ""
+"Fill in the fields below if need to change default settings.<br>If you need "
+"to change any one of the following, change others too in proportion."
+msgstr ""
+
+#: celebrate/includes/options-config.php:289
+msgid "Main Container Width"
+msgstr ""
+
+#: celebrate/includes/options-config.php:290
+msgid ""
+"Give it in px. Default is : 1170px<br> This width is = Content Section Width "
+"+ Sidebar Width + Gap between Content Section and Sidebar."
+msgstr ""
+
+#: celebrate/includes/options-config.php:296
+msgid "Content Section Width"
+msgstr ""
+
+#: celebrate/includes/options-config.php:297
+msgid ""
+"Give it in px. Default is : 830px.<br> This will be applicable for both "
+"content sections with left / right sidebar."
+msgstr ""
+
+#: celebrate/includes/options-config.php:303
+msgid "Sidebar Width"
+msgstr ""
+
+#: celebrate/includes/options-config.php:304
+msgid ""
+"Give it in px. Default is : 290px<br> This will be applicable for both "
+"left / right sidebar."
+msgstr ""
+
+#: celebrate/includes/options-config.php:312
+msgid " Typography & Styling"
+msgstr ""
+
+#: celebrate/includes/options-config.php:319
+msgid "Body Typography"
+msgstr ""
+
+#: celebrate/includes/options-config.php:351
+msgid "Headings Typography"
+msgstr ""
+
+#: celebrate/includes/options-config.php:358
+msgid "These will work for headings and link inside headings."
+msgstr ""
+
+#: celebrate/includes/options-config.php:363
+msgid "H1"
+msgstr ""
+
+#: celebrate/includes/options-config.php:392
+msgid "H2"
+msgstr ""
+
+#: celebrate/includes/options-config.php:421
+msgid "H3"
+msgstr ""
+
+#: celebrate/includes/options-config.php:450
+msgid "H4"
+msgstr ""
+
+#: celebrate/includes/options-config.php:479
+msgid "H5"
+msgstr ""
+
+#: celebrate/includes/options-config.php:508
+msgid "H6"
+msgstr ""
+
+#: celebrate/includes/options-config.php:545
+msgid "Link Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:568
+msgid "Link Hover Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:582
+msgid "Content Section Link Visited Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:596
+msgid "Button Font"
+msgstr ""
+
+#: celebrate/includes/options-config.php:625
+#: celebrate/includes/options-config.php:2657
+#: celebrate/vc_extend/vc_extend.php:2332
+msgid "Testimonial"
+msgstr ""
+
+#: celebrate/includes/options-config.php:650
+#: celebrate/vc_extend/vc_extend.php:258
+msgid "Blockquote"
+msgstr ""
+
+#: celebrate/includes/options-config.php:676
+msgid "Theme Base Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:680
+msgid ""
+"This will work for social share hover, testimonial icon and others which do "
+"not have separate settings."
+msgstr ""
+
+#: celebrate/includes/options-config.php:685
+#: celebrate/includes/options-config.php:1278
+msgid "Secondary Header"
+msgstr ""
+
+#: celebrate/includes/options-config.php:690
+#: celebrate/includes/options-config.php:917
+#: celebrate/vc_extend/vc_extend.php:1414
+msgid "Text"
+msgstr ""
+
+#: celebrate/includes/options-config.php:719
+#: celebrate/includes/options-config.php:946
+msgid "Topbar Link Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:734
+msgid "Page Header"
+msgstr ""
+
+#: celebrate/includes/options-config.php:739
+msgid "Page Title"
+msgstr ""
+
+#: celebrate/includes/options-config.php:768
+#: celebrate/includes/options-config.php:1233
+#: celebrate/includes/options-config.php:1241
+msgid "Page Tagline"
+msgstr ""
+
+#: celebrate/includes/options-config.php:797
+msgid "Breadcrumb Typography"
+msgstr ""
+
+#: celebrate/includes/options-config.php:825
+msgid "Breadcrumb Link Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:840
+msgid "Footer Typography"
+msgstr ""
+
+#: celebrate/includes/options-config.php:886
+msgid "Headings / Widgets Headings Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:897
+#: celebrate/vc_extend/vc_extend.php:114 celebrate/vc_extend/vc_extend.php:214
+#: celebrate/vc_extend/vc_extend.php:224 celebrate/vc_extend/vc_extend.php:694
+#: celebrate/vc_extend/vc_extend.php:705 celebrate/vc_extend/vc_extend.php:715
+#: celebrate/vc_extend/vc_extend.php:727 celebrate/vc_extend/vc_extend.php:741
+#: celebrate/vc_extend/vc_extend.php:754 celebrate/vc_extend/vc_extend.php:769
+#: celebrate/vc_extend/vc_extend.php:776 celebrate/vc_extend/vc_extend.php:793
+#: celebrate/vc_extend/vc_extend.php:805 celebrate/vc_extend/vc_extend.php:815
+#: celebrate/vc_extend/vc_extend.php:964 celebrate/vc_extend/vc_extend.php:975
+#: celebrate/vc_extend/vc_extend.php:985 celebrate/vc_extend/vc_extend.php:997
+#: celebrate/vc_extend/vc_extend.php:1011
+#: celebrate/vc_extend/vc_extend.php:1024
+#: celebrate/vc_extend/vc_extend.php:1039
+#: celebrate/vc_extend/vc_extend.php:1046
+#: celebrate/vc_extend/vc_extend.php:1063
+#: celebrate/vc_extend/vc_extend.php:1075
+#: celebrate/vc_extend/vc_extend.php:1085
+#: celebrate/vc_extend/vc_extend.php:1242
+#: celebrate/vc_extend/vc_extend.php:1248
+#: celebrate/vc_extend/vc_extend.php:1256
+#: celebrate/vc_extend/vc_extend.php:1266
+msgid "Link"
+msgstr ""
+
+#: celebrate/includes/options-config.php:912
+#: celebrate/includes/options-config.php:2170
+#: celebrate/includes/options-config.php:2175
+msgid "Copyright"
+msgstr ""
+
+#: celebrate/includes/options-config.php:961
+msgid "Widgets"
+msgstr ""
+
+#: celebrate/includes/options-config.php:966
+msgid "Widget Heading"
+msgstr ""
+
+#: celebrate/includes/options-config.php:967
+msgid ""
+"Font Color will only work for widgets in contet section. For others like "
+"footer it will take heading color of respective section."
+msgstr ""
+
+#: celebrate/includes/options-config.php:994
+msgid "WP Default Widgets - Custom Menu"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1024
+msgid "Custom Menu Background"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1035
+msgid "Custom Menu Link"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1048
+msgid "Custom Menu Link Active Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1057
+msgid "Body / Others"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1064
+msgid "Body"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1072
+msgid "Body Background"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1080
+msgid "Content Section"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1088
+msgid "Content Section Background"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1096
+msgid "Page Settings"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1101
+msgid "Page Layout Style"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1103
+msgid ""
+"Select default layout style for pages. These can be override for individual "
+"page on - Edit Page - via meta options."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1105
+#: celebrate/includes/options-config.php:2351
+#: celebrate/includes/options-config.php:2390
+#: celebrate/includes/options-config.php:2778
+#: celebrate/includes/options-config.php:2808
+msgid "Right Sidebar"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1106
+#: celebrate/includes/options-config.php:2352
+#: celebrate/includes/options-config.php:2391
+#: celebrate/includes/options-config.php:2779
+#: celebrate/includes/options-config.php:2809
+msgid "Left Sidebar"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1107
+#: celebrate/includes/options-config.php:2353
+#: celebrate/includes/options-config.php:2392
+#: celebrate/includes/options-config.php:2780
+#: celebrate/includes/options-config.php:2810
+msgid "No Sidebar"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1117
+msgid "Header Section"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1123
+msgid "Select Header Layout"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1144
+msgid "Make Header Transparent / Semi Transparent"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1151
+#: celebrate/includes/options-config.php:1492
+msgid "Sticky Header"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1158
+msgid "Select Page Title Layout"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1175
+msgid ""
+"Enable (ON) / Disable (OFF) Elements<br>Following will work according to "
+"header layout selected."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1180
+msgid "Social Icons"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1187 twentyseventeen/searchform.php:19
+msgid "Search"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1194
+msgid "Custom Text in Secondary Header"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1201
+msgid "Textarea for Custom Text in Secondary Header"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1203
+msgid ""
+"Write here. <br>HTML is allowed..<br><br>Example:<br><br>&lt;ul class=\"tc-"
+"header-contact\"&gt;&lt;li&gt;&lt;i class=\"icon-phone-handset\"&gt;&lt;/"
+"i&gt;123 456 78&lt;/li&gt;&lt;li&gt;&lt;i class=\"icon-pencil\"&gt;&lt;/i&gt;"
+"&lt;a href=\"#\"&gt;sales@example.com&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;"
+"<br><br>OR<br><br>Tagline Here"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1210
+#: celebrate/includes/options-config.php:1261
+msgid "Cart Icon"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1217
+msgid "Custom Text in Primary Header"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1224
+msgid "Textarea for Custom Text in Primary Header ( Ex. button )"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1226
+msgid ""
+"Write here. <br>HTML is allowed..<br><br>Example:<br><br>&lt;a class="
+"\"themebtn themebtn-icon-left themebtn-classic themebtn-square themebtn-"
+"medium themebtn-teal \" href=\"#\"&gt;&lt;span class=\"themebtn-icon\"&gt;"
+"&lt;i class=\"icon-ion-pricetag\"&gt;&lt;/i&gt;&lt;/span&gt;&lt;span class="
+"\"themebtn-label\"&gt;Quick Quote&lt;/span&gt;&lt;/a&gt;"
+"<br><br>OR<br><br>Some Info Here"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1236
+msgid "This is a Tagline below page title"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1244
+msgid "Can be override on each page."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1249
+msgid "Show (ON) / Hide (OFF) elements for MOBILE devices"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1254
+msgid "Secondary Header Custom Text"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1271
+msgid "Layout and Styling"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1284
+msgid "Secondary Header Background Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1286
+#: celebrate/includes/options-config.php:1356
+#: celebrate/includes/options-config.php:2107
+msgid "Do not forget to press - Choose - button, to apply the selected color."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1320
+#: celebrate/includes/options-config.php:2141
+msgid "Padding (top & bottom)"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1322
+#: celebrate/includes/options-config.php:1398
+#: celebrate/includes/options-config.php:1421
+#: celebrate/includes/options-config.php:1442
+#: celebrate/includes/options-config.php:1463
+#: celebrate/includes/options-config.php:1484
+#: celebrate/includes/options-config.php:1515
+#: celebrate/includes/options-config.php:1533
+#: celebrate/includes/options-config.php:1958
+#: celebrate/includes/options-config.php:1966
+#: celebrate/includes/options-config.php:2030
+#: celebrate/includes/options-config.php:2143
+msgid "No need of unit. It will be in px."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1331
+#: celebrate/includes/options-config.php:1378
+#: celebrate/includes/options-config.php:1988
+msgid "Border Bottom"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1348
+msgid "Primary Header"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1354
+msgid "Primary Header Background Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1395
+msgid "Header Height"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1403
+msgid "Header Common Dimensions"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1420
+#: celebrate/includes/options-config.php:1532
+msgid "Margin Top to Logo"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1441
+msgid "Margin Top to Search Icon"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1462
+msgid "Margin Top to Cart Icon"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1483
+msgid "Margin Top to Custom Text in Primary Header"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1500
+#: celebrate/includes/options-config.php:1939
+#: celebrate/includes/options-config.php:2090
+#: celebrate/includes/options-config.php:2209
+msgid "Background"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1512
+msgid "Sticky Header Height"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1543
+#: celebrate/includes/options-config.php:1550
+msgid "Logo"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1573
+msgid "If Image Logo : Upload logo image here"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1578
+#: celebrate/includes/options-config.php:1606
+msgid "Logo Image"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1591
+#: celebrate/includes/options-config.php:1619
+msgid "Logo - Width"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1592
+msgid ""
+"If you need retina logo, upload double size logo above and provide "
+"dimentions here. <br><br> It should be the width of normal / standard logo, "
+"not the retina logo."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1601
+msgid "Sticky Header Logo"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1620
+msgid ""
+"If you need retina logo, upload double size logo above and provide "
+"dimentions here. <br><br> It should be the width of normal logo, not the "
+"retina logo."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1630
+msgid "If Text Logo"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1636
+msgid "Enter text for logo"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1647
+msgid "Set font for logo text."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1664
+msgid "Set font color and hover color for logo text."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1679
+#: twentyseventeen/template-parts/navigation/navigation-top.php:13
+msgid "Menu"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1687
+msgid ""
+"Theme default settings will work if not assigned below.<br>Basically theme "
+"has Default Menu Style for dark backgrounds and Alt Menu Style for light "
+"backgrounds. Those are applied as per the header variation.<br>Any style can "
+"assigned for header menu and sticky header menu depending on your preferred "
+"background color."
+msgstr ""
+
+#: celebrate/includes/options-config.php:1692
+msgid "Header Menu"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1696
+#: celebrate/includes/options-config.php:1709
+msgid "Default Menu Style"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1697
+#: celebrate/includes/options-config.php:1710
+msgid "Alt Menu Style"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1705
+msgid "Sticky Header Menu"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1718
+msgid "Default Menu Style - Typography"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1723
+msgid "Menu link"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1751
+#: celebrate/includes/options-config.php:1855
+msgid "Menu Link Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1762
+#: celebrate/includes/options-config.php:1866
+msgid "Menu Link Hover Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1774
+#: celebrate/includes/options-config.php:1878
+msgid "Menu Link Active Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1782
+msgid "Dropdown Link"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1810
+#: celebrate/includes/options-config.php:1889
+msgid "Dropdown Link Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1821
+#: celebrate/includes/options-config.php:1900
+msgid "Dropdown Link - Hover / Active - Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1829
+#: celebrate/includes/options-config.php:1912
+msgid "Dropdown Background Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1837
+#: celebrate/vc_extend/vc_extend.php:677 celebrate/vc_extend/vc_extend.php:947
+#: celebrate/vc_extend/vc_extend.php:3890
+msgid "Border Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1847
+msgid "Alt Menu Style - Typography"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1928
+msgid "Page Title + Breadcrumb"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1947
+msgid "Dark Overlay to Page Title Background Image"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1949
+msgid ""
+"Leave blank if need to use image as such. Useful if light colored image, to "
+"improve text visibility. <br> Give it in  decimal like:  <br> .1 <br> .3"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1955
+#: celebrate/includes/options-config.php:2229
+msgid "Padding Top"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1963
+msgid "Padding Bottom"
+msgstr ""
+
+#: celebrate/includes/options-config.php:1971
+#: celebrate/includes/options-config.php:2152
+#: celebrate/includes/options-config.php:2240
+msgid "Border Top"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2005
+#: celebrate/includes/options-config.php:2010
+msgid "Breadcrumb"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2012
+msgid ""
+"Breadcrumb for blog and portfolio posts can be set separately in respective "
+"section."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2029
+msgid "Margin Top to Breadcrumbs"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2040
+#: celebrate/includes/options-config.php:2047
+msgid "Footer"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2053
+#: celebrate/includes/options-config.php:2181
+#: celebrate/vc_extend/vc_extend.php:3603
+msgid "Number of Columns"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2055
+#: celebrate/includes/options-config.php:2183
+msgid ""
+"Select number of columns. <br> Then add widgets to these columns: Appearance "
+"> Widgets"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2098
+msgid "Overlay To footer"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2105
+msgid "Footer Overlay Color"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2231
+msgid ""
+"No need of unit. <br> It is placed inside footer so padding bottom to "
+"copyright is footer's padding bottom"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2258
+msgid "Others"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2263
+msgid "Show Take to Top Arrow"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2270
+msgid "Footer Columns Text Alignment"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2275
+msgid "Footer First Column"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2279
+#: celebrate/vc_extend/vc_extend.php:205 celebrate/vc_extend/vc_extend.php:240
+#: celebrate/vc_extend/vc_extend.php:796 celebrate/vc_extend/vc_extend.php:1066
+#: celebrate/vc_extend/vc_extend.php:3340
+#: celebrate/vc_extend/vc_extend.php:4016
+msgid "Default - Left"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2280
+#: celebrate/includes/options-config.php:2293
+#: celebrate/includes/options-config.php:2306
+#: celebrate/includes/options-config.php:2319
+msgid "Text Center"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2281
+#: celebrate/includes/options-config.php:2294
+#: celebrate/includes/options-config.php:2307
+#: celebrate/includes/options-config.php:2320
+msgid "Text Right"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2288
+msgid "Footer Second Column"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2292
+#: celebrate/includes/options-config.php:2305
+#: celebrate/includes/options-config.php:2318
+msgid "Default - left"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2301
+msgid "Footer Third Column"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2314
+msgid "Footer Fourth Column"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2328
+msgid "Blog"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2335
+msgid "Blog Page Title"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2342
+msgid "Archives / Main Blog Page"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2347
+msgid "Select Post Archives Page Layout"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2360
+msgid "Excerpt Length"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2363
+msgid ""
+"Number of words. <br> If you do not have excerpt written in excerpt textarea "
+"on 'Edit Post' screen, content will be displayed limited to provided number "
+"of words. <br> Default is 40"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2368
+msgid "Show Blog Read More Button"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2375
+msgid "Blog Read More Button Text"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2381
+msgid "Single Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2386
+msgid "Select Layout"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2399
+msgid "Feature Image on Single Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2401
+msgid "This will work for all post formats"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2407
+msgid "Breadcrumb on Single Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2414
+msgid "Tagline on Single Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2422
+#: celebrate/includes/options-config.php:2616
+msgid "Portfolio"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2429
+msgid "Portfolio Grid Pages (3,4 columns)"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2434
+msgid "Portfolio items per page"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2435
+msgid "Specify the number of portfolio items to display per page."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2442
+msgid "Make Portfolio Items Compact / without Gap"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2449
+msgid "Sort Portfolio Items"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2461
+msgid "Arrange Sorted Portfolio Items"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2463
+msgid "For more flexible re-ordering you can use any plugin"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2473
+msgid "Portfolio Filter"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2481
+msgid "Image / Hover Settings"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2486
+msgid "Image scale On Hover"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2493
+#: celebrate/vc_extend/vc_extend.php:1605
+#: celebrate/vc_extend/vc_extend.php:1730
+msgid "Image Size"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2504
+msgid "Hover to Portfolio Image"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2511
+msgid "Heading On Hover"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2518
+msgid "Zoom on hover"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2525
+msgid "Link on hover"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2533
+msgid "Other Settings"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2538
+msgid "Heading below Portfolio Image"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2545
+msgid "Link to Heading of Portfolio Item"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2546
+msgid ""
+"Link will be displayed as per the option selected on portfolio item edit "
+"page. This option will work for both, heading on hover and below image."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2552
+msgid "Excerpt below Portfolio Item"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2559
+msgid "Link Target"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2561
+msgid "Open all links to heading / link icon in new window"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2568
+msgid "Portfolio Details Page / Single Portfolio Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2573
+msgid "Featured Image"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2575
+msgid "Check to enable featured image on portfolio details page."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2581
+msgid "Show Page Header On Single Portfolio Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2588
+msgid "Show Breadcrumb On Single Portfolio Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2595
+msgid "Show Tagline below Page Title On Single Portfolio Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2603
+msgid "CPT Settings"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2604
+msgid ""
+"Custom Post Types Slugs - Your prefered word in URL for custom post types"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2611
+msgid ""
+"This will need to flush permalinks after you save new slug here. <br>Refer "
+"help doc for more info about flushing permalinks."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2621
+msgid "Rewrite Portfolio Slug"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2624
+msgid "Use if need custom word in place of 'portfolio-items' in URL."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2629
+msgid "Team"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2634
+msgid "Show Page Header On Single Team Member Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2641
+msgid "Rewrite Team Slug"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2644
+msgid "Use if need custom word in place of 'team-member' in URL."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2649
+msgid "Predefined content on Team Single Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2651
+msgid "OFF this if need complete blank page for custom structure"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2662
+msgid "Show Page Header On Single Testimonial Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2669
+msgid "Rewrite Testimonial Slug"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2672
+msgid "Use if need custom word in place of 'reviews' in URL."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2678
+#: celebrate/includes/options-config.php:2844
+#: celebrate/vc_extend/vc_extend.php:3000
+msgid "Social Share"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2685
+msgid "Social Share for Blog and CPT"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2690
+msgid "Show Social Share on Blog Post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2691
+msgid "Will be displayed on single post"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2698
+msgid "Select to display"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2703
+#: celebrate/includes/options-config.php:2856
+msgid "Facebook Share"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2710
+#: celebrate/includes/options-config.php:2863
+msgid "Twitter Share"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2717
+#: celebrate/includes/options-config.php:2870
+msgid "Googleplus Share"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2724
+#: celebrate/includes/options-config.php:2877
+msgid "Linkedin Share"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2731
+#: celebrate/includes/options-config.php:2884
+msgid "Pinterest Share"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2738
+#: celebrate/includes/options-config.php:2891
+msgid "Mail Share"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2746
+msgid "Woocommerce"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2753
+msgid "Page Header On Woo Pages"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2760
+msgid "Breadcrumb On Woo Pages"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2767
+msgid "Shop Page Title"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2774
+msgid "Select Shop Layout"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2787
+msgid "Shop Columns"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2799
+msgid "Product Page"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2804
+msgid "Select Product Page Layout."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2817
+msgid "Related Products"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2822
+msgid "Related Products Columns"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2836
+msgid "Number of Related Products"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2849
+msgid "Show Social Share"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2899
+msgid "Misc"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2905
+msgid "404 Page"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2910
+msgid "404 Page Big Heading"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2917
+msgid "404 Page Text"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2924
+msgid "404 Page Back to Home Link Text"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2931
+msgid "Search Field"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2936
+msgid "Search Field Text"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2944
+msgid "Changelog"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2951
+msgid ""
+"Please check this for detailed changelog: <a href=\"http://knowledgebase."
+"tanshcreative.com/celebrate-changelog/\" target=\"_blank\">Changelog</a>"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2957
+msgid "Custom CSS"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2964
+msgid "CSS Code"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2965
+msgid ""
+"Paste your CSS Code here. ** Always keep backup, in case of accidental "
+"'Reset'. Consider using child theme for easy theme update. Refer help "
+"document for more info about where/how to edit styles."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2981
+msgid "Import / Export"
+msgstr ""
+
+#: celebrate/includes/options-config.php:2982
+msgid "Import and Export your Redux Framework settings from file, text or URL."
+msgstr ""
+
+#: celebrate/includes/options-config.php:2990
+msgid ""
+"This is not a site data - demo pages / posts ( XML ) import field. <br> This "
+"is options panel data import field. Not generally required if you are "
+"importing demo data XML.<br>If you are looking to import demo data, please "
+"refer help document."
+msgstr ""
+
+#: celebrate/includes/options-config.php:3005
+msgid "Theme Information"
+msgstr ""
+
+#: celebrate/includes/options-config.php:3019
+msgid "Plugins Misc"
+msgstr ""
+
+#: celebrate/includes/options-config.php:3025
+msgid "Disable Visual Composer Extra Elements"
+msgstr ""
+
+#: celebrate/includes/options-config.php:3027
+msgid ""
+"<br>Theme does not modify plugin itself. It is provided as it is. "
+"<br><br>Theme has some additions related to elements / params and extra "
+"elements disabled.<br>You can enable other extra elements provided by visual "
+"composer here.<br><br><strong>If need to enable: Go for : OFF</"
+"strong><br><br>Plugin itself has many elements. Theme does not support "
+"( provides customization for ) all elements provided by visual composer."
+"<br><br> <strong>By support, it does not mean that those elements do not "
+"work or cannot be used.</strong> Yes, those can be used. Also, those "
+"elements should work as provided by plugin.<br><br>Difference is that, "
+"styles for these elements are provided by plugin by default and not "
+"customized for theme. You can use if those go with your need, at your "
+"choice. Please note that no support from theme author will be provided for "
+"customization of plugin elements.<br><br> <strong>If you have license of "
+"plugin purchased on your own,</strong> you can even get support from plugin "
+"author in case any doubts related to these or other plugin elements.<br><br> "
+"Please note that, on Themeforest, when you get any paid plugin at no extra "
+"cost, included with theme, you are purchasing a theme and not a plugin. To "
+"get support from plugin author directly and automatic updates at your own, "
+"it needs to purchase plugin separately. This is purely optional. <br><br> "
+"Under both cases : \"self purchased\" or \"included with theme\", plugin "
+"will work same. <br> Where the difference act is : Support from plugin "
+"author and direct auto updates."
+msgstr ""
+
+#: celebrate/includes/options-config.php:3039
+msgid "Help Document"
+msgstr ""
+
+#: celebrate/includes/options-config.php:3040
+msgid ""
+"Please go through help document for more info. It is included in main zip "
+"file you have downloaded. <br><br>Make sure to select option \"All Files and "
+"Documentation\" while downloading."
+msgstr ""
+
+#: celebrate/includes/options-config.php:3065
+#: celebrate/includes/options-config.php:3066
+#: twentyseventeen/inc/customizer.php:66
+msgid "Theme Options"
+msgstr ""
+
+#: celebrate/includes/social-share.php:30
+#: celebrate/vc_extend/vc_extend.php:3008
+msgid "Facebook"
+msgstr ""
+
+#: celebrate/includes/social-share.php:33
+#: celebrate/vc_extend/vc_extend.php:3014
+msgid "Twitter"
+msgstr ""
+
+#: celebrate/includes/social-share.php:36
+#: celebrate/vc_extend/vc_extend.php:3020
+msgid "Googleplus"
+msgstr ""
+
+#: celebrate/includes/social-share.php:39
+#: celebrate/vc_extend/vc_extend.php:3026
+msgid "Linkedin"
+msgstr ""
+
+#: celebrate/includes/social-share.php:43
+#: celebrate/vc_extend/vc_extend.php:3032
+msgid "Pinterest"
+msgstr ""
+
+#: celebrate/includes/social-share.php:46
+#: celebrate/vc_extend/vc_extend.php:3038
+msgid "Mail"
+msgstr ""
+
+#: celebrate/includes/templates/author-bio.php:9
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: celebrate/includes/templates/content-audio.php:24
+#: celebrate/includes/templates/content-gallery.php:23
+#: celebrate/includes/templates/content-image.php:21
+#: celebrate/includes/templates/content-link.php:19
+#: celebrate/includes/templates/content-quote.php:18
+#: celebrate/includes/templates/content-video.php:24
+msgid "No comments"
+msgstr ""
+
+#: celebrate/includes/templates/content-audio.php:24
+#: celebrate/includes/templates/content-gallery.php:23
+#: celebrate/includes/templates/content-image.php:21
+#: celebrate/includes/templates/content-link.php:19
+#: celebrate/includes/templates/content-quote.php:18
+#: celebrate/includes/templates/content-video.php:24
+msgid "1 comment"
+msgstr ""
+
+#: celebrate/includes/templates/content-audio.php:24
+#: celebrate/includes/templates/content-gallery.php:23
+#: celebrate/includes/templates/content-image.php:21
+#: celebrate/includes/templates/content-link.php:19
+#: celebrate/includes/templates/content-quote.php:18
+#: celebrate/includes/templates/content-video.php:24
+#, php-format
+msgid "% comments"
+msgstr ""
+
+#: celebrate/includes/templates/content-none.php:7
+#: twentyseventeen/search.php:21
+#: twentyseventeen/template-parts/post/content-none.php:17
+msgid "Nothing Found"
+msgstr ""
+
+#: celebrate/includes/templates/content-none.php:11
+#, php-format
+msgid "Ready to go for your first post? <a href=\"%1$s\">Get started</a>."
+msgstr ""
+
+#: celebrate/includes/templates/content-none.php:14
+msgid ""
+"Sorry, no results were found for your search terms. Please try again with "
+"different keywords."
+msgstr ""
+
+#: celebrate/includes/templates/content.php:21
+msgid "0"
+msgstr ""
+
+#: celebrate/includes/templates/content.php:21
+msgid "1"
+msgstr ""
+
+#: celebrate/includes/templates/content.php:21
+msgid "%"
+msgstr ""
+
+#: celebrate/includes/templates/entry-thumb.php:16
+msgid "Sticky Post"
+msgstr ""
+
+#: celebrate/includes/templates/headers/header-v1.php:45
+#: celebrate/includes/templates/headers/header-v2.php:59
+#: celebrate/includes/templates/headers/header-v3.php:37
+#: celebrate_child/demo-template-header-v1.php:67
+#: celebrate_child/demo-template-header-v2.php:65
+msgid "Tagline Here"
+msgstr ""
+
+#: celebrate/includes/templates/headers/page-header.php:22
+#: celebrate/single.php:11
+msgid "Blogpost"
+msgstr ""
+
+#: celebrate/includes/templates/headers/page-header.php:26
+#, php-format
+msgid "Daily Archives: %s"
+msgstr ""
+
+#: celebrate/includes/templates/headers/page-header.php:29
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr ""
+
+#: celebrate/includes/templates/headers/page-header.php:29
+msgid "F Y"
+msgstr ""
+
+#: celebrate/includes/templates/headers/page-header.php:32
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr ""
+
+#: celebrate/includes/templates/headers/page-header.php:32
+msgid "Y"
+msgstr ""
+
+#: celebrate/includes/templates/headers/page-header.php:35
+#, php-format
+msgid "All posts by %s"
+msgstr ""
+
+#: celebrate/includes/templates/headers/page-header.php:47
+#, php-format
+msgid " Search Results : %s"
+msgstr ""
+
+#: celebrate/includes/templates/headers/page-header.php:85
+#: celebrate/single-tcsn_portfolio.php:26 celebrate/single-tcsn_team.php:24
+#: celebrate/single-tcsn_testimonial.php:23 celebrate/single.php:18
+#: celebrate/woocommerce.php:36
+msgid "How we work with our clients"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:14
+msgid "The most recent posts on your site"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:15
+msgid "Custom - Recent Posts"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:103
+#: celebrate/includes/widgets/custom-widgets.php:193
+msgid "Title:"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:109
+msgid "Number of posts to show:"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:116
+msgid "Display thumbnail?"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:122
+msgid "Show Link Icon on Thumb on Hover?"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:128
+msgid "Display post date?"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:134
+msgid "Display excerpt?"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:149
+msgid "Your most used tags in cloud format"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:150
+msgid "Custom - Tag Cloud"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:217
+msgid "Flickr photo stream"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:218
+msgid "Custom - Flickr Feed"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:264
+#: celebrate/includes/widgets/custom-widgets.php:376
+#: celebrate/includes/widgets/custom-widgets.php:594
+msgid "Title :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:271
+msgid ""
+"Flickr ID : <a href=\"http://idgettr.com/\" target=\"_blank\">Get your "
+"flickr ID</a>"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:277
+msgid "Number of photos to show (max 10) :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:283
+msgid "Sort by :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:287
+msgid "latest"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:290
+msgid "random"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:307
+msgid "Contact info"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:308
+msgid "Custom - Contact Info"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:382
+msgid "Phone :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:388
+msgid "Email address :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:394
+msgid "Email Link Text :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:400
+msgid "Address :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:408
+msgid "Automatically add paragraphs to address"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:424
+msgid "Social network"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:425
+msgid "Custom - Social Network"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:445
+msgid "behance"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:448
+msgid "delicious"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:451
+msgid "dribbble"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:454
+msgid "dropbox"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:457
+msgid "facebook"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:460
+msgid "flickr"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:463
+msgid "forumbee"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:466
+msgid "foursquare"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:469
+msgid "github"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:472
+msgid "googleplus"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:475
+msgid "instagram"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:478
+msgid "linkedin"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:481
+msgid "medium"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:484
+msgid "paypal"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:487
+msgid "pinterest"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:490
+msgid "reddit"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:493
+msgid "skype"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:496
+msgid "soundcloud"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:499
+msgid "spotify"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:502
+msgid "stumbleupon"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:505
+msgid "tumblr"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:508
+msgid "twitter"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:511
+msgid "yahoo"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:514
+msgid "youtube"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:517
+msgid "vimeo"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:520
+msgid "vine"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:523
+msgid "vk"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:526
+msgid "xing"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:529
+msgid "yelp"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:532
+msgid "rss"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:535
+msgid "mail"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:600
+msgid "Background on Hover :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:604
+msgid "Default - No Background"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:607
+msgid "Small Size Icon - No Background"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:610
+#: celebrate/vc_extend/vc_extend.php:140 celebrate/vc_extend/vc_extend.php:730
+#: celebrate/vc_extend/vc_extend.php:1000
+#: celebrate/vc_extend/vc_extend.php:3081
+#: celebrate/vc_extend/vc_extend.php:3278
+#: celebrate/vc_extend/vc_extend.php:3956
+msgid "Square"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:613
+#: celebrate/vc_extend/vc_extend.php:334 celebrate/vc_extend/vc_extend.php:2509
+#: celebrate/vc_extend/vc_extend.php:2731
+msgid "Circle"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:619
+msgid "Color Style :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:623
+#: celebrate/vc_extend/vc_extend.php:2565
+#: celebrate/vc_extend/vc_extend.php:2787
+msgid "Default / Dark - For Light Backgrounds"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:626
+#: celebrate/vc_extend/vc_extend.php:2566
+#: celebrate/vc_extend/vc_extend.php:2788
+msgid "Light - For Dark Backgrounds"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:632
+msgid "Behance URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:638
+msgid "Delicious URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:644
+msgid "Dribbble URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:650
+msgid "Dropbox URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:656
+msgid "Facebook URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:662
+msgid "Flickr URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:668
+msgid "Forumbee URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:674
+msgid "Foursquare URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:680
+msgid "Github URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:686
+msgid "Googleplus URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:692
+msgid "Instagram URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:698
+msgid "Linkedin URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:704
+msgid "Medium URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:710
+msgid "Paypal URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:716
+msgid "Pinterest URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:722
+msgid "Reddit URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:728
+msgid "Skype Username : Provide Username Only"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:734
+msgid "Soundcloud URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:740
+msgid "Spotify URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:746
+msgid "Stumbleupon URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:752
+msgid "Tumblr URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:758
+msgid "Twitter URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:764
+msgid "Vimeo URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:770
+msgid "Vine URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:776
+msgid "VK URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:782
+msgid "Xing URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:788
+msgid "Yahoo URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:794
+msgid "Yelp URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:800
+msgid "Youtube URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:806
+msgid "RSS URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/custom-widgets.php:812
+msgid "Mail URL :"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:12
+msgid "Blog Sidebar"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:14
+msgid ""
+"This area will be shown as a post sidebar. Widgets will be stacked in this "
+"column."
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:23
+msgid "Portfolio Sidebar"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:25
+msgid ""
+"This area will be shown as a portfolio grid page sidebar. Widgets will be "
+"stacked in this column."
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:34
+msgid "Page Sidebar"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:36
+msgid ""
+"This area will be shown as a page sidebar. Widgets will be stacked in this "
+"column."
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:45
+msgid "Header Social Icons"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:47
+msgid "Widgets in this column will appear in header section,"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:56
+msgid "Footer-Column-1"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:58
+msgid "Widgets in this column will appear in first footer column."
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:67
+msgid "Footer-Column-2"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:69
+msgid "Widgets in this column will appear in second footer column."
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:78
+msgid "Footer-Column-3"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:80
+msgid "Widgets in this column will appear in third footer column."
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:89
+msgid "Footer-Column-4"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:91
+msgid "Widgets in this column will appear in fourth footer column."
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:105
+msgid ""
+"This area is a dynamically generated copyright widget column. Widgets will "
+"be stacked in here."
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:116
+msgid "Woocommerce Sidebar"
+msgstr ""
+
+#: celebrate/includes/widgets/sidebars.php:118
+msgid ""
+"This area will be shown as a WooCommerce sidebar for shop pages and product "
+"posts. Widgets will be stacked in this column."
+msgstr ""
+
+#: celebrate/portfolio-2col.php:85 celebrate/portfolio-3col.php:85
+#: celebrate/portfolio-4col.php:85
+msgid "All"
+msgstr ""
+
+#: celebrate/searchform.php:2
+msgid "What’re you looking for..."
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:17
+msgid "***** ------ Theme Styled Progressbar ----- *****"
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:29 celebrate/vc_extend/add-params.php:42
+msgid "***** ------ Theme Styled Tabs ----- *****"
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:32 celebrate/vc_extend/add-params.php:45
+msgid ""
+"Select Classic - style, square - shape, grey - color, spacing and gap 1px. "
+"Background color of active tab / hover for theme styled tabs can be changed "
+"via theme options."
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:55
+msgid "***** ------ Make it Theme Styled ----- *****"
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:58
+msgid ""
+"Accordion style, shape, color, content area fill will not work once theme "
+"style is checked."
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:68
+msgid "Font Color Style For Dark Background"
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:71 celebrate/vc_extend/vc_extend.php:7
+#: celebrate/vc_extend/vc_extend.php:227 celebrate/vc_extend/vc_extend.php:344
+#: celebrate/vc_extend/vc_extend.php:818 celebrate/vc_extend/vc_extend.php:1088
+#: celebrate/vc_extend/vc_extend.php:1269
+#: celebrate/vc_extend/vc_extend.php:2083
+#: celebrate/vc_extend/vc_extend.php:2313
+#: celebrate/vc_extend/vc_extend.php:2588
+#: celebrate/vc_extend/vc_extend.php:2709
+#: celebrate/vc_extend/vc_extend.php:2810
+#: celebrate/vc_extend/vc_extend.php:2931
+#: celebrate/vc_extend/vc_extend.php:3361
+#: celebrate/vc_extend/vc_extend.php:3860
+#: celebrate/vc_extend/vc_extend.php:4037
+msgid "Default"
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:72
+msgid "For Dark backgrounds"
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:74
+msgid ""
+"This will apply predefined colors for text / headings / links.<br> If you "
+"need your custom color set either use - Text Style - shortcode or refer help "
+"document for more details."
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:84
+msgid "Row Overlay"
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:86
+msgid ""
+"Useful if light colored background images, to improve the text visibility. "
+"Be sure to set opacity (Alpha) to make it work properly."
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:96
+msgid "Header Banner Row?"
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:99
+msgid ""
+"If you have - transparent header and no page title - set first row of page "
+"as header banner row. This will adjust padding for responsive devices."
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:109
+msgid "5 Column Layout"
+msgstr ""
+
+#: celebrate/vc_extend/add-params.php:112
+msgid ""
+"To use this option - select 6 columns layout for this row. Leave 6th column "
+"blank."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:8 celebrate/vc_extend/vc_extend.php:27
+msgid "Grey"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:9 celebrate/vc_extend/vc_extend.php:28
+msgid "Indigo"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:10 celebrate/vc_extend/vc_extend.php:29
+msgid "Red"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:11 celebrate/vc_extend/vc_extend.php:30
+msgid "Pink"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:12 celebrate/vc_extend/vc_extend.php:31
+msgid "Purple"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:13 celebrate/vc_extend/vc_extend.php:32
+msgid "Blue"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:14 celebrate/vc_extend/vc_extend.php:33
+msgid "Cyan"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:15 celebrate/vc_extend/vc_extend.php:34
+msgid "Teal"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:16 celebrate/vc_extend/vc_extend.php:35
+msgid "Green"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:17 celebrate/vc_extend/vc_extend.php:36
+msgid "Lime"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:18 celebrate/vc_extend/vc_extend.php:37
+msgid "Yellow"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:19 celebrate/vc_extend/vc_extend.php:38
+msgid "Orange"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:20 celebrate/vc_extend/vc_extend.php:39
+msgid "Skyblue"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:21 celebrate/vc_extend/vc_extend.php:40
+msgid "Brown"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:22 celebrate/vc_extend/vc_extend.php:41
+msgid "White"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:46 celebrate/vc_extend/vc_extend.php:362
+#: celebrate/vc_extend/vc_extend.php:697 celebrate/vc_extend/vc_extend.php:967
+#: celebrate/vc_extend/vc_extend.php:1313
+msgid "None"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:47
+msgid "Zoom In"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:48
+msgid "Fade In Down"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:49
+msgid "Fade In Left"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:50
+msgid "Fade In Right"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:51
+msgid "Fade In Up"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:52
+msgid "RubberBand"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:53
+msgid "Shake"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:54
+msgid "Swing"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:55
+msgid "Roll In"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:64
+msgid "Horizontal Empty Space"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:68 celebrate/vc_extend/vc_extend.php:87
+#: celebrate/vc_extend/vc_extend.php:262 celebrate/vc_extend/vc_extend.php:296
+#: celebrate/vc_extend/vc_extend.php:317 celebrate/vc_extend/vc_extend.php:378
+#: celebrate/vc_extend/vc_extend.php:379 celebrate/vc_extend/vc_extend.php:394
+#: celebrate/vc_extend/vc_extend.php:412 celebrate/vc_extend/vc_extend.php:413
+#: celebrate/vc_extend/vc_extend.php:429 celebrate/vc_extend/vc_extend.php:516
+#: celebrate/vc_extend/vc_extend.php:521 celebrate/vc_extend/vc_extend.php:571
+#: celebrate/vc_extend/vc_extend.php:826 celebrate/vc_extend/vc_extend.php:827
+#: celebrate/vc_extend/vc_extend.php:842 celebrate/vc_extend/vc_extend.php:847
+#: celebrate/vc_extend/vc_extend.php:856 celebrate/vc_extend/vc_extend.php:1096
+#: celebrate/vc_extend/vc_extend.php:1097
+#: celebrate/vc_extend/vc_extend.php:1112
+#: celebrate/vc_extend/vc_extend.php:1117
+#: celebrate/vc_extend/vc_extend.php:1132
+#: celebrate/vc_extend/vc_extend.php:1139
+#: celebrate/vc_extend/vc_extend.php:1277
+#: celebrate/vc_extend/vc_extend.php:1278
+#: celebrate/vc_extend/vc_extend.php:1294
+#: celebrate/vc_extend/vc_extend.php:1442
+#: celebrate/vc_extend/vc_extend.php:1506
+#: celebrate/vc_extend/vc_extend.php:1564
+#: celebrate/vc_extend/vc_extend.php:1689
+#: celebrate/vc_extend/vc_extend.php:1797
+#: celebrate/vc_extend/vc_extend.php:1910
+#: celebrate/vc_extend/vc_extend.php:2117
+#: celebrate/vc_extend/vc_extend.php:2336
+#: celebrate/vc_extend/vc_extend.php:2501
+#: celebrate/vc_extend/vc_extend.php:2723
+#: celebrate/vc_extend/vc_extend.php:2945
+#: celebrate/vc_extend/vc_extend.php:3004
+#: celebrate/vc_extend/vc_extend.php:3059
+#: celebrate/vc_extend/vc_extend.php:3372
+#: celebrate/vc_extend/vc_extend.php:3376
+#: celebrate/vc_extend/vc_extend.php:3391
+#: celebrate/vc_extend/vc_extend.php:3419
+#: celebrate/vc_extend/vc_extend.php:3477
+#: celebrate/vc_extend/vc_extend.php:3496
+#: celebrate/vc_extend/vc_extend.php:3516
+#: celebrate/vc_extend/vc_extend.php:3540
+#: celebrate/vc_extend/vc_extend.php:3579
+#: celebrate/vc_extend/vc_extend.php:3598
+#: celebrate/vc_extend/vc_extend.php:3619
+#: celebrate/vc_extend/vc_extend.php:3628
+#: celebrate/vc_extend/vc_extend.php:3637
+#: celebrate/vc_extend/vc_extend.php:3724
+#: celebrate/vc_extend/vc_extend.php:3725
+#: celebrate/vc_extend/vc_extend.php:3749
+#: celebrate/vc_extend/vc_extend.php:3843
+#: celebrate/vc_extend/vc_extend.php:3848
+#: celebrate/vc_extend/vc_extend.php:4045
+#: celebrate/vc_extend/vc_extend.php:4046
+msgid "Content"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:72 celebrate/vc_extend/vc_extend.php:1750
+#: celebrate/vc_extend/vc_extend.php:1867
+#: celebrate/vc_extend/vc_extend.php:1949
+#: celebrate/vc_extend/vc_extend.php:2178
+#: celebrate/vc_extend/vc_extend.php:3786
+msgid "Width"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:76
+msgid "Provide unit. Like : 20px"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:83
+msgid "Theme Custom Button"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:92
+msgid "Button Type"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:96
+msgid "Default - Icon / Text"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:97 celebrate/vc_extend/vc_extend.php:1158
+#: celebrate/vc_extend/vc_extend.php:1163
+#: celebrate/vc_extend/vc_extend.php:1312
+#: celebrate/vc_extend/vc_extend.php:3561
+#: celebrate/vc_extend/vc_extend.php:3645
+msgid "Image"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:103
+msgid "Button in Image format"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:108
+msgid "Select button image from media library."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:113 celebrate/vc_extend/vc_extend.php:704
+#: celebrate/vc_extend/vc_extend.php:974 celebrate/vc_extend/vc_extend.php:3254
+#: celebrate/vc_extend/vc_extend.php:3931
+msgid "Button Text"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:119 celebrate/vc_extend/vc_extend.php:3258
+#: celebrate/vc_extend/vc_extend.php:3936
+msgid "Leave blank this field if need - Only Icon - button."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:124 celebrate/vc_extend/vc_extend.php:714
+#: celebrate/vc_extend/vc_extend.php:984 celebrate/vc_extend/vc_extend.php:3264
+#: celebrate/vc_extend/vc_extend.php:3941
+msgid "Button Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:128 celebrate/vc_extend/vc_extend.php:718
+#: celebrate/vc_extend/vc_extend.php:988 celebrate/vc_extend/vc_extend.php:3267
+#: celebrate/vc_extend/vc_extend.php:3945
+msgid "Classic"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:129 celebrate/vc_extend/vc_extend.php:719
+#: celebrate/vc_extend/vc_extend.php:989 celebrate/vc_extend/vc_extend.php:3268
+#: celebrate/vc_extend/vc_extend.php:3946
+msgid "Outline"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:136 celebrate/vc_extend/vc_extend.php:726
+#: celebrate/vc_extend/vc_extend.php:996 celebrate/vc_extend/vc_extend.php:3275
+#: celebrate/vc_extend/vc_extend.php:3952
+msgid "Button Shape"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:141 celebrate/vc_extend/vc_extend.php:731
+#: celebrate/vc_extend/vc_extend.php:1001
+#: celebrate/vc_extend/vc_extend.php:3080
+#: celebrate/vc_extend/vc_extend.php:3279
+#: celebrate/vc_extend/vc_extend.php:3957
+msgid "Round"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:142 celebrate/vc_extend/vc_extend.php:732
+#: celebrate/vc_extend/vc_extend.php:1002
+#: celebrate/vc_extend/vc_extend.php:3280
+#: celebrate/vc_extend/vc_extend.php:3958
+msgid "Rounded Corners"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:149 celebrate/vc_extend/vc_extend.php:740
+#: celebrate/vc_extend/vc_extend.php:1010
+#: celebrate/vc_extend/vc_extend.php:3288
+#: celebrate/vc_extend/vc_extend.php:3964
+msgid "Button Size"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:153 celebrate/vc_extend/vc_extend.php:345
+#: celebrate/vc_extend/vc_extend.php:744 celebrate/vc_extend/vc_extend.php:900
+#: celebrate/vc_extend/vc_extend.php:1014
+#: celebrate/vc_extend/vc_extend.php:1167
+#: celebrate/vc_extend/vc_extend.php:1521
+#: celebrate/vc_extend/vc_extend.php:1609
+#: celebrate/vc_extend/vc_extend.php:1735
+#: celebrate/vc_extend/vc_extend.php:1848
+#: celebrate/vc_extend/vc_extend.php:1934
+#: celebrate/vc_extend/vc_extend.php:2163
+#: celebrate/vc_extend/vc_extend.php:2960
+#: celebrate/vc_extend/vc_extend.php:3291
+#: celebrate/vc_extend/vc_extend.php:3434
+#: celebrate/vc_extend/vc_extend.php:3572
+#: celebrate/vc_extend/vc_extend.php:3767
+#: celebrate/vc_extend/vc_extend.php:3968
+msgid "Medium"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:154 celebrate/vc_extend/vc_extend.php:745
+#: celebrate/vc_extend/vc_extend.php:1015
+#: celebrate/vc_extend/vc_extend.php:3292
+#: celebrate/vc_extend/vc_extend.php:3969
+msgid "Big"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:155 celebrate/vc_extend/vc_extend.php:746
+#: celebrate/vc_extend/vc_extend.php:1016
+#: celebrate/vc_extend/vc_extend.php:3293
+#: celebrate/vc_extend/vc_extend.php:3970
+msgid "Small"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:162 celebrate/vc_extend/vc_extend.php:753
+#: celebrate/vc_extend/vc_extend.php:1023
+#: celebrate/vc_extend/vc_extend.php:3300
+#: celebrate/vc_extend/vc_extend.php:3976
+msgid "Button Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:170 celebrate/vc_extend/vc_extend.php:184
+#: celebrate/vc_extend/vc_extend.php:440 celebrate/vc_extend/vc_extend.php:452
+#: celebrate/vc_extend/vc_extend.php:529 celebrate/vc_extend/vc_extend.php:542
+#: celebrate/vc_extend/vc_extend.php:761 celebrate/vc_extend/vc_extend.php:775
+#: celebrate/vc_extend/vc_extend.php:1031
+#: celebrate/vc_extend/vc_extend.php:1045
+#: celebrate/vc_extend/vc_extend.php:1125
+#: celebrate/vc_extend/vc_extend.php:1138
+#: celebrate/vc_extend/vc_extend.php:1311
+#: celebrate/vc_extend/vc_extend.php:1367
+#: celebrate/vc_extend/vc_extend.php:3307
+#: celebrate/vc_extend/vc_extend.php:3320
+#: celebrate/vc_extend/vc_extend.php:3644
+#: celebrate/vc_extend/vc_extend.php:3659
+#: celebrate/vc_extend/vc_extend.php:3672
+#: celebrate/vc_extend/vc_extend.php:3983
+#: celebrate/vc_extend/vc_extend.php:3995
+msgid "Icon"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:174 celebrate/vc_extend/vc_extend.php:443
+#: celebrate/vc_extend/vc_extend.php:532 celebrate/vc_extend/vc_extend.php:764
+#: celebrate/vc_extend/vc_extend.php:1034
+#: celebrate/vc_extend/vc_extend.php:1128
+#: celebrate/vc_extend/vc_extend.php:1357
+#: celebrate/vc_extend/vc_extend.php:3310
+#: celebrate/vc_extend/vc_extend.php:3662
+#: celebrate/vc_extend/vc_extend.php:3987
+msgid "No Icon"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:175 celebrate/vc_extend/vc_extend.php:444
+#: celebrate/vc_extend/vc_extend.php:533 celebrate/vc_extend/vc_extend.php:765
+#: celebrate/vc_extend/vc_extend.php:1035
+#: celebrate/vc_extend/vc_extend.php:1129
+#: celebrate/vc_extend/vc_extend.php:1358
+#: celebrate/vc_extend/vc_extend.php:3311
+#: celebrate/vc_extend/vc_extend.php:3663
+#: celebrate/vc_extend/vc_extend.php:3988
+msgid "Font Awesome + Theme Custom Icons"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:179 celebrate/vc_extend/vc_extend.php:447
+#: celebrate/vc_extend/vc_extend.php:537 celebrate/vc_extend/vc_extend.php:770
+#: celebrate/vc_extend/vc_extend.php:1040
+#: celebrate/vc_extend/vc_extend.php:1133
+#: celebrate/vc_extend/vc_extend.php:1362
+#: celebrate/vc_extend/vc_extend.php:3315
+#: celebrate/vc_extend/vc_extend.php:3666
+#: celebrate/vc_extend/vc_extend.php:3991
+msgid "Select icon library."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:196 celebrate/vc_extend/vc_extend.php:463
+#: celebrate/vc_extend/vc_extend.php:554 celebrate/vc_extend/vc_extend.php:787
+#: celebrate/vc_extend/vc_extend.php:1057
+#: celebrate/vc_extend/vc_extend.php:1150
+#: celebrate/vc_extend/vc_extend.php:1378
+#: celebrate/vc_extend/vc_extend.php:3332
+#: celebrate/vc_extend/vc_extend.php:3683
+#: celebrate/vc_extend/vc_extend.php:4007
+msgid "Select icon from library."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:201 celebrate/vc_extend/vc_extend.php:792
+#: celebrate/vc_extend/vc_extend.php:1062
+#: celebrate/vc_extend/vc_extend.php:3337
+#: celebrate/vc_extend/vc_extend.php:4012
+msgid "Button Icon Position"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:206 celebrate/vc_extend/vc_extend.php:241
+#: celebrate/vc_extend/vc_extend.php:364 celebrate/vc_extend/vc_extend.php:564
+#: celebrate/vc_extend/vc_extend.php:585 celebrate/vc_extend/vc_extend.php:797
+#: celebrate/vc_extend/vc_extend.php:870 celebrate/vc_extend/vc_extend.php:882
+#: celebrate/vc_extend/vc_extend.php:1067
+#: celebrate/vc_extend/vc_extend.php:1187
+#: celebrate/vc_extend/vc_extend.php:2014
+#: celebrate/vc_extend/vc_extend.php:2243
+#: celebrate/vc_extend/vc_extend.php:2520
+#: celebrate/vc_extend/vc_extend.php:2742
+#: celebrate/vc_extend/vc_extend.php:3341
+#: celebrate/vc_extend/vc_extend.php:4017
+msgid "Right"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:213 celebrate/vc_extend/vc_extend.php:804
+#: celebrate/vc_extend/vc_extend.php:1074
+#: celebrate/vc_extend/vc_extend.php:1255
+#: celebrate/vc_extend/vc_extend.php:3348
+#: celebrate/vc_extend/vc_extend.php:4023
+msgid "Button URL"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:223 celebrate/vc_extend/vc_extend.php:814
+#: celebrate/vc_extend/vc_extend.php:1084
+#: celebrate/vc_extend/vc_extend.php:1265
+#: celebrate/vc_extend/vc_extend.php:2079
+#: celebrate/vc_extend/vc_extend.php:2309
+#: celebrate/vc_extend/vc_extend.php:2585
+#: celebrate/vc_extend/vc_extend.php:2807
+#: celebrate/vc_extend/vc_extend.php:3358
+#: celebrate/vc_extend/vc_extend.php:4033
+msgid "Open link in"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:228 celebrate/vc_extend/vc_extend.php:819
+#: celebrate/vc_extend/vc_extend.php:1089
+#: celebrate/vc_extend/vc_extend.php:1270
+#: celebrate/vc_extend/vc_extend.php:2084
+#: celebrate/vc_extend/vc_extend.php:2314
+#: celebrate/vc_extend/vc_extend.php:2589
+#: celebrate/vc_extend/vc_extend.php:2811
+#: celebrate/vc_extend/vc_extend.php:3362
+#: celebrate/vc_extend/vc_extend.php:4038
+msgid "New Window"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:229 celebrate/vc_extend/vc_extend.php:820
+#: celebrate/vc_extend/vc_extend.php:1090
+#: celebrate/vc_extend/vc_extend.php:1271
+#: celebrate/vc_extend/vc_extend.php:2085
+#: celebrate/vc_extend/vc_extend.php:2315
+#: celebrate/vc_extend/vc_extend.php:2590
+#: celebrate/vc_extend/vc_extend.php:2812
+#: celebrate/vc_extend/vc_extend.php:3363
+#: celebrate/vc_extend/vc_extend.php:4039
+msgid "Same Window"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:236
+msgid "Button Align"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:242 celebrate/vc_extend/vc_extend.php:583
+#: celebrate/vc_extend/vc_extend.php:880 celebrate/vc_extend/vc_extend.php:1185
+#: celebrate/vc_extend/vc_extend.php:2013
+#: celebrate/vc_extend/vc_extend.php:2242
+#: celebrate/vc_extend/vc_extend.php:2519
+#: celebrate/vc_extend/vc_extend.php:2741
+msgid "Center"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:247 celebrate/vc_extend/vc_extend.php:303
+#: celebrate/vc_extend/vc_extend.php:370 celebrate/vc_extend/vc_extend.php:405
+#: celebrate/vc_extend/vc_extend.php:502 celebrate/vc_extend/vc_extend.php:685
+#: celebrate/vc_extend/vc_extend.php:955 celebrate/vc_extend/vc_extend.php:1232
+#: celebrate/vc_extend/vc_extend.php:1428
+#: celebrate/vc_extend/vc_extend.php:1492
+#: celebrate/vc_extend/vc_extend.php:1550
+#: celebrate/vc_extend/vc_extend.php:1675
+#: celebrate/vc_extend/vc_extend.php:1783
+#: celebrate/vc_extend/vc_extend.php:2102
+#: celebrate/vc_extend/vc_extend.php:2321
+#: celebrate/vc_extend/vc_extend.php:2619
+#: celebrate/vc_extend/vc_extend.php:2841
+#: celebrate/vc_extend/vc_extend.php:3044
+#: celebrate/vc_extend/vc_extend.php:3405
+#: celebrate/vc_extend/vc_extend.php:3482
+#: celebrate/vc_extend/vc_extend.php:3829
+#: celebrate/vc_extend/vc_extend.php:3922
+msgid "CSS Animation"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:251 celebrate/vc_extend/vc_extend.php:306
+#: celebrate/vc_extend/vc_extend.php:374 celebrate/vc_extend/vc_extend.php:408
+#: celebrate/vc_extend/vc_extend.php:505 celebrate/vc_extend/vc_extend.php:689
+#: celebrate/vc_extend/vc_extend.php:959 celebrate/vc_extend/vc_extend.php:1236
+#: celebrate/vc_extend/vc_extend.php:1431
+#: celebrate/vc_extend/vc_extend.php:1495
+#: celebrate/vc_extend/vc_extend.php:1553
+#: celebrate/vc_extend/vc_extend.php:1678
+#: celebrate/vc_extend/vc_extend.php:1786
+#: celebrate/vc_extend/vc_extend.php:2106
+#: celebrate/vc_extend/vc_extend.php:2325
+#: celebrate/vc_extend/vc_extend.php:2622
+#: celebrate/vc_extend/vc_extend.php:2844
+#: celebrate/vc_extend/vc_extend.php:3047
+#: celebrate/vc_extend/vc_extend.php:3408
+#: celebrate/vc_extend/vc_extend.php:3485
+#: celebrate/vc_extend/vc_extend.php:3832
+#: celebrate/vc_extend/vc_extend.php:3926
+msgid ""
+"Select type of animation for element to be animated when it \"enters\" the "
+"browsers viewport (Note: works only in modern browsers)."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:266
+msgid "Select Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:269
+msgid "Custom  - Quote Icon"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:270
+msgid "Default - Left Border"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:271
+msgid "Default - Right Border"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:276 celebrate/vc_extend/vc_extend.php:340
+#: celebrate/vc_extend/vc_extend.php:481
+msgid "Font Size"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:279
+msgid "Provide unit to font size like px or em. Example : 48px"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:283 celebrate/vc_extend/vc_extend.php:1421
+#: celebrate/vc_extend/vc_extend.php:2974
+msgid "Text Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:286
+msgid "This will be appicable to icons too."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:290
+msgid "Quote Source"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:298
+msgid "Quote text here"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:299 celebrate/vc_extend/vc_extend.php:831
+#: celebrate/vc_extend/vc_extend.php:1101
+#: celebrate/vc_extend/vc_extend.php:1282
+#: celebrate/vc_extend/vc_extend.php:3375
+#: celebrate/vc_extend/vc_extend.php:3520
+#: celebrate/vc_extend/vc_extend.php:3583
+#: celebrate/vc_extend/vc_extend.php:3729
+#: celebrate/vc_extend/vc_extend.php:4050
+msgid "Enter your content."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:313
+msgid "Selected Lists"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:321
+msgid "List Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:325
+msgid "Checkmark"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:326
+msgid "Inline"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:327
+msgid "Pipe Separator"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:328
+msgid "Checkmark Circle"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:329
+msgid "Checkmark Square"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:330
+msgid "Star"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:331
+msgid "Arrow"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:332
+msgid "Arrow Circle"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:333
+msgid "Heart"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:350 celebrate/vc_extend/vc_extend.php:3914
+msgid "Font Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:354
+msgid "This will be applied to icon too. Leave blank for theme default."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:358
+msgid "List Text Align"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:363 celebrate/vc_extend/vc_extend.php:563
+#: celebrate/vc_extend/vc_extend.php:584 celebrate/vc_extend/vc_extend.php:869
+#: celebrate/vc_extend/vc_extend.php:881 celebrate/vc_extend/vc_extend.php:1186
+#: celebrate/vc_extend/vc_extend.php:2012
+#: celebrate/vc_extend/vc_extend.php:2241
+#: celebrate/vc_extend/vc_extend.php:2518
+#: celebrate/vc_extend/vc_extend.php:2740
+msgid "Left"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:383
+msgid ""
+"Enter list here. Use 'Bulleted list' button from default WP editor. Refer "
+"help doc (Shortcodes Section) for more info."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:390
+msgid "Styled - Ordered list"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:399
+msgid "List Number Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:417
+msgid ""
+"Enter list here. Use 'Ordred list' button from default WP editor. Refer help "
+"doc (Shortcodes Section) for more info."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:425
+msgid "List with Icon"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:433
+msgid "List Text"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:467
+msgid "Icon color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:474
+msgid "List text color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:484
+msgid "Give it as : 20px. Leave blank for same as body font size."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:488
+msgid "Enable border bottom"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:494
+msgid "Border color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:512
+msgid "Icon Feature"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:520 celebrate/vc_extend/vc_extend.php:846
+#: celebrate/vc_extend/vc_extend.php:1116
+msgid "Feature Heading"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:558
+msgid "Icon Position"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:562 celebrate/vc_extend/vc_extend.php:868
+msgid "Top"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:570 celebrate/vc_extend/vc_extend.php:855
+msgid "Feature Number"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:579 celebrate/vc_extend/vc_extend.php:876
+#: celebrate/vc_extend/vc_extend.php:1181
+#: celebrate/vc_extend/vc_extend.php:2008
+#: celebrate/vc_extend/vc_extend.php:2237
+#: celebrate/vc_extend/vc_extend.php:2515
+#: celebrate/vc_extend/vc_extend.php:2737
+msgid "Text Align"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:590
+msgid "Icon Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:594
+msgid "Icon with No background"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:595
+msgid "Icon with Circle background"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:596
+msgid "Icon with Square background"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:602 celebrate/vc_extend/vc_extend.php:1200
+msgid "Icon Size"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:607 celebrate/vc_extend/vc_extend.php:1204
+msgid "No need of unit. It will be in px. Leave blank for theme default."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:611 celebrate/vc_extend/vc_extend.php:1208
+#: celebrate/vc_extend/vc_extend.php:1382
+#: celebrate/vc_extend/vc_extend.php:3688
+msgid "Icon Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:615 celebrate/vc_extend/vc_extend.php:624
+#: celebrate/vc_extend/vc_extend.php:633 celebrate/vc_extend/vc_extend.php:641
+#: celebrate/vc_extend/vc_extend.php:649 celebrate/vc_extend/vc_extend.php:911
+#: celebrate/vc_extend/vc_extend.php:919 celebrate/vc_extend/vc_extend.php:1212
+#: celebrate/vc_extend/vc_extend.php:1220
+#: celebrate/vc_extend/vc_extend.php:1385
+#: celebrate/vc_extend/vc_extend.php:1401
+#: celebrate/vc_extend/vc_extend.php:1424
+#: celebrate/vc_extend/vc_extend.php:1467
+#: celebrate/vc_extend/vc_extend.php:1474
+#: celebrate/vc_extend/vc_extend.php:1488
+#: celebrate/vc_extend/vc_extend.php:2607
+#: celebrate/vc_extend/vc_extend.php:2615
+#: celebrate/vc_extend/vc_extend.php:2829
+#: celebrate/vc_extend/vc_extend.php:2837
+#: celebrate/vc_extend/vc_extend.php:2977
+#: celebrate/vc_extend/vc_extend.php:3099
+#: celebrate/vc_extend/vc_extend.php:3109
+#: celebrate/vc_extend/vc_extend.php:3129
+#: celebrate/vc_extend/vc_extend.php:3238
+#: celebrate/vc_extend/vc_extend.php:3248
+#: celebrate/vc_extend/vc_extend.php:3692
+#: celebrate/vc_extend/vc_extend.php:3699
+#: celebrate/vc_extend/vc_extend.php:3706
+#: celebrate/vc_extend/vc_extend.php:3713
+#: celebrate/vc_extend/vc_extend.php:3870
+#: celebrate/vc_extend/vc_extend.php:3910
+#: celebrate/vc_extend/vc_extend.php:3918
+msgid "Leave blank for theme default."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:619 celebrate/vc_extend/vc_extend.php:1398
+msgid "Icon Background Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:628
+msgid "Icon Border Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:637 celebrate/vc_extend/vc_extend.php:907
+#: celebrate/vc_extend/vc_extend.php:1216
+#: celebrate/vc_extend/vc_extend.php:1485
+#: celebrate/vc_extend/vc_extend.php:3703
+#: celebrate/vc_extend/vc_extend.php:3906
+msgid "Heading Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:645 celebrate/vc_extend/vc_extend.php:915
+#: celebrate/vc_extend/vc_extend.php:1464
+msgid "Number Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:653 celebrate/vc_extend/vc_extend.php:923
+#: celebrate/vc_extend/vc_extend.php:1224
+#: celebrate/vc_extend/vc_extend.php:2382
+#: celebrate/vc_extend/vc_extend.php:3717
+msgid "Text color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:661 celebrate/vc_extend/vc_extend.php:931
+msgid "Wrap feature with a border"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:668 celebrate/vc_extend/vc_extend.php:938
+#: celebrate/vc_extend/vc_extend.php:3116
+msgid "Border Width"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:673 celebrate/vc_extend/vc_extend.php:943
+msgid "Example (top / right / bottom / left): 2px 2px 2px 2px"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:693 celebrate/vc_extend/vc_extend.php:963
+msgid "Link type"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:698 celebrate/vc_extend/vc_extend.php:968
+msgid "Button below text"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:699 celebrate/vc_extend/vc_extend.php:969
+msgid "Wrap feature in a link"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:709 celebrate/vc_extend/vc_extend.php:979
+msgid "Leave this field blank for Icon Only button"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:838
+msgid "Image Feature"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:864
+msgid "Image Position"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:887 celebrate/vc_extend/vc_extend.php:1330
+#: celebrate/vc_extend/vc_extend.php:1510
+#: celebrate/vc_extend/vc_extend.php:2949
+#: celebrate/vc_extend/vc_extend.php:3423
+#: celebrate/vc_extend/vc_extend.php:3651
+msgid "Select Image"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:891 celebrate/vc_extend/vc_extend.php:1157
+#: celebrate/vc_extend/vc_extend.php:1334
+#: celebrate/vc_extend/vc_extend.php:1513
+#: celebrate/vc_extend/vc_extend.php:2952
+#: celebrate/vc_extend/vc_extend.php:3564
+msgid "Select image from media library."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:895 celebrate/vc_extend/vc_extend.php:1162
+#: celebrate/vc_extend/vc_extend.php:1517
+#: celebrate/vc_extend/vc_extend.php:1843
+#: celebrate/vc_extend/vc_extend.php:1929
+#: celebrate/vc_extend/vc_extend.php:2158
+#: celebrate/vc_extend/vc_extend.php:2956
+#: celebrate/vc_extend/vc_extend.php:3430
+#: celebrate/vc_extend/vc_extend.php:3568
+#: celebrate/vc_extend/vc_extend.php:3762
+msgid "Image size"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:899 celebrate/vc_extend/vc_extend.php:1166
+#: celebrate/vc_extend/vc_extend.php:1520
+#: celebrate/vc_extend/vc_extend.php:1608
+#: celebrate/vc_extend/vc_extend.php:1734
+#: celebrate/vc_extend/vc_extend.php:1847
+#: celebrate/vc_extend/vc_extend.php:1933
+#: celebrate/vc_extend/vc_extend.php:2162
+#: celebrate/vc_extend/vc_extend.php:2959
+#: celebrate/vc_extend/vc_extend.php:3433
+#: celebrate/vc_extend/vc_extend.php:3571
+#: celebrate/vc_extend/vc_extend.php:3766
+msgid "Full"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:901 celebrate/vc_extend/vc_extend.php:1168
+#: celebrate/vc_extend/vc_extend.php:1522
+#: celebrate/vc_extend/vc_extend.php:1610
+#: celebrate/vc_extend/vc_extend.php:1736
+#: celebrate/vc_extend/vc_extend.php:1849
+#: celebrate/vc_extend/vc_extend.php:1935
+#: celebrate/vc_extend/vc_extend.php:2164
+#: celebrate/vc_extend/vc_extend.php:2961
+#: celebrate/vc_extend/vc_extend.php:3435
+#: celebrate/vc_extend/vc_extend.php:3573
+#: celebrate/vc_extend/vc_extend.php:3768
+msgid "Thumbnail"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1108
+msgid "Icon Feature - Styled"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1154
+msgid "Background Image"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1174
+msgid "Keep Feature Highlighted"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1192
+msgid "Background Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1240
+msgid "Hide - Link On Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1247
+msgid "Link Background Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1290
+#: celebrate/vc_extend/vc_extend.php:1301
+#: celebrate/vc_extend/vc_extend.php:1449
+msgid "Counter"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1298
+#: celebrate/vc_extend/vc_extend.php:1446
+msgid "Counting Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1302
+#: celebrate/vc_extend/vc_extend.php:1450
+msgid "Static"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1308
+#: celebrate/vc_extend/vc_extend.php:3641
+msgid "Image or Icon"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1319
+#: celebrate/vc_extend/vc_extend.php:3545
+#: celebrate/vc_extend/vc_extend.php:3856
+msgid "Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1322
+msgid "Icon / Image to Top"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1323
+msgid "Icon / Image to left"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1338
+msgid "Image Width"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1342
+#: celebrate/vc_extend/vc_extend.php:1350
+msgid "No need of unit. Leave blank for default."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1346
+msgid "Image Height"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1354
+msgid "Select Icon"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1390
+msgid "Icon with Background"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1406
+#: celebrate/vc_extend/vc_extend.php:1456
+msgid "Number"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1438
+msgid "Counter - Variation"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1471
+msgid "Number Background Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1478
+#: celebrate/vc_extend/vc_extend.php:3500
+#: celebrate/vc_extend/vc_extend.php:3554
+#: celebrate/vc_extend/vc_extend.php:3847
+msgid "Heading"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1502
+msgid "Single Image with Caption"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1528
+#: celebrate/vc_extend/vc_extend.php:1836
+#: celebrate/vc_extend/vc_extend.php:1922
+#: celebrate/vc_extend/vc_extend.php:2151
+#: celebrate/vc_extend/vc_extend.php:3804
+msgid "No Image Scale on Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1536
+#: celebrate/vc_extend/vc_extend.php:1887
+#: celebrate/vc_extend/vc_extend.php:2042
+#: celebrate/vc_extend/vc_extend.php:2271
+msgid "Hide zoom Icon on Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1544
+msgid "Hide Caption"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1560
+msgid "Recent Posts"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1568
+#: celebrate/vc_extend/vc_extend.php:1693
+msgid "Number of Posts to Show in Carousel"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1571
+#: celebrate/vc_extend/vc_extend.php:1696
+msgid ""
+"Fill in the number. Ex - 5. This number is number of recent posts those "
+"rotate in carousel, not the number of columns. Recent Posts Carousel is 2 "
+"column."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1575
+#: celebrate/vc_extend/vc_extend.php:1700
+#: celebrate/vc_extend/vc_extend.php:1976
+#: celebrate/vc_extend/vc_extend.php:2205
+#: celebrate/vc_extend/vc_extend.php:2645
+#: celebrate/vc_extend/vc_extend.php:2867
+msgid "Filter by Category"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1583
+#: celebrate/vc_extend/vc_extend.php:1708
+#: celebrate/vc_extend/vc_extend.php:1985
+#: celebrate/vc_extend/vc_extend.php:2214
+msgid "Sort Posts By"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1586
+#: celebrate/vc_extend/vc_extend.php:1711
+#: celebrate/vc_extend/vc_extend.php:1989
+#: celebrate/vc_extend/vc_extend.php:2218
+#: celebrate/vc_extend/vc_extend.php:2658
+#: celebrate/vc_extend/vc_extend.php:2880
+msgid "Date"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1587
+#: celebrate/vc_extend/vc_extend.php:1712
+#: celebrate/vc_extend/vc_extend.php:1990
+#: celebrate/vc_extend/vc_extend.php:2219
+#: celebrate/vc_extend/vc_extend.php:2659
+#: celebrate/vc_extend/vc_extend.php:2881
+msgid "Random"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1588
+#: celebrate/vc_extend/vc_extend.php:1713
+msgid "Author"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1589
+#: celebrate/vc_extend/vc_extend.php:1714
+#: celebrate/vc_extend/vc_extend.php:1991
+#: celebrate/vc_extend/vc_extend.php:2220
+#: celebrate/vc_extend/vc_extend.php:2660
+#: celebrate/vc_extend/vc_extend.php:2882
+#: celebrate/vc_extend/vc_extend.php:3167
+#: celebrate/vc_extend/vc_extend.php:3441
+msgid "Title"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1595
+#: celebrate/vc_extend/vc_extend.php:1720
+#: celebrate/vc_extend/vc_extend.php:1997
+#: celebrate/vc_extend/vc_extend.php:2226
+msgid "Arrange Sorted Posts"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1598
+#: celebrate/vc_extend/vc_extend.php:1723
+#: celebrate/vc_extend/vc_extend.php:2001
+#: celebrate/vc_extend/vc_extend.php:2230
+#: celebrate/vc_extend/vc_extend.php:2459
+#: celebrate/vc_extend/vc_extend.php:2670
+#: celebrate/vc_extend/vc_extend.php:2892
+msgid "Descending"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1599
+#: celebrate/vc_extend/vc_extend.php:1724
+#: celebrate/vc_extend/vc_extend.php:2002
+#: celebrate/vc_extend/vc_extend.php:2231
+#: celebrate/vc_extend/vc_extend.php:2460
+#: celebrate/vc_extend/vc_extend.php:2671
+#: celebrate/vc_extend/vc_extend.php:2893
+msgid "Ascending"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1616
+msgid "Hide Image"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1623
+msgid "Hide Hover /  Link On Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1630
+msgid "Hide Title"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1637
+#: celebrate/vc_extend/vc_extend.php:1766
+msgid "Hide Date"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1644
+msgid "Hide Category"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1651
+msgid "Hide Comments"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1658
+msgid "Hide Post Excerpt"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1665
+#: celebrate/vc_extend/vc_extend.php:1773
+#: celebrate/vc_extend/vc_extend.php:2091
+#: celebrate/vc_extend/vc_extend.php:2466
+#: celebrate/vc_extend/vc_extend.php:2677
+#: celebrate/vc_extend/vc_extend.php:2899
+#: celebrate/vc_extend/vc_extend.php:3396
+#: celebrate/vc_extend/vc_extend.php:3819
+msgid "Navigation Type"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1668
+#: celebrate/vc_extend/vc_extend.php:1776
+#: celebrate/vc_extend/vc_extend.php:2095
+#: celebrate/vc_extend/vc_extend.php:2470
+#: celebrate/vc_extend/vc_extend.php:2681
+#: celebrate/vc_extend/vc_extend.php:2903
+#: celebrate/vc_extend/vc_extend.php:3399
+#: celebrate/vc_extend/vc_extend.php:3822
+msgid "Pager"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1669
+#: celebrate/vc_extend/vc_extend.php:1777
+#: celebrate/vc_extend/vc_extend.php:2096
+#: celebrate/vc_extend/vc_extend.php:2471
+#: celebrate/vc_extend/vc_extend.php:2682
+#: celebrate/vc_extend/vc_extend.php:2904
+#: celebrate/vc_extend/vc_extend.php:3400
+#: celebrate/vc_extend/vc_extend.php:3823
+msgid "Navigation Arrows"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1685
+msgid "Recent Posts - Variation"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1732
+#: celebrate/vc_extend/vc_extend.php:1744
+#: celebrate/vc_extend/vc_extend.php:1752
+#: celebrate/vc_extend/vc_extend.php:1760
+#: celebrate/vc_extend/vc_extend.php:1830
+#: celebrate/vc_extend/vc_extend.php:1838
+#: celebrate/vc_extend/vc_extend.php:1845
+#: celebrate/vc_extend/vc_extend.php:1859
+#: celebrate/vc_extend/vc_extend.php:1869
+#: celebrate/vc_extend/vc_extend.php:1879
+#: celebrate/vc_extend/vc_extend.php:1924
+#: celebrate/vc_extend/vc_extend.php:1931
+#: celebrate/vc_extend/vc_extend.php:1943
+#: celebrate/vc_extend/vc_extend.php:1951
+#: celebrate/vc_extend/vc_extend.php:1959
+#: celebrate/vc_extend/vc_extend.php:2153
+#: celebrate/vc_extend/vc_extend.php:2160
+#: celebrate/vc_extend/vc_extend.php:2172
+#: celebrate/vc_extend/vc_extend.php:2180
+#: celebrate/vc_extend/vc_extend.php:2188
+#: celebrate/vc_extend/vc_extend.php:3764
+#: celebrate/vc_extend/vc_extend.php:3778
+#: celebrate/vc_extend/vc_extend.php:3788
+#: celebrate/vc_extend/vc_extend.php:3798
+#: celebrate/vc_extend/vc_extend.php:3806
+msgid "Image Settings"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1742
+#: celebrate/vc_extend/vc_extend.php:1857
+#: celebrate/vc_extend/vc_extend.php:1941
+#: celebrate/vc_extend/vc_extend.php:2170
+#: celebrate/vc_extend/vc_extend.php:3776
+msgid "Enable hard cropping"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1754
+#: celebrate/vc_extend/vc_extend.php:1871
+#: celebrate/vc_extend/vc_extend.php:1953
+#: celebrate/vc_extend/vc_extend.php:2182
+#: celebrate/vc_extend/vc_extend.php:3790
+msgid ""
+"No need of unit. Give it like: 600. Make sure all images to be displayed are "
+"of more width than hard cropping width given above, otherwise those will not "
+"be displayed."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1758
+#: celebrate/vc_extend/vc_extend.php:1877
+#: celebrate/vc_extend/vc_extend.php:1957
+#: celebrate/vc_extend/vc_extend.php:2186
+#: celebrate/vc_extend/vc_extend.php:3796
+msgid "Height"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1762
+#: celebrate/vc_extend/vc_extend.php:1881
+#: celebrate/vc_extend/vc_extend.php:1961
+#: celebrate/vc_extend/vc_extend.php:2190
+#: celebrate/vc_extend/vc_extend.php:3800
+msgid ""
+"No need of unit. Give it like: 400. Make sure all images to be displayed are "
+"of more height than hard cropping height given above, otherwise those will "
+"not be displayed."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1793
+msgid "Image Gallery Grid"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1803
+#: celebrate/vc_extend/vc_extend.php:2129
+#: celebrate/vc_extend/vc_extend.php:2432
+msgid "Number of columns"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1806
+#: celebrate/vc_extend/vc_extend.php:2133
+#: celebrate/vc_extend/vc_extend.php:3607
+msgid "Three Columns"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1807
+#: celebrate/vc_extend/vc_extend.php:2437
+msgid "Two Columns"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1808
+#: celebrate/vc_extend/vc_extend.php:2134
+#: celebrate/vc_extend/vc_extend.php:3606
+msgid "Four Columns"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1816
+msgid "Gallery Grid Items Display"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1819
+#: celebrate/vc_extend/vc_extend.php:2144
+msgid "Compact"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1820
+#: celebrate/vc_extend/vc_extend.php:2145
+msgid "With Gaps"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1828
+msgid "Gallery Images"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1832
+msgid "Select images from media library."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1895
+msgid "Group these images in a separate gallery"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1896
+msgid "Image Gallery"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1899
+msgid "Provide unique ID here. Ex. gallery-1 / gallery-2"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1906
+msgid "Portfolio Carousel"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1914
+msgid "Number of posts to show in carousel"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1965
+msgid "Posts to Show"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1967
+#: celebrate/vc_extend/vc_extend.php:1979
+#: celebrate/vc_extend/vc_extend.php:1987
+#: celebrate/vc_extend/vc_extend.php:1999
+#: celebrate/vc_extend/vc_extend.php:2196
+#: celebrate/vc_extend/vc_extend.php:2208
+#: celebrate/vc_extend/vc_extend.php:2216
+#: celebrate/vc_extend/vc_extend.php:2228 twentyseventeen/index.php:27
+msgid "Posts"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1969
+msgid "Posts from all categories"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1970
+msgid "Show posts from selected categories"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:1981
+#: celebrate/vc_extend/vc_extend.php:2210
+msgid ""
+"Enter --- CATEGORY SLUG --- here. Separate with commas. Find category slug "
+"here : Portfolio Items > Portfolio Categories. This will help to group "
+"portfolio items from selected categories in grid. Make sure to remove slug "
+"from here if you are using filter portfolio type."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2019
+#: celebrate/vc_extend/vc_extend.php:2248
+msgid "Hide Heading on Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2027
+#: celebrate/vc_extend/vc_extend.php:2256
+msgid "Hide Category on Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2035
+#: celebrate/vc_extend/vc_extend.php:2264
+msgid "Hide link Icon on Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2049
+#: celebrate/vc_extend/vc_extend.php:2278
+msgid "Hide Hover Completely"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2056
+#: celebrate/vc_extend/vc_extend.php:2286
+msgid "Hide Heading below Image"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2064
+#: celebrate/vc_extend/vc_extend.php:2294
+msgid "Show Excerpt"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2072
+msgid "Link to Heading"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2113
+msgid "Portfolio Grid"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2121
+msgid "Number of posts to show in grid"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2140
+msgid "Portfolio Grid Items Display"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2194
+msgid "Type of portfolio"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2198
+msgid "Portfolio with filter (Posts from all categories)"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2199
+msgid ""
+"Portfolio without filter (Option to show posts from selected categories)"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2282
+msgid ""
+"This will give extra flexibility to link image to item details / external "
+"page."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2302
+msgid "No Link to Heading"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2340
+msgid "Testimonial Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2344
+msgid "Testimonial Default"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2345
+msgid "Testimonial Boxed"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2350
+msgid "Disable Rating"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2357
+msgid "Box Background color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2366
+msgid "Text Size"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2367
+#: celebrate/vc_extend/vc_extend.php:2375
+#: celebrate/vc_extend/vc_extend.php:2383
+#: celebrate/vc_extend/vc_extend.php:2391
+#: celebrate/vc_extend/vc_extend.php:2400
+#: celebrate/vc_extend/vc_extend.php:2408
+#: celebrate/vc_extend/vc_extend.php:2416
+#: celebrate/vc_extend/vc_extend.php:2706
+#: celebrate/vc_extend/vc_extend.php:2928
+msgid "Typography"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2374
+msgid "Line Height"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2390
+msgid "Quote Icon color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2399
+msgid "Testimonial Tagline color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2407
+msgid "Client Name color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2415
+msgid "Job Name color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2423
+msgid "Number of Testimonial to Show in Carousel"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2424
+#: celebrate/vc_extend/vc_extend.php:2434
+#: celebrate/vc_extend/vc_extend.php:2444
+#: celebrate/vc_extend/vc_extend.php:2456
+#: celebrate/vc_extend/vc_extend.php:2468
+#: celebrate/vc_extend/vc_extend.php:2628
+#: celebrate/vc_extend/vc_extend.php:2636
+#: celebrate/vc_extend/vc_extend.php:2648
+#: celebrate/vc_extend/vc_extend.php:2656
+#: celebrate/vc_extend/vc_extend.php:2668
+#: celebrate/vc_extend/vc_extend.php:2679
+#: celebrate/vc_extend/vc_extend.php:2850
+#: celebrate/vc_extend/vc_extend.php:2858
+#: celebrate/vc_extend/vc_extend.php:2870
+#: celebrate/vc_extend/vc_extend.php:2878
+#: celebrate/vc_extend/vc_extend.php:2890
+#: celebrate/vc_extend/vc_extend.php:2901
+msgid "Carousel"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2428
+msgid ""
+"Fill in the number. Ex - 4. This number is number of testimonials those "
+"rotate in carousel, not the number of columns. Testimonial Carousel is "
+"single column."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2436
+msgid "Single Column"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2443
+msgid "Sort Testimonials By"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2455
+msgid "Arrange Sorted Testimonials"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2477
+msgid ""
+"Disable Carousel in case you need to show single selected testimonial. In "
+"this case settings done under carousel tab will not work."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2478
+#: celebrate/vc_extend/vc_extend.php:2485
+msgid "Single Selected Testimonial"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2484
+msgid "ID of Testimonial to Show"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2490
+msgid ""
+"Refer help document - for how to get ID. Keep Testimonial ID field blank if "
+"carousel is being used."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2497
+msgid "Team - Style 1"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2505
+#: celebrate/vc_extend/vc_extend.php:2727
+msgid "Member Image Type"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2508
+#: celebrate/vc_extend/vc_extend.php:2730
+msgid "Default - Sqaure"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2525
+#: celebrate/vc_extend/vc_extend.php:2747
+msgid "Hide Extra Member Info"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2533
+#: celebrate/vc_extend/vc_extend.php:2755
+msgid "Hide Excerpt"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2540
+#: celebrate/vc_extend/vc_extend.php:2762
+msgid "Social Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2543
+#: celebrate/vc_extend/vc_extend.php:2765
+msgid "On Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2544
+#: celebrate/vc_extend/vc_extend.php:2766
+msgid "Below Content"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2545
+#: celebrate/vc_extend/vc_extend.php:2767
+msgid "None - Hide Social"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2550
+#: celebrate/vc_extend/vc_extend.php:2772
+msgid "Social Hover Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2553
+#: celebrate/vc_extend/vc_extend.php:2775
+msgid "No Background - Small Size Icon"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2554
+#: celebrate/vc_extend/vc_extend.php:2776
+msgid "No Background - Big Icon"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2555
+#: celebrate/vc_extend/vc_extend.php:2777
+msgid "Square Background"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2556
+#: celebrate/vc_extend/vc_extend.php:2778
+msgid "Circle Background"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2561
+#: celebrate/vc_extend/vc_extend.php:2783
+msgid "Social Color Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2571
+#: celebrate/vc_extend/vc_extend.php:2793
+msgid "Hide Link Icon on Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2578
+#: celebrate/vc_extend/vc_extend.php:2800
+msgid "Do not link heading to member details page"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2596
+#: celebrate/vc_extend/vc_extend.php:2818
+msgid "Make it Boxed"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2603
+#: celebrate/vc_extend/vc_extend.php:2825
+#: celebrate/vc_extend/vc_extend.php:3866
+msgid "Box Background Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2611
+#: celebrate/vc_extend/vc_extend.php:2833
+msgid "Box Border Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2626
+#: celebrate/vc_extend/vc_extend.php:2848
+msgid "Number of Team Members to show in carousel"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2630
+#: celebrate/vc_extend/vc_extend.php:2852
+msgid ""
+"This is a number of team members to show in carousel, not number of columns "
+"for carousel. Carousel displays 3 items at a time.<br> In case you need team "
+"members in custom number of columns skip carousel and opt for - Single "
+"Selected Team Member"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2634
+#: celebrate/vc_extend/vc_extend.php:2856
+msgid "Members to Show"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2638
+#: celebrate/vc_extend/vc_extend.php:2860
+msgid "Members from all categories"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2639
+#: celebrate/vc_extend/vc_extend.php:2861
+msgid "Show Members from selected categories"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2650
+#: celebrate/vc_extend/vc_extend.php:2872
+msgid ""
+"Enter --- CATEGORY SLUG --- here. Separate with commas. Find category slug "
+"here : Team > Team Categories. This will help to group team items from "
+"selected categories. Make sure to remove slug from here if you are using "
+"filter portfolio type."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2654
+#: celebrate/vc_extend/vc_extend.php:2876
+msgid "Sort Members By"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2666
+#: celebrate/vc_extend/vc_extend.php:2888
+msgid "Arrange Sorted Members"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2688
+#: celebrate/vc_extend/vc_extend.php:2910
+msgid ""
+"Disable Carousel in case you need to show single selected team member. In "
+"this case settings done under carousel tab will not work."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2689
+#: celebrate/vc_extend/vc_extend.php:2696
+#: celebrate/vc_extend/vc_extend.php:2911
+#: celebrate/vc_extend/vc_extend.php:2918
+msgid "Single Selected Team Member"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2695
+#: celebrate/vc_extend/vc_extend.php:2917
+msgid "ID of Team Member to Show"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2701
+#: celebrate/vc_extend/vc_extend.php:2923
+msgid ""
+"Refer help document - for how to get ID. Keep Team ID field blank if "
+"carousel is being used."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2705
+#: celebrate/vc_extend/vc_extend.php:2927
+msgid "Predefined Typography Style"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2710
+#: celebrate/vc_extend/vc_extend.php:2932
+msgid "Alt ( For Dark Backgrounds )"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2712
+#: celebrate/vc_extend/vc_extend.php:2934
+msgid ""
+"In theme, Alt style is set for dark backgrounds. Refer - Typography - "
+"section of Theme Options."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2719
+msgid "Team - Style 2"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2941
+msgid "Video Lightbox"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2967
+msgid "Text Below Play Icon"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2969
+msgid "Watch Video"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2981
+msgid "Video Link"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:2988
+msgid "Video Title"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3055
+msgid "Pricing Table"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3065
+msgid "Table type"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3068
+msgid "Normal"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3069
+msgid "Featured"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3077
+msgid "Table Corners"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3087
+msgid "Hide Shadow to Pricing Table"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3096
+msgid "Table background Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3106
+msgid "Table Text Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3119
+msgid ""
+"Example (top / right / bottom / left): 2px 2px 2px 2px. Leave blank for "
+"theme default."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3126
+msgid "Table Border Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3136
+msgid "Banner Text"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3140
+#: celebrate/vc_extend/vc_extend.php:3150
+#: celebrate/vc_extend/vc_extend.php:3160
+msgid "Banner"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3147
+msgid "Banner section - Background Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3157
+msgid "Banner section - Font Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3170
+#: celebrate/vc_extend/vc_extend.php:3180
+#: celebrate/vc_extend/vc_extend.php:3189
+msgid "Table Head"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3171
+msgid "Heading of Table. Ex. Basic"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3177
+msgid "Title Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3186
+msgid "Price Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3195
+msgid "Currency Symbol"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3197
+msgid "$"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3199
+#: celebrate/vc_extend/vc_extend.php:3205
+#: celebrate/vc_extend/vc_extend.php:3209
+#: celebrate/vc_extend/vc_extend.php:3219
+msgid "Price"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3207
+msgid "149"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3215
+msgid "Price Label"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3217
+msgid "/month"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3224
+msgid "Footnote Text"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3228
+msgid "Leave blank this field if need to hide footnote"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3229
+#: celebrate/vc_extend/vc_extend.php:3239
+#: celebrate/vc_extend/vc_extend.php:3249
+msgid "Footnote"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3235
+msgid "Footnote background Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3245
+msgid "Footnote Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3259
+#: celebrate/vc_extend/vc_extend.php:3270
+#: celebrate/vc_extend/vc_extend.php:3283
+#: celebrate/vc_extend/vc_extend.php:3295
+#: celebrate/vc_extend/vc_extend.php:3303
+#: celebrate/vc_extend/vc_extend.php:3314
+#: celebrate/vc_extend/vc_extend.php:3321
+#: celebrate/vc_extend/vc_extend.php:3343
+#: celebrate/vc_extend/vc_extend.php:3353
+#: celebrate/vc_extend/vc_extend.php:3366
+#: celebrate/vc_extend/vc_extend.php:3932
+#: celebrate/vc_extend/vc_extend.php:3942
+#: celebrate/vc_extend/vc_extend.php:3953
+#: celebrate/vc_extend/vc_extend.php:3965
+#: celebrate/vc_extend/vc_extend.php:3977
+#: celebrate/vc_extend/vc_extend.php:3984
+#: celebrate/vc_extend/vc_extend.php:3996
+#: celebrate/vc_extend/vc_extend.php:4013
+#: celebrate/vc_extend/vc_extend.php:4024
+#: celebrate/vc_extend/vc_extend.php:4034
+msgid "Button"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3384
+msgid "Clients"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3414
+msgid "Client Item"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3426
+msgid ""
+"Select image from media library. Better to keep all images of same width / "
+"height."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3445
+msgid "Leave Title and Text field below blank if need no hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3449
+msgid "Short Text On Hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3453
+msgid "Leave Title and this field blank if need no hover"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3470
+msgid "Timeline"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3491
+msgid "Timeline Item"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3508
+msgid "Prefix Text to Heading"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3536
+msgid "Author Box"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3548
+msgid "Image To Left"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3549
+msgid "Image To Right"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3557
+msgid "Leave this field blank for No Heading"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3591
+#: celebrate/vc_extend/vc_extend.php:3614
+msgid "Process"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3623
+msgid "Process Heading"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3632
+msgid "Process Tagline"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3655
+msgid ""
+"Select image from media library if no matching icon to your requirement. "
+"Image size: 64 x 64"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3696
+msgid "Circle Background Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3710
+msgid "Tagline Color"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3745
+msgid "Screenshot Carousel"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3755
+msgid "Screenshots"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3758
+msgid "Select screenshots from media library."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3813
+msgid "Disable Zoom"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3839
+msgid "CTA Box"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3861
+msgid "Center Text"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3874
+msgid "Box Padding"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3878
+msgid ""
+"Give it like (Top Right Bottom Left) : 20px 20px 20px 20px. Leave blank for "
+"theme default."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3882
+msgid "Box Border Width"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3886
+msgid ""
+"Give it like (Top Right Bottom Left) : 0 1px 0 0. Leave blank for no border."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3894
+msgid "Leave blank if no border. Border width is necessary to make it work."
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3898
+msgid "Heading Size"
+msgstr ""
+
+#: celebrate/vc_extend/vc_extend.php:3902
+msgid "Provide unit. Like : 22px"
+msgstr ""
+
+#: twentyseventeen/404.php:21
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: twentyseventeen/404.php:24
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr ""
+
+#: twentyseventeen/archive.php:45 twentyseventeen/index.php:50
+#: twentyseventeen/search.php:43
+msgid "Previous page"
+msgstr ""
+
+#: twentyseventeen/archive.php:46 twentyseventeen/index.php:51
+#: twentyseventeen/search.php:44
+msgid "Next page"
+msgstr ""
+
+#: twentyseventeen/archive.php:47 twentyseventeen/index.php:52
+#: twentyseventeen/search.php:45
+msgid "Page"
+msgstr ""
+
+#: twentyseventeen/comments.php:36
+#, php-format
+msgid "One Reply to &ldquo;%s&rdquo;"
+msgstr ""
+
+#: twentyseventeen/comments.php:41
+#, php-format
+msgid "%1$s Reply to &ldquo;%2$s&rdquo;"
+msgstr ""
+
+#: twentyseventeen/comments.php:60
+msgid "Reply"
+msgstr ""
+
+#: twentyseventeen/footer.php:25
+msgid "Footer Social Links Menu"
+msgstr ""
+
+#: twentyseventeen/functions.php:63 twentyseventeen/functions.php:183
+#: twentyseventeen/template-parts/navigation/navigation-top.php:12
+msgid "Top Menu"
+msgstr ""
+
+#: twentyseventeen/functions.php:64 twentyseventeen/functions.php:194
+msgid "Social Links Menu"
+msgstr ""
+
+#: twentyseventeen/functions.php:151
+msgid "Espresso"
+msgstr ""
+
+#: twentyseventeen/functions.php:155
+msgid "Sandwich"
+msgstr ""
+
+#: twentyseventeen/functions.php:159
+msgid "Coffee"
+msgstr ""
+
+#: twentyseventeen/functions.php:269
+msgid "on"
+msgstr ""
+
+#: twentyseventeen/functions.php:315
+msgid "Sidebar"
+msgstr ""
+
+#: twentyseventeen/functions.php:317
+msgid "Add widgets here to appear in your sidebar."
+msgstr ""
+
+#: twentyseventeen/functions.php:325
+msgid "Footer 1"
+msgstr ""
+
+#: twentyseventeen/functions.php:327 twentyseventeen/functions.php:337
+msgid "Add widgets here to appear in your footer."
+msgstr ""
+
+#: twentyseventeen/functions.php:335
+msgid "Footer 2"
+msgstr ""
+
+#: twentyseventeen/functions.php:362
+#: twentyseventeen/template-parts/page/content-front-page-panels.php:43
+#: twentyseventeen/template-parts/page/content-front-page.php:44
+#: twentyseventeen/template-parts/post/content-audio.php:80
+#: twentyseventeen/template-parts/post/content-gallery.php:66
+#: twentyseventeen/template-parts/post/content-image.php:56
+#: twentyseventeen/template-parts/post/content-video.php:78
+#: twentyseventeen/template-parts/post/content.php:54
+#, php-format
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: twentyseventeen/functions.php:444
+msgid "Expand child menu"
+msgstr ""
+
+#: twentyseventeen/functions.php:445
+msgid "Collapse child menu"
+msgstr ""
+
+#: twentyseventeen/header.php:28
+msgid "Skip to content"
+msgstr ""
+
+#: twentyseventeen/inc/back-compat.php:39
+#: twentyseventeen/inc/back-compat.php:51
+#: twentyseventeen/inc/back-compat.php:66
+#, php-format
+msgid ""
+"Twenty Seventeen requires at least WordPress version 4.7. You are running "
+"version %s. Please upgrade and try again."
+msgstr ""
+
+#: twentyseventeen/inc/custom-header.php:49
+msgid "Default Header Image"
+msgstr ""
+
+#: twentyseventeen/inc/custom-header.php:116
+msgid "Play background video"
+msgstr ""
+
+#: twentyseventeen/inc/custom-header.php:117
+msgid "Pause background video"
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:46
+msgid "Color Scheme"
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:48
+msgid "Light"
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:49
+msgid "Dark"
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:50
+msgid "Custom"
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:77
+msgid "Page Layout"
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:80
+msgid ""
+"When the two column layout is assigned, the page title is in one column and "
+"content is in the other."
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:82 twentyseventeen/inc/customizer.php:129
+msgid "One Column"
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:83 twentyseventeen/inc/customizer.php:130
+msgid "Two Column"
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:107
+#, php-format
+msgid "Front Page Section %d Content"
+msgstr ""
+
+#: twentyseventeen/inc/customizer.php:108
+msgid ""
+"Select pages to feature in each area from the dropdowns. Add an image to a "
+"section by setting a featured image in the page editor. Empty sections will "
+"not be displayed."
+msgstr ""
+
+#: twentyseventeen/inc/icon-functions.php:39
+msgid "Please define default parameters in the form of an array."
+msgstr ""
+
+#: twentyseventeen/inc/icon-functions.php:44
+msgid "Please define an SVG icon filename."
+msgstr ""
+
+#: twentyseventeen/inc/template-tags.php:21
+#, php-format
+msgid "by %s"
+msgstr ""
+
+#: twentyseventeen/inc/template-tags.php:51
+#, php-format
+msgid "<span class=\"screen-reader-text\">Posted on</span> %s"
+msgstr ""
+
+#: twentyseventeen/inc/template-tags.php:65
+msgid ", "
+msgstr ""
+
+#: twentyseventeen/inc/template-tags.php:84
+msgid "Categories"
+msgstr ""
+
+#: twentyseventeen/inc/template-tags.php:117
+#, php-format
+msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: twentyseventeen/inc/template-tags.php:154
+#, php-format
+msgid "Front Page Section %1$s Placeholder"
+msgstr ""
+
+#: twentyseventeen/search.php:19
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: twentyseventeen/search.php:50
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: twentyseventeen/searchform.php:16
+msgid "Search for:"
+msgstr ""
+
+#: twentyseventeen/searchform.php:18
+msgid "Search &hellip;"
+msgstr ""
+
+#: twentyseventeen/single.php:31
+msgid "Previous Post"
+msgstr ""
+
+#: twentyseventeen/single.php:32
+msgid "Next Post"
+msgstr ""
+
+#: twentyseventeen/template-parts/footer/site-info.php:13
+msgid "https://wordpress.org/"
+msgstr ""
+
+#: twentyseventeen/template-parts/footer/site-info.php:13
+#, php-format
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: twentyseventeen/template-parts/header/site-branding.php:31
+#: twentyseventeen/template-parts/navigation/navigation-top.php:20
+msgid "Scroll down to content"
+msgstr ""
+
+#: twentyseventeen/template-parts/page/content-page.php:25
+#: twentyseventeen/template-parts/post/content-audio.php:85
+#: twentyseventeen/template-parts/post/content-gallery.php:71
+#: twentyseventeen/template-parts/post/content-image.php:61
+#: twentyseventeen/template-parts/post/content-video.php:83
+#: twentyseventeen/template-parts/post/content.php:59
+msgid "Pages:"
+msgstr ""
+
+#: twentyseventeen/template-parts/post/content-none.php:23
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: twentyseventeen/template-parts/post/content-none.php:27
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""

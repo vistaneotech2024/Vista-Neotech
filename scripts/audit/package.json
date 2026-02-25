@@ -1,0 +1,21 @@
+{
+  "name": "vista-neotech-audit-processor",
+  "version": "1.0.0",
+  "description": "Process WordPress and GSC audit data for SEO migration",
+  "main": "process-audit-data.js",
+  "scripts": {
+    "process": "node process-audit-data.js"
+  },
+  "dependencies": {
+    "csv-parse": "^5.6.0",
+    "csv-parser": "^3.0.0"
+  },
+  "keywords": [
+    "wordpress",
+    "seo",
+    "migration",
+    "audit"
+  ],
+  "author": "Vista Neotech Development Team",
+  "license": "MIT"
+}

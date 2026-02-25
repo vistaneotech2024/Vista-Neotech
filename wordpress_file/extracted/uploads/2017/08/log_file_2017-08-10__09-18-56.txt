@@ -1,0 +1,77 @@
+
+---Downloaded files---
+The import files for: Celebrate Demo Data were successfully downloaded!
+Initial max execution time = 300
+Files info:
+Site URL = http://wp.vistaneotech.com
+Data file = C:\HostingSpaces\vistaneotech\wp.vistaneotech.com\wwwroot/wp-content/themes/celebrate/includes/imports/content.xml
+Widget file = C:\HostingSpaces\vistaneotech\wp.vistaneotech.com\wwwroot/wp-content/themes/celebrate/includes/imports/widgets.wie
+Customizer file = not defined!
+Redux files:
+celebrate_options -> C:\HostingSpaces\vistaneotech\wp.vistaneotech.com\wwwroot/wp-content/themes/celebrate/includes/imports/redux.json 
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+---Importing widgets---
+Blog Sidebar : 
+
+Search - No Title - Widget already exists
+Custom - Recent Posts - RECENT POSTS - Imported
+Recent Comments - LATEST COMMENTS - Imported
+Archives - ARCHIVES - Imported
+Categories - CATEGORIES - Imported
+Custom - Tag Cloud - TAGS - Imported
+Custom - Twitter Feed - No Title - Imported
+Custom - Social Network - SOCIAL CONNECT - Imported
+Meta - META - Imported
+
+Header Social Icons : 
+
+Custom - Social Network - No Title - Imported
+
+Footer-Column-1 : 
+
+Custom - Contact Info - CONTACT - Imported
+
+Footer-Column-2 : 
+
+Text - SUBSCRIBE - Imported
+
+Footer-Column-3 : 
+
+Text - No Title - Imported
+Custom - Social Network - No Title - Imported
+
+Copyright-Column-1 : 
+
+Text - No Title - Imported
+
+Woocommerce Sidebar : 
+
+WooCommerce price filter - Filter by price - Imported
+WooCommerce cart - Cart - Imported
+WooCommerce product categories - Product Categories - Imported
+WooCommerce products - Products - Imported
+WooCommerce recent reviews - Recent Reviews - Imported
+WooCommerce product tags - Product Tags - Imported
+WooCommerce average rating filter - Average Rating - Imported
+WooCommerce layered nav - Filter by - Imported
+WooCommerce top rated products - Top Rated Products - Imported
+WooCommerce recently viewed - Recently Viewed Products - Imported
+WooCommerce product search - Product Search - Imported
+WooCommerce layered nav filters - Active Filters - Imported
+
+
+
+---Importing Redux settings---
+Redux settings import for: celebrate_options finished successfully!
+
+---pt-ocdi/after_import---
+Slider Imported

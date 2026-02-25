@@ -1,0 +1,41 @@
+<wpml-config>
+	<custom-types>
+		<custom-type translate="1">tcsn_portfolio</custom-type>
+		<custom-type translate="1">tcsn_testimonial</custom-type>
+		<custom-type translate="1">tcsn_team</custom-type>
+	</custom-types>
+	<taxonomies>
+		<taxonomy translate="1">tcsn_portfoliotags</taxonomy>
+	</taxonomies>
+	<admin-texts>
+		<key name="celebrate_options">
+			<key name="celebrate_topbar_text"/>
+			<key name="celebrate_header_text"/>
+			<key name="celebrate_text_logo"/>
+			<key name="celebrate_blog_title"/>
+			<key name="celebrate_read_more"/>
+			<key name="celebrate_zoomtext_on_hover"/>
+			<key name="celebrate_linktext_on_hover"/>
+			<key name="celebrate_portfolio_slug"/>
+			<key name="celebrate_team_slug"/>
+			<key name="celebrate_testimonial_slug"/>
+			<key name="celebrate_404_heading"/>
+			<key name="celebrate_404_text"/>
+			<key name="celebrate_404_link_text"/>
+			<key name="celebrate_search_text"/>
+			<key name="celebrate_header2_topbar_phone"/>
+			<key name="celebrate_header2_topbar_email"/>
+			<key name="celebrate_header2_topbar_add"/>
+			<key name="celebrate_woocommerce_shop_title"/>
+		</key>
+	</admin-texts>
+	<custom-fields>
+			<custom-field action="translate">_celebrate_client_info</custom-field>
+			<custom-field action="translate">_celebrate_member_job</custom-field>
+			<custom-field action="translate">_celebrate_pf_quote_source</custom-field>
+			<custom-field action="translate">_celebrate_pf_link_text</custom-field>
+			<custom-field action="translate">_celebrate_portfolio_subtext</custom-field>
+			<custom-field action="translate">_celebrate_zoom_title</custom-field>
+			<custom-field action="translate">_celebrate_client_info</custom-field>
+	</custom-fields>
+</wpml-config>

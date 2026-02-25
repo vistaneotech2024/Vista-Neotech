@@ -1,0 +1,12 @@
+[09-Nov-2024 05:08:25 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home2/abgjqsmy/public_html/vista2023/wp-content/themes/celebrate/404.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/abgjqsmy/public_html/vista2023/wp-content/themes/celebrate/404.php on line 1
+[09-Nov-2024 05:08:28 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home2/abgjqsmy/public_html/vista2023/wp-content/themes/celebrate/404.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/abgjqsmy/public_html/vista2023/wp-content/themes/celebrate/404.php on line 1
+[11-Nov-2024 05:21:12 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home2/abgjqsmy/public_html/vista2023/wp-content/themes/celebrate/404.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/abgjqsmy/public_html/vista2023/wp-content/themes/celebrate/404.php on line 1

@@ -1,0 +1,16 @@
+/*tinymce css*/
+#dialogwindow { font-family: Arial, Helvetica, sans-serif; font-size: 12px; padding: 10px; height: 30px; }
+#dialogwindow form p { margin: 10px 0 0 0 !important; padding: 0 !important; }
+#dialogwindow label { width: 110px; display: inline-block; float: left; margin-right: 10px; }
+#dialogwindow select, #dialogwindow input { width: 300px; padding: 8px; display: inline-block; }
+#dialogwindow select { width: 318px; }
+#dialogwindow textarea { width: 300px; padding: 8px; display: inline-block; }
+#dialogwindow textarea { height: 100px; }
+#dialogwindow input[type='checkbox'] { width: auto; padding: 0; display: inline-block; margin: 0 5px 0 0; }
+.sc-note { font-size: 11px; margin: 0 0 10px 0 !important; padding-left: 120px; color: #aaa; }
+.sc-title h1 { font-size: 22px; color: #000; margin-bottom: 20px; }
+.clearfix {  *zoom: 1;
+}
+.clearfix:before, .clearfix:after { display: table; line-height: 0; content: ""; }
+.clearfix:after { clear: both; }
+.mceListBox { direction:ltr; width:200px; }

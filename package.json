@@ -1,0 +1,52 @@
+{
+  "name": "vista-neotech-cms",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "db:migrate": "prisma migrate dev",
+    "db:reset": "prisma migrate reset",
+    "migrate:wordpress": "tsx scripts/migration/import-wordpress-data.ts",
+    "migrate:extract": "node scripts/extract-wpress.js",
+    "migrate:import": "node scripts/migrate-to-supabase.js",
+    "migrate:full": "npm run migrate:extract && npm run migrate:import",
+    "create:admin": "tsx scripts/create-admin-user.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.1",
+    "@supabase/supabase-js": "^2.95.3",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^17.2.4",
+    "jsonwebtoken": "^9.0.2",
+    "next": "14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sharp": "^0.33.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "adm-zip": "^0.5.16",
+    "autoprefixer": "^10.4.20",
+    "csv-parse": "^6.1.0",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8.4.41",
+    "prisma": "^5.19.1",
+    "tailwindcss": "^3.4.7",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4",
+    "wpress-extract": "^1.0.0",
+    "xml2js": "^0.6.2"
+  }
+}

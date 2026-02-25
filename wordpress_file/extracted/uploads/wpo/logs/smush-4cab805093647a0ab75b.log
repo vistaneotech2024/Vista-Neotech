@@ -1,0 +1,189 @@
+[2025-02-13 12:23:55 : INFO] - Re_Smush_It_Task with attachment ID : 5819, autocreated on : February 13, 2025 12:23:54 
+[2025-02-13 12:30:59 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-02-13 12:30:59 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-02-13 12:30:59 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-02-13 12:30:59 : INFO] - Processing task with ID : 860, and type 'smush' 
+[2025-02-13 12:30:59 : INFO] - Re_Smush_It_Task with attachment ID : 5819, autocreated on : February 13, 2025 12:23:54 
+[2025-02-13 12:30:59 : INFO] - File: top_10_MLM_companies_in_2025_your_ultimate_guide.jpg, Compression quality: 65 
+[2025-02-13 12:31:02 : INFO] - Backing up the original image - 2025/02/top_10_MLM_companies_in_2025_your_ultimate_guide-updraft-pre-smush-original.jpg 
+[2025-02-13 12:31:10 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-02-13 12:31:10 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/02/top_10_MLM_companies_in_2025_your_ultimate_guide.jpg.The file was compressed from 93.38 KB to 86.94 KB, saving 6.9 percent, using WP-Optimize 
+[2025-02-13 12:31:11 : INFO] - Completed processing task with ID : 860, and type 'smush' 
+[2025-02-13 12:31:11 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-02-13 12:31:11 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-02-13 12:31:11 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-02-13 12:31:11 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-03-29 08:07:27 : INFO] - Re_Smush_It_Task with attachment ID : 5824, autocreated on : March 29, 2025 08:07:27 
+[2025-03-29 08:12:48 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-03-29 08:12:48 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-03-29 08:12:48 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-03-29 08:12:48 : INFO] - Processing task with ID : 942, and type 'smush' 
+[2025-03-29 08:12:48 : INFO] - Re_Smush_It_Task with attachment ID : 5824, autocreated on : March 29, 2025 08:07:27 
+[2025-03-29 08:12:48 : INFO] - File: network_marketing_in_india_2025_a_brighter_future_vista_neotech.jpg, Compression quality: 65 
+[2025-03-29 08:12:49 : INFO] - Backing up the original image - 2025/03/network_marketing_in_india_2025_a_brighter_future_vista_neotech-updraft-pre-smush-original.jpg 
+[2025-03-29 08:12:53 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-03-29 08:12:54 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/03/network_marketing_in_india_2025_a_brighter_future_vista_neotech.jpg.The file was compressed from 68.89 KB to 68.89 KB, saving 0 percent, using WP-Optimize 
+[2025-03-29 08:12:54 : INFO] - Completed processing task with ID : 942, and type 'smush' 
+[2025-03-29 08:12:54 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-03-29 08:12:54 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-03-29 08:12:54 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-03-29 08:12:54 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-04-08 11:23:01 : INFO] - Re_Smush_It_Task with attachment ID : 5832, autocreated on : April 08, 2025 11:23:01 
+[2025-04-08 11:29:26 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-04-08 11:29:26 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-04-08 11:29:26 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-04-08 11:29:26 : INFO] - Processing task with ID : 1316, and type 'smush' 
+[2025-04-08 11:29:26 : INFO] - Re_Smush_It_Task with attachment ID : 5832, autocreated on : April 08, 2025 11:23:01 
+[2025-04-08 11:29:26 : INFO] - File: ai_powered_mlm_software_for_success_in_2025.jpg, Compression quality: 65 
+[2025-04-08 11:29:30 : INFO] - Backing up the original image - 2025/04/ai_powered_mlm_software_for_success_in_2025-updraft-pre-smush-original.jpg 
+[2025-04-08 11:29:37 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-04-08 11:29:37 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/04/ai_powered_mlm_software_for_success_in_2025.jpg.The file was compressed from 83.90 KB to 81.02 KB, saving 3.43 percent, using WP-Optimize 
+[2025-04-08 11:29:37 : INFO] - Completed processing task with ID : 1316, and type 'smush' 
+[2025-04-08 11:29:37 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-04-08 11:29:37 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-04-08 11:29:37 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-04-08 11:29:37 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-04-22 12:20:52 : INFO] - Re_Smush_It_Task with attachment ID : 5841, autocreated on : April 22, 2025 12:20:51 
+[2025-04-22 12:31:07 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-04-22 12:31:07 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-04-22 12:31:07 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-04-22 12:31:07 : INFO] - Processing task with ID : 1379, and type 'smush' 
+[2025-04-22 12:31:07 : INFO] - Re_Smush_It_Task with attachment ID : 5841, autocreated on : April 22, 2025 12:20:51 
+[2025-04-22 12:31:07 : INFO] - File: direct_selling_in-2025_top_15_mlm_trends.jpg, Compression quality: 65 
+[2025-04-22 12:31:12 : INFO] - Backing up the original image - 2025/04/direct_selling_in-2025_top_15_mlm_trends-updraft-pre-smush-original.jpg 
+[2025-04-22 12:31:21 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-04-22 12:31:21 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/04/direct_selling_in-2025_top_15_mlm_trends.jpg.The file was compressed from 141.14 KB to 125.66 KB, saving 10.97 percent, using WP-Optimize 
+[2025-04-22 12:31:21 : INFO] - Completed processing task with ID : 1379, and type 'smush' 
+[2025-04-22 12:31:21 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-04-22 12:31:21 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-04-22 12:31:21 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-04-22 12:31:21 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-04-24 12:07:47 : INFO] - Re_Smush_It_Task with attachment ID : 5851, autocreated on : April 24, 2025 12:07:47 
+[2025-04-24 12:13:37 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-04-24 12:13:37 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-04-24 12:13:37 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-04-24 12:13:37 : INFO] - Processing task with ID : 1524, and type 'smush' 
+[2025-04-24 12:13:37 : INFO] - Re_Smush_It_Task with attachment ID : 5851, autocreated on : April 24, 2025 12:07:47 
+[2025-04-24 12:13:37 : INFO] - File: top_mlm_consulting_ideas_for_2025.jpg, Compression quality: 65 
+[2025-04-24 12:13:39 : INFO] - Task with ID 1524 and type (smush) failed with error code 402 - Cannot copy from uploaded file 
+[2025-04-24 12:13:43 : INFO] - Task with ID 1524 and type (smush) failed with error code 402 - Cannot copy from uploaded file 
+[2025-04-24 12:13:46 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-04-24 12:13:46 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/04/top_mlm_consulting_ideas_for_2025.jpg.The file was compressed from 66.81 KB to 66.81 KB, saving 0 percent, using WP-Optimize 
+[2025-04-24 12:13:46 : INFO] - Completed processing task with ID : 1524, and type 'smush' 
+[2025-04-24 12:13:46 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-04-24 12:13:46 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-04-24 12:13:46 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-04-24 12:13:46 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-05-13 09:28:53 : INFO] - Re_Smush_It_Task with attachment ID : 5860, autocreated on : May 13, 2025 09:28:53 
+[2025-05-13 09:33:58 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-05-13 09:33:58 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-05-13 09:33:58 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-05-13 09:33:58 : INFO] - Processing task with ID : 1611, and type 'smush' 
+[2025-05-13 09:33:58 : INFO] - Re_Smush_It_Task with attachment ID : 5860, autocreated on : May 13, 2025 09:28:53 
+[2025-05-13 09:33:58 : INFO] - File: WhatsApp-Image-2025-05-13-at-2.48.57-PM-1.jpeg, Compression quality: 65 
+[2025-05-13 09:34:00 : INFO] - Backing up the original image - 2025/05/WhatsApp-Image-2025-05-13-at-2.48.57-PM-1-updraft-pre-smush-original.jpeg 
+[2025-05-13 09:34:04 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-05-13 09:34:04 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-13-at-2.48.57-PM-1.jpeg.The file was compressed from 78.61 KB to 73.43 KB, saving 6.59 percent, using WP-Optimize 
+[2025-05-13 09:34:04 : INFO] - Completed processing task with ID : 1611, and type 'smush' 
+[2025-05-13 09:34:04 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-05-13 09:34:04 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-05-13 09:34:04 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-05-13 09:34:04 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-07-01 10:33:40 : INFO] - Re_Smush_It_Task with attachment ID : 5989, autocreated on : July 01, 2025 10:33:40 
+[2025-07-01 10:40:14 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-07-01 10:40:14 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-07-01 10:40:14 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-07-01 10:40:14 : INFO] - Processing task with ID : 2492, and type 'smush' 
+[2025-07-01 10:40:14 : INFO] - Re_Smush_It_Task with attachment ID : 5989, autocreated on : July 01, 2025 10:33:40 
+[2025-07-01 10:40:14 : INFO] - File: understanding_mlm_plans_a_guide_to_mlm_business.jpg, Compression quality: 65 
+[2025-07-01 10:40:15 : INFO] - Backing up the original image - 2025/06/understanding_mlm_plans_a_guide_to_mlm_business-updraft-pre-smush-original.jpg 
+[2025-07-01 10:40:19 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-07-01 10:40:19 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/06/understanding_mlm_plans_a_guide_to_mlm_business.jpg.The file was compressed from 148.56 KB to 80.79 KB, saving 45.62 percent, using WP-Optimize 
+[2025-07-01 10:40:19 : INFO] - Completed processing task with ID : 2492, and type 'smush' 
+[2025-07-01 10:40:19 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-07-01 10:40:19 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-07-01 10:40:19 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-07-01 10:40:19 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-07-01 11:58:51 : INFO] - Re_Smush_It_Task with attachment ID : 5990, autocreated on : July 01, 2025 11:58:51 
+[2025-07-01 12:03:54 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-07-01 12:03:54 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-07-01 12:03:54 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-07-01 12:03:54 : INFO] - Processing task with ID : 2542, and type 'smush' 
+[2025-07-01 12:03:54 : INFO] - Re_Smush_It_Task with attachment ID : 5990, autocreated on : July 01, 2025 11:58:51 
+[2025-07-01 12:03:54 : INFO] - File: best_mlm_products_for_mlm_business_in_2025.jpg, Compression quality: 65 
+[2025-07-01 12:03:56 : INFO] - Backing up the original image - 2025/06/best_mlm_products_for_mlm_business_in_2025-updraft-pre-smush-original.jpg 
+[2025-07-01 12:04:00 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-07-01 12:04:00 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/06/best_mlm_products_for_mlm_business_in_2025.jpg.The file was compressed from 182.10 KB to 68.62 KB, saving 62.32 percent, using WP-Optimize 
+[2025-07-01 12:04:00 : INFO] - Completed processing task with ID : 2542, and type 'smush' 
+[2025-07-01 12:04:00 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-07-01 12:04:00 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-07-01 12:04:00 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-07-01 12:04:00 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-07-05 11:57:54 : INFO] - Re_Smush_It_Task with attachment ID : 6007, autocreated on : July 05, 2025 11:57:54 
+[2025-07-11 11:42:49 : INFO] - Re_Smush_It_Task with attachment ID : 6028, autocreated on : July 11, 2025 11:42:48 
+[2025-07-11 11:47:56 : INFO] - A total of 2 tasks of type smush found and will be processed in this iteration 
+[2025-07-11 11:47:56 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-07-11 11:47:56 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-07-11 11:47:56 : INFO] - Processing task with ID : 2940, and type 'smush' 
+[2025-07-11 11:47:56 : INFO] - Re_Smush_It_Task with attachment ID : 6007, autocreated on : July 05, 2025 11:57:54 
+[2025-07-11 11:47:56 : INFO] - File: 17_smart_tech_tools_for_mlm_business_in_2025.jpg, Compression quality: 65 
+[2025-07-11 11:47:58 : INFO] - Backing up the original image - 2025/07/17_smart_tech_tools_for_mlm_business_in_2025-updraft-pre-smush-original.jpg 
+[2025-07-11 11:48:02 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-07-11 11:48:02 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/07/17_smart_tech_tools_for_mlm_business_in_2025.jpg.The file was compressed from 200.93 KB to 79.37 KB, saving 60.5 percent, using WP-Optimize 
+[2025-07-11 11:48:02 : INFO] - Completed processing task with ID : 2940, and type 'smush' 
+[2025-07-11 11:48:02 : INFO] - Processing task with ID : 3572, and type 'smush' 
+[2025-07-11 11:48:02 : INFO] - Re_Smush_It_Task with attachment ID : 6028, autocreated on : July 11, 2025 11:42:48 
+[2025-07-11 11:48:02 : INFO] - File: how_to_enter_the_direct_selling_market_in_india.jpg, Compression quality: 65 
+[2025-07-11 11:48:04 : INFO] - Backing up the original image - 2025/07/how_to_enter_the_direct_selling_market_in_india-updraft-pre-smush-original.jpg 
+[2025-07-11 11:48:08 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-07-11 11:48:08 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/07/how_to_enter_the_direct_selling_market_in_india.jpg.The file was compressed from 121.58 KB to 111.85 KB, saving 8 percent, using WP-Optimize 
+[2025-07-11 11:48:08 : INFO] - Completed processing task with ID : 3572, and type 'smush' 
+[2025-07-11 11:48:08 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-07-11 11:48:08 : INFO] - Successfully processed the queue (smush). 2 tasks were processed out of 2. 
+[2025-07-11 11:48:08 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-07-11 11:48:09 : INFO] - Cleaning up tasks of type (smush). A total of 2 tasks will be deleted. 
+[2025-07-14 12:31:37 : INFO] - Re_Smush_It_Task with attachment ID : 6031, autocreated on : July 14, 2025 12:31:36 
+[2025-07-14 12:37:11 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-07-14 12:37:11 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-07-14 12:37:11 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-07-14 12:37:11 : INFO] - Processing task with ID : 3587, and type 'smush' 
+[2025-07-14 12:37:11 : INFO] - Re_Smush_It_Task with attachment ID : 6031, autocreated on : July 14, 2025 12:31:36 
+[2025-07-14 12:37:11 : INFO] - File: mlm_business_and_software_tools_guide_for_2025.jpg, Compression quality: 65 
+[2025-07-14 12:37:13 : INFO] - Backing up the original image - 2025/07/mlm_business_and_software_tools_guide_for_2025-updraft-pre-smush-original.jpg 
+[2025-07-14 12:37:17 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-07-14 12:37:17 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/07/mlm_business_and_software_tools_guide_for_2025.jpg.The file was compressed from 83.84 KB to 66.96 KB, saving 20.13 percent, using WP-Optimize 
+[2025-07-14 12:37:17 : INFO] - Completed processing task with ID : 3587, and type 'smush' 
+[2025-07-14 12:37:17 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-07-14 12:37:17 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-07-14 12:37:17 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-07-14 12:37:17 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-07-15 11:58:43 : INFO] - Re_Smush_It_Task with attachment ID : 6034, autocreated on : July 15, 2025 11:58:43 
+[2025-07-15 12:03:44 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-07-15 12:03:44 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-07-15 12:03:44 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-07-15 12:03:44 : INFO] - Processing task with ID : 3682, and type 'smush' 
+[2025-07-15 12:03:44 : INFO] - Re_Smush_It_Task with attachment ID : 6034, autocreated on : July 15, 2025 11:58:43 
+[2025-07-15 12:03:44 : INFO] - File: WhatsApp-Image-2025-07-15-at-5.26.28-PM.jpeg, Compression quality: 65 
+[2025-07-15 12:03:45 : INFO] - Backing up the original image - 2025/07/WhatsApp-Image-2025-07-15-at-5.26.28-PM-updraft-pre-smush-original.jpeg 
+[2025-07-15 12:03:50 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-07-15 12:03:50 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-15-at-5.26.28-PM.jpeg.The file was compressed from 94.45 KB to 89.90 KB, saving 4.82 percent, using WP-Optimize 
+[2025-07-15 12:03:50 : INFO] - Completed processing task with ID : 3682, and type 'smush' 
+[2025-07-15 12:03:50 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-07-15 12:03:50 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-07-15 12:03:50 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-07-15 12:03:50 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
+[2025-07-15 12:16:33 : INFO] - Re_Smush_It_Task with attachment ID : 6035, autocreated on : July 15, 2025 12:16:33 
+[2025-07-15 12:22:32 : INFO] - A total of 1 tasks of type smush found and will be processed in this iteration 
+[2025-07-15 12:22:32 : DEBUG] - Lock option (updraft_lock_smush, npO_options) was created in the database 
+[2025-07-15 12:22:32 : INFO] - Lock (updraft_lock_smush, npO_options) acquired after initialising the database 
+[2025-07-15 12:22:32 : INFO] - Processing task with ID : 3683, and type 'smush' 
+[2025-07-15 12:22:32 : INFO] - Re_Smush_It_Task with attachment ID : 6035, autocreated on : July 15, 2025 12:16:33 
+[2025-07-15 12:22:32 : INFO] - File: Multi-level-marketing-consultancy.jpeg, Compression quality: 65 
+[2025-07-15 12:22:34 : INFO] - Backing up the original image - 2025/07/Multi-level-marketing-consultancy-updraft-pre-smush-original.jpeg 
+[2025-07-15 12:22:38 : INFO] - There were no WebP conversion tools found on your server. 
+[2025-07-15 12:22:38 : INFO] - Successfully optimized the image - /home2/abgjqsmy/public_html/vista2023/wp-content/uploads/2025/07/Multi-level-marketing-consultancy.jpeg.The file was compressed from 94.45 KB to 89.90 KB, saving 4.82 percent, using WP-Optimize 
+[2025-07-15 12:22:38 : INFO] - Completed processing task with ID : 3683, and type 'smush' 
+[2025-07-15 12:22:38 : INFO] - Lock option (updraft_lock_smush, npO_options) released 
+[2025-07-15 12:22:38 : INFO] - Successfully processed the queue (smush). 1 tasks were processed out of 1. 
+[2025-07-15 12:22:38 : INFO] - Lock option (updraft_lock_smush, npO_options) was deleted from the database 
+[2025-07-15 12:22:38 : INFO] - Cleaning up tasks of type (smush). A total of 1 tasks will be deleted. 
