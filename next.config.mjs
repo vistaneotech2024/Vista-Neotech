@@ -1,5 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
+
+/** @type {(phase: string) => import('next').NextConfig} */
+const nextConfig = (phase) => ({
+  // Keep dev and build outputs separate on Windows to avoid file-lock EPERM issues.
+  distDir: phase === PHASE_DEVELOPMENT_SERVER ? ".next-dev" : ".next",
   reactStrictMode: true,
   trailingSlash: false,
   // WordPress/origin images: same URLs for SEO, Next optimizes (WebP, quality) without losing detail
@@ -351,6 +355,6 @@ const nextConfig = {
       },
     ];
   },
-};
+});
 
 export default nextConfig;
