@@ -76,6 +76,7 @@
 @layer base {
   html {
     @apply scroll-smooth;
+    scroll-behavior: smooth;
   }
   body {
     background-color: var(--color-bg);
@@ -83,19 +84,50 @@
     font-family: var(--font-primary);
     @apply antialiased;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
 @layer components {
   .container-tight {
-    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
   .container-wide {
     @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
+  /* Light-mode radial gradients inspired by leading MLM SaaS UIs */
+  html:not(.dark) .bg-hero-gradient {
+    background:
+      radial-gradient(160% 140% at 0% 0%, var(--color-accent-1-muted) 0%, transparent 55%),
+      radial-gradient(140% 120% at 100% 0%, var(--color-accent-2-muted) 0%, transparent 55%),
+      radial-gradient(180% 160% at 50% 100%, var(--color-bg-muted) 0%, var(--color-hero-bg) 55%);
+  }
+  html.dark .bg-hero-gradient {
+    background-color: var(--color-hero-bg);
+  }
+  html:not(.dark) .bg-section-gradient {
+    background:
+      radial-gradient(140% 120% at 100% 0%, var(--color-accent-2-muted) 0%, transparent 55%),
+      radial-gradient(140% 120% at 0% 100%, var(--color-accent-1-muted) 0%, transparent 55%),
+      var(--color-bg);
+  }
+  html.dark .bg-section-gradient {
+    background-color: var(--color-bg);
+  }
   /* 8px scale: tighter section gaps (32/40/48) – less empty space between sections */
   .section-padding {
     @apply py-8 md:py-10 lg:py-12;
+  }
+  /* Home page only: tighter spacing between sections */
+  .home-page-compact .section-padding {
+    @apply py-3 md:py-4 lg:py-5;
+  }
+  .home-page-compact .trustbar-section {
+    @apply py-1 md:py-2;
+  }
+  .home-page-compact .statsbar-section {
+    @apply py-2 md:py-3;
   }
   .bg-elevated {
     background-color: var(--color-bg-elevated);
@@ -572,6 +604,10 @@
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {

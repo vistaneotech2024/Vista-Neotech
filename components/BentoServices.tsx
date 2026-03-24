@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { FeatureCard } from '@/components/ui/FeatureCard';
 import { useStaggeredAnimation } from '@/lib/useScrollAnimation';
@@ -22,7 +21,8 @@ const featured = {
     'End-to-end MLM and direct selling software—compensation, genealogy, compliance, and distributor portals.',
   href: '/mlm-software',
   accent: 1 as const,
-  className: '',
+  className: 'h-full',
+  label: '01',
   emoji: '⚡',
 };
 
@@ -118,51 +118,70 @@ const items = [
 ];
 
 export function BentoServices() {
-  const totalItems = items.length + 1; // +1 for featured card
+  const serviceCards = [
+    {
+      title: featured.title,
+      desc: featured.description,
+      href: featured.href,
+      label: featured.label,
+      accent: featured.accent,
+      emoji: featured.emoji,
+      icon: null,
+    },
+    ...items.map((item) => ({
+      title: item.title,
+      desc: item.desc,
+      href: item.href,
+      label: item.label,
+      accent: item.accent,
+      icon: item.icon,
+      emoji: null,
+    })),
+  ];
+  const totalItems = serviceCards.length;
   const { refs, visibleItems } = useStaggeredAnimation(totalItems, 100);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <section className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--color-bg-muted)' }}>
-      {/* Enhanced animated background elements */}
+    <section
+      className="section-padding relative overflow-hidden"
+      style={{ backgroundColor: 'var(--color-bg-muted)' }}
+      aria-labelledby="what-we-do-title"
+    >
+      {/* Background accents */}
       <div className="absolute inset-0 overflow-hidden opacity-30">
         <div
-          className="absolute -right-40 -top-40 h-96 w-96 rounded-full blur-3xl transition-all duration-2000"
+          className="absolute -right-40 -top-40 h-96 w-96 rounded-full blur-3xl"
           style={{
             backgroundColor: 'var(--color-accent-1-muted)',
             animation: 'float 20s ease-in-out infinite',
-            transform: hoveredCard === 0 ? 'scale(1.3)' : 'scale(1)',
           }}
         />
         <div
-          className="absolute -left-40 bottom-0 h-96 w-96 rounded-full blur-3xl transition-all duration-2000"
+          className="absolute -left-40 bottom-0 h-96 w-96 rounded-full blur-3xl"
           style={{
             backgroundColor: 'var(--color-accent-3-muted)',
             animation: 'float 25s ease-in-out infinite',
             animationDelay: '2s',
-            transform: hoveredCard && hoveredCard > 4 ? 'scale(1.3)' : 'scale(1)',
           }}
         />
-        {/* Additional floating elements */}
         <div
-          className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl transition-all duration-3000"
+          className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
           style={{
             backgroundColor: 'var(--color-accent-2-muted)',
-            opacity: hoveredCard && hoveredCard > 0 && hoveredCard <= 4 ? 0.4 : 0.2,
-            transform: hoveredCard && hoveredCard > 0 && hoveredCard <= 4 ? 'scale(1.5)' : 'scale(1)',
+            opacity: 0.2,
           }}
         />
       </div>
 
       <div className="container-wide relative z-10">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-10">
-          <div className="animate-fade-in-up max-w-3xl">
+        <div className="mb-8 flex flex-col items-center gap-4 text-center lg:mb-10">
+          <div className="animate-fade-in-up max-w-4xl">
             <p className="section-label mb-4">What we do</p>
-            <h2 className="display-3" style={{ color: 'var(--color-text)' }}>
+            <h2 id="what-we-do-title" className="display-3" style={{ color: 'var(--color-text)' }}>
               Full-service IT solutions—with deep MLM and direct selling expertise.
             </h2>
             <p
-              className="mt-3 text-sm md:text-base"
+              className="mx-auto mt-3 max-w-3xl text-sm md:text-base"
               style={{ color: 'var(--color-text-muted)' }}
             >
               From MLM platforms and travel portals to e-commerce, WhatsApp automation and real estate software, we design and build the digital systems that power your business.
@@ -170,8 +189,8 @@ export function BentoServices() {
           </div>
           <Link
             href="/mlm-software-direct-selling-consultant"
-            className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold transition-all hover:gap-3 hover:opacity-90 animate-fade-in-up group"
-            style={{ color: 'var(--color-accent-2)', animationDelay: '0.2s' }}
+            className="group inline-flex w-fit shrink-0 items-center gap-2 text-sm font-semibold transition-all hover:gap-3 hover:opacity-90 animate-fade-in-up"
+            style={{ display: 'flex', color: 'var(--color-accent-2)', animationDelay: '0.2s' }}
           >
             View all services
             <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
@@ -180,61 +199,32 @@ export function BentoServices() {
           </Link>
         </div>
 
-        {/* Enhanced grid with better spacing and animations */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-          {/* Featured Card */}
-          <div
-            ref={(el) => {
-              refs.current[0] = el as HTMLElement | null;
-            }}
-            onMouseEnter={() => setHoveredCard(0)}
-            onMouseLeave={() => setHoveredCard(null)}
-            className="relative"
-            style={{
-              opacity: visibleItems[0] ? 1 : 0,
-              transform: visibleItems[0] ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
-              transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-            }}
-          >
-            <FeatureCard
-              emoji={featured.emoji}
-              title={featured.title}
-              description={featured.description}
-              href={featured.href}
-              accent={featured.accent}
-              className={`${featured.className} ${
-                hoveredCard === 0 ? 'ring-2 ring-[var(--color-accent-1)] ring-opacity-50' : ''
-              }`}
-            />
-          </div>
-
-          {/* Regular Cards */}
-          {items.map((item, index) => {
-            const cardIndex = index + 1;
+        {/* Uniform card grid like "Your journey" */}
+        <div className="grid auto-rows-fr gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {serviceCards.map((item, index) => {
             return (
               <div
                 key={item.href}
                 ref={(el) => {
-                  refs.current[cardIndex] = el as HTMLElement | null;
+                  refs.current[index] = el as HTMLElement | null;
                 }}
-                onMouseEnter={() => setHoveredCard(cardIndex)}
-                onMouseLeave={() => setHoveredCard(null)}
                 className="relative"
                 style={{
-                  opacity: visibleItems[cardIndex] ? 1 : 0,
-                  transform: visibleItems[cardIndex]
-                    ? 'translateY(0) scale(1)'
-                    : 'translateY(40px) scale(0.95)',
-                  transition: `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`,
+                  display: 'flex',
+                  opacity: visibleItems[index] ? 1 : 0,
+                  transform: visibleItems[index] ? 'translateY(0)' : 'translateY(16px)',
+                  transition: `opacity 0.45s ease ${index * 0.05}s, transform 0.45s ease ${index * 0.05}s`,
                 }}
               >
                 <FeatureCard
-                  icon={item.icon}
+                  icon={item.icon ?? undefined}
+                  emoji={item.emoji ?? undefined}
                   label={item.label}
                   title={item.title}
                   description={item.desc}
                   href={item.href}
                   accent={item.accent}
+                  className="h-full p-6 md:p-8 hover:-translate-y-0 hover:shadow-lg"
                 />
               </div>
             );

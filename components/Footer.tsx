@@ -30,8 +30,20 @@ export function Footer({ services: servicesProp, company: companyProp }: FooterP
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2">
-              <span className="text-2xl font-bold" style={{ color: 'var(--color-accent-1)' }}>Vista</span>
-              <span className="text-2xl font-semibold" style={{ color: 'var(--color-text)' }}>Neotech</span>
+              <img
+                src="/images/logo_black.png?v=20260324"
+                alt="Vista Neotech"
+                width={340}
+                height={80}
+                className="h-16 w-auto dark:hidden"
+              />
+              <img
+                src="/images/logo_white.png?v=20260324"
+                alt="Vista Neotech"
+                width={340}
+                height={80}
+                className="hidden h-16 w-auto dark:block"
+              />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
               Technology and consultancy for MLM and direct selling. In pursuit of excellence.

@@ -1,16 +1,16 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { IconRocket, IconChart, IconGlobe, IconHeadset } from '@/components/ui/Icons';
+import { IconChart, IconHeadset, IconRocket, IconUsers } from '@/components/ui/Icons';
 
 const accentVar = (n: number) => `var(--color-accent-${n})`;
 const accentMutedVar = (n: number) => `var(--color-accent-${n}-muted)`;
 
 const stats = [
-  { value: '15+', label: 'Years', sub: 'experience', accent: 1 as const, icon: <IconRocket className="shrink-0" size="lg" />, emoji: '🚀' },
-  { value: '500+', label: 'Projects', sub: 'delivered', accent: 2 as const, icon: <IconChart className="shrink-0" size="lg" />, emoji: '📊' },
-  { value: '50+', label: 'Verticals', sub: 'industry', accent: 3 as const, icon: <IconGlobe className="shrink-0" size="lg" />, emoji: '🌍' },
-  { value: '24/7', label: 'Support', sub: '& training', accent: 4 as const, icon: <IconHeadset className="shrink-0" size="lg" />, emoji: '🎧' },
+  { value: '25+', label: 'Years', sub: 'experience', accent: 1 as const, icon: IconRocket },
+  { value: '3000+', label: 'Projects', sub: 'delivered', accent: 2 as const, icon: IconChart },
+  { value: '50+', label: 'Verticals', sub: 'industry', accent: 3 as const, icon: IconUsers },
+  { value: '24/7', label: 'Support', sub: '& training', accent: 4 as const, icon: IconHeadset },
 ];
 
 export function StatsBar() {
@@ -48,7 +48,7 @@ export function StatsBar() {
 
   return (
     <section
-      className="border-y py-8 md:py-10"
+      className="statsbar-section border-y py-8 md:py-10"
       style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg-muted)' }}
     >
       <div className="container-wide">
@@ -70,10 +70,10 @@ export function StatsBar() {
               }}
             >
               <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-2xl transition-transform duration-300 group-hover:scale-110"
+                className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl text-2xl transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: accentMutedVar(s.accent), color: accentVar(s.accent) }}
               >
-                {s.emoji}
+                <s.icon className="h-16 w-16" />
               </div>
               <div className="ml-4 min-w-0">
                 <span

@@ -75,15 +75,15 @@ export default function TripgatePage() {
         </div>
         <div className="container-tight relative z-10 flex min-h-[60vh] flex-col items-center justify-center text-center">
           <div
-            className="mb-8 flex h-24 w-24 items-center justify-center rounded-3xl transition-transform hover:scale-110"
-            style={{ backgroundColor: 'var(--color-accent-2-muted)' }}
+            className="mb-8 flex h-40 w-40 items-center justify-center rounded-3xl transition-transform hover:scale-110"
+            style={{ backgroundColor: 'color-mix(in srgb, var(--color-accent-2-muted) 82%, #000 18%)' }}
           >
             <Image
-              src="/images/tripgate_logo.png"
+              src="/images/tripgate-logo.png"
               alt="Tripgate.in Logo"
-              width={80}
-              height={80}
-              className="object-contain"
+              width={160}
+              height={160}
+              className="h-32 w-32 object-contain"
               unoptimized
             />
           </div>

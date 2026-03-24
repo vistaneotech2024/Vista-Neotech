@@ -95,24 +95,35 @@ function BrandCard({ title, description, logo, href, externalUrl, accent, featur
           ))}
         </div>
 
-        <div className="relative z-10 p-8 md:p-10">
+        <div className="relative z-10 p-6 md:p-7">
           {/* Logo and Badge */}
-          <div className="mb-6 flex items-start justify-between">
+          <div className="mb-5 flex items-start justify-between">
             <div
-              className="relative flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
+              className="relative flex h-20 w-20 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
               style={{
-                backgroundColor: accentMuted,
+                backgroundColor: `color-mix(in srgb, ${accentMuted} 82%, #000 18%)`,
               }}
             >
-              <Image
-                src={logo}
-                alt={`${title} logo`}
-                width={48}
-                height={48}
-                className="object-contain transition-all duration-300"
-                style={{ filter: isHovered ? 'brightness(1.1)' : 'brightness(1)' }}
-                unoptimized
-              />
+              {logo.startsWith('http') ? (
+                <img
+                  src={logo}
+                  alt={`${title} logo`}
+                  width={80}
+                  height={80}
+                  className="object-contain transition-all duration-300"
+                  style={{ filter: isHovered ? 'brightness(1.1)' : 'brightness(1)' }}
+                />
+              ) : (
+                <Image
+                  src={logo}
+                  alt={`${title} logo`}
+                  width={80}
+                  height={80}
+                  className="object-contain transition-all duration-300"
+                  style={{ filter: isHovered ? 'brightness(1.1)' : 'brightness(1)' }}
+                  unoptimized
+                />
+              )}
             </div>
             <span
               className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-300 group-hover:scale-105"
@@ -127,34 +138,31 @@ function BrandCard({ title, description, logo, href, externalUrl, accent, featur
 
           {/* Content */}
           <h3
-            className="mb-3 text-2xl font-bold tracking-tight transition-colors duration-300 md:text-3xl"
+            className="mb-2 text-xl font-bold tracking-tight transition-colors duration-300 md:text-2xl"
             style={{ color: 'var(--color-text)' }}
           >
             {title}
           </h3>
           <p
-            className="mb-6 text-base leading-relaxed transition-colors duration-300"
+            className="mb-5 text-sm leading-relaxed transition-colors duration-300"
             style={{ color: 'var(--color-text-muted)' }}
           >
             {description}
           </p>
 
           {/* Features List */}
-          <ul className="mb-8 space-y-2">
+          <ul className="mb-6 space-y-1.5">
             {features.map((feature, i) => (
               <li
                 key={i}
-                className="flex items-center gap-2 text-sm transition-all duration-300"
+                className="flex items-center gap-2 text-xs transition-all duration-300"
                 style={{
                   color: 'var(--color-text-muted)',
                   transform: isHovered ? `translateX(${i * 2}px)` : 'translateX(0)',
                   transitionDelay: `${i * 50}ms`,
                 }}
               >
-                <span
-                  className="h-1.5 w-1.5 rounded-full transition-all duration-300 group-hover:scale-150"
-                  style={{ backgroundColor: accentColor }}
-                />
+                <span className="h-1.5 w-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: accentColor }} />
                 {feature}
               </li>
             ))}
@@ -212,7 +220,7 @@ export function BrandsSection() {
       title: 'AIML Software',
       description:
         'AI-powered MLM Software dedicated to the Direct Selling Industry. Combining cutting-edge AI technology with 25 years of Vista\'s experience to revolutionize network marketing.',
-      logo: '/images/aimlmsoftware_logo.png',
+      logo: '/images/aimlmsoftware_logo.png?v=20260324',
       href: '/brands/aimlmsoftware',
       externalUrl: 'https://www.aimlmsoftware.com',
       accent: 1 as const,
@@ -227,7 +235,7 @@ export function BrandsSection() {
       title: 'Tripgate.in',
       description:
         'Comprehensive Tours and Travels Services for B2B and B2C, MICE solutions, and API providers for Airlines, Hotels, Visas, Bus, and Activities.',
-      logo: '/images/tripgate_logo.png',
+      logo: '/images/tripgate-logo.png?v=20260324',
       href: '/brands/tripgate',
       externalUrl: 'https://tripgate.in',
       accent: 2 as const,
@@ -242,7 +250,7 @@ export function BrandsSection() {
       title: 'Verifizy',
       description:
         'KYC, Fintech automation, digital identity verification, and compliance onboarding system. API providers for PAN, Aadhar, Voter Card, Passport, and Bank Account Verification.',
-      logo: '/images/verifizy_logo.png',
+      logo: '/images/verfizy.png?v=20260324',
       href: '/brands/verifizy',
       externalUrl: 'https://www.verifizy.com',
       accent: 3 as const,
@@ -251,6 +259,21 @@ export function BrandsSection() {
         'KYC & compliance automation',
         'Multi-document verification APIs',
         'Bank account verification',
+      ],
+    },
+    {
+      title: 'MLM Union',
+      description:
+        'Direct selling companies and direct sellers directory platform for discovery, networking, and industry visibility.',
+      logo: '/images/mlm_union (2).png?v=20260324',
+      href: '/brands/mlmunion',
+      externalUrl: 'https://www.mlmunion.in/',
+      accent: 1 as const,
+      features: [
+        'Direct sellers directory',
+        'Direct selling companies listing',
+        'Industry networking visibility',
+        'Business discovery platform',
       ],
     },
   ];
@@ -283,7 +306,7 @@ export function BrandsSection() {
         </div>
 
         {/* Brands Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {brands.map((brand, index) => (
             <BrandCard key={brand.href} {...brand} index={index} />
           ))}

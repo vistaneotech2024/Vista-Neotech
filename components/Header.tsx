@@ -16,9 +16,10 @@ const defaultNavLinks: HeaderNavLink[] = [
 
 // Brand links (unchanged – not from DB)
 const brandLinks = [
-  { href: '/brands/aimlmsoftware', label: 'AIML Software', external: 'https://www.aimlmsoftware.com' },
-  { href: '/brands/tripgate', label: 'Tripgate.in', external: 'https://tripgate.in' },
-  { href: '/brands/verifizy', label: 'Verifizy', external: 'https://www.verifizy.com' },
+  { href: '/brands/aimlmsoftware', label: 'AIMLM Software', external: 'https://www.aimlmsoftware.com', logo: '/images/aimlmsoftware_logo.png' },
+  { href: '/brands/tripgate', label: 'Tripgate.in', external: 'https://tripgate.in', logo: '/images/tripgate-logo.png' },
+  { href: '/brands/verifizy', label: 'Verifizy', external: 'https://www.verifizy.com', logo: '/images/verfizy.png' },
+  { href: '/brands/mlmunion', label: 'MLM Union', external: 'https://www.mlmunion.in/', logo: '/images/mlm_union (2).png' },
 ];
 
 // Service categories organized from WordPress data
@@ -117,10 +118,22 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
       className="fixed left-0 right-0 top-0 z-50 border-b border-[var(--color-border)] backdrop-blur-xl animate-fade-in"
       style={{ backgroundColor: 'var(--color-bg-elevated)' }}
     >
-      <div className="container-tight flex h-16 items-center justify-between md:h-18">
+      <div className="container-wide flex h-16 items-center justify-between md:h-18">
         <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="text-xl font-bold md:text-2xl" style={{ color: 'var(--color-accent-1)' }}>Vista</span>
-          <span className="text-xl font-semibold md:text-2xl" style={{ color: 'var(--color-text)' }}>Neotech</span>
+          <img
+            src="/images/logo_black.png?v=20260324"
+            alt="Vista Neotech"
+            width={340}
+            height={80}
+            className="h-16 w-auto dark:hidden"
+          />
+          <img
+            src="/images/logo_white.png?v=20260324"
+            alt="Vista Neotech"
+            width={340}
+            height={80}
+            className="hidden h-16 w-auto dark:block"
+          />
         </Link>
 
         <nav className="hidden md:flex md:items-center md:gap-0.5">
@@ -323,8 +336,19 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                         }}
                         onClick={() => setBrandsOpen(false)}
                       >
-                        <div className="flex items-center justify-between">
-                          <span className="font-medium">{typeof brand.label === 'string' ? brand.label : ''}</span>
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-2">
+                            {brand.logo && (
+                              <img
+                                src={brand.logo}
+                                alt={`${brand.label} logo`}
+                                width={22}
+                                height={22}
+                                className="h-5 w-auto object-contain"
+                              />
+                            )}
+                            <span className="font-medium">{typeof brand.label === 'string' ? brand.label : ''}</span>
+                          </div>
                           <svg
                             className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100"
                             fill="none"
@@ -516,7 +540,18 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                           setBrandsOpen(false);
                         }}
                       >
-                        {typeof brand.label === 'string' ? brand.label : ''}
+                        <div className="flex items-center gap-2">
+                          {brand.logo && (
+                            <img
+                              src={brand.logo}
+                              alt={`${brand.label} logo`}
+                              width={20}
+                              height={20}
+                              className="h-5 w-auto object-contain"
+                            />
+                          )}
+                          <span>{typeof brand.label === 'string' ? brand.label : ''}</span>
+                        </div>
                       </Link>
                       <a
                         href={brand.external}
