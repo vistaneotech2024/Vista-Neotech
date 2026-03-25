@@ -1,3 +1,5 @@
+import { DotsLoader } from '@/components/ui/DotsLoader';
+
 /**
  * Loading UI for [slug] – shows immediately while the page (and any heavy post content) loads.
  * Prevents "blank screen" on slow routes like long blog posts.
@@ -8,6 +10,9 @@ export default function SlugLoading() {
       {/* Hero skeleton */}
       <section className="relative min-h-[60vh] overflow-hidden pt-24 pb-16" style={{ backgroundColor: 'var(--color-hero-bg)' }}>
         <div className="container-tight relative z-10 flex min-h-[50vh] flex-col justify-center">
+          <div className="mb-10 flex justify-center">
+            <DotsLoader size="lg" color="var(--color-accent-1)" />
+          </div>
           <div className="mb-8 h-4 w-48 animate-pulse rounded" style={{ backgroundColor: 'var(--color-border)' }} />
           <div className="mb-6 h-12 w-full max-w-2xl animate-pulse rounded" style={{ backgroundColor: 'var(--color-border)' }} />
           <div className="h-6 w-full max-w-xl animate-pulse rounded" style={{ backgroundColor: 'var(--color-border)' }} />

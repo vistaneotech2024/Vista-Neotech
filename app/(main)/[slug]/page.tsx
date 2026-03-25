@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getPageByPath, buildMetadata, getAllPreservedUrls, getBaseUrl } from '@/lib/url-map';
 import { getPageBySlugFromDB, getPostBySlugFromDB } from '@/lib/cms/pages-db';
-import { getFeaturedImageForPost } from '@/lib/blog-images';
+import { getFeaturedImageByPath, getFeaturedImageForPost, toAbsoluteImageUrl } from '@/lib/blog-images';
 import { OptimizedBlogImage } from '@/components/ui/OptimizedBlogImage';
 import { getRelatedInternalLinks } from '@/lib/internal-links';
 import { ModernToolPost } from '@/components/blog/ModernToolPost';
@@ -644,7 +644,7 @@ export default async function SlugPage({ params }: Props) {
   if (pathname === 'about-us' && (dbPage || urlMapPage)) {
     return (
       <AboutUsPage
-        title="We're a full-service IT company. Direct selling is our expertise."
+        title="We are a full-service IT company. Direct selling is our expertise."
         description="Vista Neotech delivers software development, digital marketing, design, and consulting across versatile sectors—with deep expertise in MLM and direct selling solutions."
         html={bodyContent}
         canonicalUrl={pageUrl}
@@ -688,6 +688,64 @@ export default async function SlugPage({ params }: Props) {
   };
 
   const featuredImageUrl = isBlogPost ? getFeaturedImageForPost(pathname, bodyContent) : null;
+
+  function normalizePreservedToRootSlug(oldUrl: string): string {
+    const cleaned = (oldUrl || '').trim().replace(/^\/+|\/+$/g, '');
+    if (!cleaned) return '';
+    // Some preserved URLs are stored like "/blog/slug"
+    return cleaned.startsWith('blog/') ? cleaned.slice('blog/'.length) : cleaned;
+  }
+
+  function formatPostDate(iso: string | null | undefined): string | null {
+    if (!iso || typeof iso !== 'string') return null;
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return null;
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  const relatedSidebarPosts = isBlogPost
+    ? await (async () => {
+        const preserved = getAllPreservedUrls().filter((p) => p.content_type === 'post');
+        const preservedBySlug = new Map<string, (typeof preserved)[number]>();
+        for (const p of preserved) {
+          const s = normalizePreservedToRootSlug(p.old_url);
+          if (s) preservedBySlug.set(s, p);
+        }
+
+        const candidates = preserved
+          .map((p) => normalizePreservedToRootSlug(p.old_url))
+          .filter((s) => s && s !== pathname);
+
+        const uniqueSlugs = Array.from(new Set(candidates)).slice(0, 3);
+        if (uniqueSlugs.length === 0) return [];
+
+        const rows = await Promise.all(
+          uniqueSlugs.map(async (slug) => {
+            const db = await getPostBySlugFromDB(slug);
+            const preserved = preservedBySlug.get(slug);
+            const title = db?.meta_title ?? db?.title ?? preserved?.meta_title ?? preserved?.slug ?? slug;
+            const excerpt = db?.meta_description ?? db?.excerpt ?? preserved?.meta_description ?? null;
+            const publishedAt = db?.published_at ?? null;
+            const dateLabel = formatPostDate(publishedAt);
+
+            const dbOg = db?.og_image ?? null;
+            const featured_image_url =
+              dbOg ? toAbsoluteImageUrl(dbOg) : (getFeaturedImageByPath(slug) ?? null);
+
+            return {
+              slug,
+              old_url: `/${slug}`,
+              title: toSafeString(title),
+              excerpt,
+              dateLabel,
+              featured_image_url,
+            };
+          })
+        );
+
+        return rows.filter((r) => r.old_url);
+      })()
+    : [];
 
   return (
     <>
@@ -733,7 +791,7 @@ export default async function SlugPage({ params }: Props) {
           </div>
         )}
 
-        <div className="container-tight relative z-10 flex min-h-[45vh] flex-col justify-center md:min-h-[48vh]">
+        <div className="container-wide relative z-10 flex min-h-[45vh] flex-col justify-center md:min-h-[48vh]">
           {/* Breadcrumb */}
           <nav className="mb-8 flex items-center gap-2 text-sm" aria-label="Breadcrumb">
             <Link href="/" className="transition hover:opacity-80" style={{ color: 'var(--color-text-muted)' }}>
@@ -819,7 +877,7 @@ export default async function SlugPage({ params }: Props) {
       {/* Compact CTA strip for service pages – strong prompt to contact */}
       {isServicePage && (
         <section className="section-padding pt-0" style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}>
-          <div className="container-tight">
+          <div className="container-wide">
             <PageCTA
               variant="compact"
               headline={toSafeString(getCTACopy(pathname, displayTitle).headline)}
@@ -835,7 +893,7 @@ export default async function SlugPage({ params }: Props) {
 
       {/* Content Section – modern prose styling for WordPress/builder content; article for blog for semantic/AI clarity */}
       <section className={`section-padding ${isServicePage ? '' : 'pt-0'}`} style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}>
-        <div className="container-tight">
+        <div className="container-wide">
           {isServicePage && serviceDef.features.length > 0 && (
             <div className="mb-10">
               <BenefitsStrip
@@ -844,34 +902,141 @@ export default async function SlugPage({ params }: Props) {
               />
             </div>
           )}
-          {toSafeString(displayDescription) && isBlogPost && (
-            <div
-              className="mb-8 rounded-2xl border p-6"
-              style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}
-              data-summary="true"
-            >
-              <p className="text-sm font-semibold uppercase tracking-wide mb-2" style={{ color: 'var(--color-text-muted)' }}>
-                Summary
-              </p>
-              <p className="prose-lead m-0" style={{ color: 'var(--color-text)' }}>
-                {toSafeString(displayDescription)}
-              </p>
-            </div>
-          )}
+          {/* Summary section removed (matches requested UI). */}
           {isBlogPost ? (
-            <article
-              className="rounded-3xl border p-8 md:p-12"
-              style={{
-                backgroundColor: 'var(--color-bg-elevated)',
-                borderColor: 'var(--color-border)',
-              }}
-            >
-              <ProsePageContent
-                html={bodyContent}
-                focusKeyword={focusKeyword}
-                preservedUrl={!fromDb && urlMapPage ? urlMapPage.old_url : null}
-              />
-            </article>
+            <div className="grid gap-6 lg:grid-cols-[1fr_360px] items-start">
+              <article
+                className="rounded-3xl border p-6 md:p-8"
+                style={{
+                  backgroundColor: 'var(--color-bg-elevated)',
+                  borderColor: 'var(--color-border)',
+                }}
+              >
+                <div className="mb-3">
+                  <a
+                    href="/blog"
+                    className="inline-flex items-center gap-2 text-sm font-semibold"
+                    style={{ color: 'var(--color-text-muted)', textDecoration: 'none' }}
+                  >
+                    <IconArrowRight size="sm" className="rotate-180" />
+                    Back
+                  </a>
+                </div>
+
+                {featuredImageUrl ? (
+                  <div className="relative mb-5 overflow-hidden rounded-2xl bg-[var(--color-hero-bg)]" style={{ height: '260px' }}>
+                    <OptimizedBlogImage
+                      src={featuredImageUrl}
+                      alt=""
+                      priority
+                      quality={85}
+                      cover
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="opacity-50"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: 'linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%)',
+                      }}
+                    />
+                    <div className="relative p-5">
+                      <p
+                        className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em]"
+                        style={{ color: 'rgba(255,255,255,0.9)' }}
+                      >
+                        BLOG SPOTLIGHT
+                      </p>
+                      <h1
+                        className="line-clamp-3 text-2xl font-bold leading-snug"
+                        style={{ color: 'white' }}
+                      >
+                        {toSafeString(displayTitle)}
+                      </h1>
+                    </div>
+                  </div>
+                ) : null}
+
+                <ProsePageContent
+                  html={bodyContent}
+                  focusKeyword={focusKeyword}
+                  preservedUrl={!fromDb && urlMapPage ? urlMapPage.old_url : null}
+                />
+              </article>
+
+              {relatedSidebarPosts.length > 0 ? (
+                <aside
+                  className="lg:sticky lg:top-24"
+                  style={{
+                    backgroundColor: 'var(--color-bg-muted)',
+                    border: '1px solid var(--color-border)',
+                    borderRadius: '1rem',
+                    padding: '1rem',
+                    color: 'var(--color-text)',
+                  }}
+                >
+                  <h2 className="mb-3 text-xl font-bold" style={{ color: 'var(--color-text)' }}>
+                    Explore more.
+                  </h2>
+
+                  <div className="space-y-3">
+                    {relatedSidebarPosts.map((p) => (
+                      <a
+                        key={p.old_url}
+                        href={p.old_url}
+                        className="group block"
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <div className="flex gap-3">
+                          <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-[var(--color-bg-elevated)]">
+                            {p.featured_image_url ? (
+                              <OptimizedBlogImage
+                                src={p.featured_image_url}
+                                alt=""
+                                quality={75}
+                                cover
+                                sizes="112px"
+                              />
+                            ) : (
+                              <div className="absolute inset-0 bg-[var(--color-accent-1-muted)]" />
+                            )}
+                          </div>
+
+                          <div className="min-w-0">
+                            {p.dateLabel ? (
+                              <div className="mb-0 text-xs font-medium" style={{ color: 'var(--color-text-muted)' }}>
+                                {p.dateLabel}
+                              </div>
+                            ) : null}
+
+                            <div
+                              className="line-clamp-2 text-sm font-bold leading-snug group-hover:text-[var(--color-accent-1)]"
+                              style={{ color: 'var(--color-text)' }}
+                            >
+                              {p.title}
+                            </div>
+
+                            {p.excerpt ? (
+                              <div className="mt-1 line-clamp-2 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                                {p.excerpt}
+                              </div>
+                            ) : null}
+
+                            <div
+                              className="mt-2 inline-flex items-center gap-2 text-sm font-semibold"
+                              style={{ color: 'var(--color-accent-1)' }}
+                            >
+                              Read more
+                              <IconArrowRight size="sm" />
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </aside>
+              ) : null}
+            </div>
           ) : (
             <div
               className="rounded-3xl border p-8 md:p-12"
@@ -902,49 +1067,7 @@ export default async function SlugPage({ params }: Props) {
         ) : null;
       })()}
 
-      {/* Related Posts Section for Blog Posts */}
-      {isBlogPost && (() => {
-        const allPosts = getAllPreservedUrls().filter((p) => p.content_type === 'post' && p.old_url !== path);
-        const relatedPosts = allPosts.slice(0, 3);
-        return relatedPosts.length > 0 ? (
-          <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-muted)', color: 'var(--color-text)' }}>
-            <div className="container-tight">
-              <h2 className="display-3 mb-8" style={{ color: 'var(--color-text)' }}>
-                Related Articles
-              </h2>
-              <div className="grid gap-6 md:grid-cols-3">
-                {relatedPosts.map((relatedPost) => (
-                  <Link
-                    key={relatedPost.old_url}
-                    href={relatedPost.old_url}
-                    className="group block overflow-hidden rounded-2xl border p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-                    style={{
-                      backgroundColor: 'var(--color-bg-elevated)',
-                      borderColor: 'var(--color-border)',
-                    }}
-                  >
-                    <h3 className="mb-2 text-xl font-bold transition-colors duration-300 group-hover:text-[var(--color-accent-1)]" style={{ color: 'var(--color-text)' }}>
-                      {toSafeString(relatedPost.meta_title, toSafeString(relatedPost.slug, 'Post').replace(/-/g, ' ')) || 'Post'}
-                    </h3>
-                    {toSafeString(relatedPost.meta_description) && (
-                      <p className="mb-4 line-clamp-2 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                        {toSafeString(relatedPost.meta_description)}
-                      </p>
-                    )}
-                    <span
-                      className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group-hover:gap-3"
-                      style={{ color: 'var(--color-accent-1)' }}
-                    >
-                      Read article
-                      <IconArrowRight size="sm" className="transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        ) : null;
-      })()}
+      {/* (Removed) bottom related posts list; related blogs now show in the right sidebar */}
 
       {/* Internal links for blog – link to key service pages for SEO */}
       {isBlogPost && (() => {

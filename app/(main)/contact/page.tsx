@@ -3,9 +3,6 @@ import { ContactForm } from '@/components/contact/ContactForm';
 import { Button } from '@/components/Button';
 import { IconArrowRight } from '@/components/ui/Icons';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-
 export const metadata = {
   title: 'Contact – Vista Neotech',
   description: 'Contact Vista Neotech for software development, MLM & direct selling solutions, digital marketing, design services, and product support. Get a quick response and a tailored proposal.',
@@ -26,7 +23,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pt-24 pb-16" style={{ backgroundColor: 'var(--color-hero-bg)' }}>
+      <section className="relative overflow-hidden pt-24 pb-10" style={{ backgroundColor: 'var(--color-hero-bg)' }}>
         <div className="absolute inset-0 overflow-hidden opacity-30">
           <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full blur-3xl" style={{ backgroundColor: 'var(--color-accent-1-muted)' }} />
           <div className="absolute -left-40 bottom-0 h-96 w-96 rounded-full blur-3xl" style={{ backgroundColor: 'var(--color-accent-2-muted)' }} />
@@ -71,12 +68,13 @@ export default function ContactPage() {
       {/* Form + Side content */}
       <section className="section-padding" style={{ backgroundColor: 'var(--color-bg)' }}>
         <div className="container-wide">
-          <div className="grid gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-8">
+          <div className="grid gap-6 lg:grid-cols-12">
+            <div className="lg:col-span-12">
               <ContactForm />
             </div>
 
-            <aside className="lg:col-span-4 lg:sticky lg:top-24 h-fit space-y-4">
+            {/* Move sidebar below form so the form can use full width */}
+            <aside className="lg:col-span-12 h-fit space-y-3">
               <div className="rounded-3xl border p-7" style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}>
                 <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
                   What happens next
@@ -147,7 +145,7 @@ export default function ContactPage() {
                     className="group flex items-center justify-between rounded-2xl border px-4 py-3 transition hover:shadow-lg"
                     style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
                   >
-                    <span className="text-sm font-semibold">AIML Software (Product)</span>
+                    <span className="text-sm font-semibold">AIMLM Software (Product)</span>
                     <IconArrowRight size="sm" className="transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>

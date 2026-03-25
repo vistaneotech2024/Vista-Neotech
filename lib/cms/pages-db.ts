@@ -59,6 +59,7 @@ export type PostFromDB = {
   status: string;
   meta_title: string | null;
   meta_description: string | null;
+  og_image: string | null;
   published_at: string | null;
   updated_at: string | null;
 };
@@ -120,7 +121,7 @@ export const getPostBySlugFromDB = cache(async (slug: string): Promise<PostFromD
     // Do not filter by status here: column is enum ContentStatus; RLS already restricts to published.
     const { data, error } = await supabase
       .from('posts')
-      .select('id, slug, title, content, excerpt, status, meta_title, meta_description, published_at')
+      .select('id, slug, title, content, excerpt, status, meta_title, meta_description, og_image, published_at')
       .eq('slug', slug)
       .maybeSingle();
 
@@ -151,43 +152,65 @@ export type PostListItem = {
   excerpt: string | null;
   meta_title: string | null;
   meta_description: string | null;
+  og_image: string | null;
   published_at: string | null;
   updated_at: string | null;
 };
 
-export async function getPostsForBlog(): Promise<PostListItem[]> {
+export async function getPostsForBlogPaginated(
+  page: number,
+  pageSize: number
+): Promise<{ posts: PostListItem[]; total: number }> {
   try {
     const supabase = getSupabaseForContent();
-    if (!supabase) return [];
+    if (!supabase) return { posts: [], total: 0 };
 
-    // Do not filter by status here: column is enum ContentStatus; RLS already restricts to published.
-    const { data, error } = await supabase
+    const safePage = Number.isFinite(page) && page > 0 ? Math.floor(page) : 1;
+    const safePageSize = Number.isFinite(pageSize) && pageSize > 0 ? Math.floor(pageSize) : 10;
+    const from = (safePage - 1) * safePageSize;
+    const to = from + safePageSize - 1;
+
+    // Explicit filters are required because service-role bypasses RLS.
+    const { data, error, count } = await supabase
       .from('posts')
-      .select('slug, title, excerpt, meta_title, meta_description, published_at')
-      .order('published_at', { ascending: false });
+      .select('slug, title, excerpt, meta_title, meta_description, og_image, published_at', { count: 'exact' })
+      .eq('content_type', 'post')
+      .eq('status', 'published')
+      .not('published_at', 'is', null)
+      .order('published_at', { ascending: false })
+      .range(from, to);
 
     if (error) {
-      logContentError('getPostsForBlog', error);
-      return [];
+      logContentError('getPostsForBlogPaginated', error);
+      return { posts: [], total: 0 };
     }
-    if (!data) return [];
-    if (process.env.NODE_ENV === 'development') console.info('[Supabase] getPostsForBlog: returned', data.length, 'posts');
+    if (!data) return { posts: [], total: count ?? 0 };
+    if (process.env.NODE_ENV === 'development') console.info('[Supabase] getPostsForBlogPaginated: returned', data.length, 'posts');
     if (data.length === 0 && process.env.NODE_ENV === 'development') {
-      console.warn('[Supabase] getPostsForBlog: 0 posts. Ensure RLS policy "Allow public read published posts" is applied (status::text in policy).');
+      console.warn('[Supabase] getPostsForBlogPaginated: 0 posts. Ensure RLS policy "Allow public read published posts" is applied (status::text in policy).');
     }
-    return data.map((row: Record<string, unknown>) => ({
+    return {
+      total: count ?? 0,
+      posts: data.map((row: Record<string, unknown>) => ({
       slug: row.slug as string,
       title: row.title as string | null,
       excerpt: row.excerpt as string | null,
       meta_title: row.meta_title as string | null,
       meta_description: row.meta_description as string | null,
+      og_image: row.og_image as string | null,
       published_at: row.published_at as string | null,
       updated_at: null,
-    })) as PostListItem[];
+      })) as PostListItem[],
+    };
   } catch (e) {
-    logContentError('getPostsForBlog throw', e);
-    return [];
+    logContentError('getPostsForBlogPaginated throw', e);
+    return { posts: [], total: 0 };
   }
+}
+
+export async function getPostsForBlog(): Promise<PostListItem[]> {
+  const result = await getPostsForBlogPaginated(1, 1000);
+  return result.posts;
 }
 
 /** Pages marked as industry pages (template = 'industry' or custom_fields.is_industry = true) */

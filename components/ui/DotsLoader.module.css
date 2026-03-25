@@ -1,0 +1,56 @@
+/**
+ * Five-dot pulse loader (ported from SCSS; delays match nth-child 1–5).
+ */
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.dot {
+  --d: 10px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-inline: max(2px, calc(var(--d) / 5));
+  width: var(--d);
+  height: var(--d);
+  background: var(--dots-loader-color, var(--color-accent-1));
+  border-radius: calc(var(--d) / 2);
+  animation: scale-up-down 300ms var(--delay, 0ms) linear alternate infinite;
+}
+
+.dot:nth-child(1) {
+  --delay: calc(-100ms * 5);
+}
+
+.dot:nth-child(2) {
+  --delay: calc(-100ms * 4);
+}
+
+.dot:nth-child(3) {
+  --delay: calc(-100ms * 3);
+}
+
+.dot:nth-child(4) {
+  --delay: calc(-100ms * 2);
+}
+
+.dot:nth-child(5) {
+  --delay: calc(-100ms * 1);
+}
+
+@keyframes scale-up-down {
+  to {
+    height: calc(var(--d) * 4);
+  }
+}
+
+/* Size variants */
+.sm {
+  --d: 8px;
+}
+
+.lg {
+  --d: 12px;
+}

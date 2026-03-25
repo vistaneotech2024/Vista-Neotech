@@ -101,6 +101,18 @@ export async function POST(req: Request) {
   const isBot = reasons.length > 0;
   const botReason = reasons.length ? reasons.join(',') : null;
 
+  // Normalize services: frontend sends service IDs; map them to labels using contact_service_options.
+  const requestedServiceIds = (data.services || []).map((s) => s.trim()).filter(Boolean).slice(0, 12);
+  const { data: svcRows } = await supabase
+    .from('contact_service_options')
+    .select('id,label')
+    .in('id', requestedServiceIds);
+  const labelById = new Map<string, string>(
+    (svcRows || [])
+      .map((r: any) => [String(r.id), String(r.label)])
+  );
+  const servicesLabels = requestedServiceIds.map((id) => labelById.get(id) || id);
+
   const insertRow: Record<string, unknown> = {
     name: data.name.trim(),
     email: data.email.trim().toLowerCase(),
@@ -108,9 +120,11 @@ export async function POST(req: Request) {
     company: (data.company || '').trim() || null,
     website: (data.website || '').trim() || null,
     message: message || null,
-    services: data.services,
+    services_ids: requestedServiceIds,
+    services_labels: servicesLabels,
     budget_range: (data.budgetRange || '').trim() || null,
     timeline: (data.timeline || '').trim() || null,
+    consent: data.consent ?? true,
     page_path: (data.pagePath || '').trim() || null,
     referrer: referrer || null,
     user_agent: userAgent || null,
@@ -120,15 +134,30 @@ export async function POST(req: Request) {
     is_bot: isBot,
     bot_reason: botReason,
     status: 'new',
+    raw_payload: data as unknown as Record<string, unknown>,
   };
   if (data.source) insertRow.source = data.source;
 
-  const { error } = await supabase.from('contact_submissions').insert(insertRow);
+  const { data: inserted, error } = await supabase
+    .from('contact_submissions')
+    .insert(insertRow)
+    .select('id')
+    .maybeSingle();
 
   if (isBot) return NextResponse.json({ ok: true });
 
   if (error) {
     return NextResponse.json({ ok: false, error: 'Failed to submit' }, { status: 500 });
+  }
+
+  // Insert join rows for services that exist in the master list
+  if (inserted?.id && requestedServiceIds.length > 0) {
+    const validIds = requestedServiceIds.filter((id) => labelById.has(id));
+    if (validIds.length > 0) {
+      const joinRows = validIds.map((service_id) => ({ submission_id: inserted.id, service_id }));
+      const { error: joinErr } = await supabase.from('contact_submission_services').insert(joinRows);
+      if (joinErr) console.error('[contact] Failed to insert submission services:', joinErr);
+    }
   }
 
   // Email notifications (fire-and-forget; do not block response)
@@ -137,6 +166,7 @@ export async function POST(req: Request) {
     email: data.email.trim().toLowerCase(),
     phone: (data.phone || '').trim() || null,
     message: message || null,
+    services: servicesLabels,
     pagePath: (data.pagePath || '').trim() || null,
     source: data.source ?? 'contact_form',
   };

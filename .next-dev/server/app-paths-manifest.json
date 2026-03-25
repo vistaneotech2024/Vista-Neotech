@@ -1,6 +1,7 @@
 {
-  "/(main)/contact/page": "app/(main)/contact/page.js",
-  "/(main)/[slug]/page": "app/(main)/[slug]/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
   "/blog/page": "app/blog/page.js",
-  "/(main)/page": "app/(main)/page.js"
+  "/(main)/contact/page": "app/(main)/contact/page.js",
+  "/(main)/page": "app/(main)/page.js",
+  "/(main)/[slug]/page": "app/(main)/[slug]/page.js"
 }

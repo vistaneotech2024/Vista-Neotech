@@ -37,9 +37,10 @@ type ButtonProps = {
   accent?: Accent;
   className?: string;
   type?: 'button' | 'submit';
+  prefetch?: boolean;
 };
 
-export function Button({ href, children, variant = 'primary', accent = 'orange', className = '', type = 'button' }: ButtonProps) {
+export function Button({ href, children, variant = 'primary', accent = 'orange', className = '', type = 'button', prefetch }: ButtonProps) {
   const safe = safeChildren(children);
   const isFilled = variant === 'primary';
   const isOutline = variant === 'outline';
@@ -67,7 +68,8 @@ export function Button({ href, children, variant = 'primary', accent = 'orange',
     className;
 
   if (href) {
-    return <Link href={href} className={base}>{safe}</Link>;
+    const shouldPrefetch = prefetch ?? (href === '/contact' ? false : undefined);
+    return <Link href={href} prefetch={shouldPrefetch} className={base}>{safe}</Link>;
   }
   return <button type={type} className={base}>{safe}</button>;
 }
