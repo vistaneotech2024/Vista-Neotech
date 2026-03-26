@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { Button } from '@/components/Button';
-import { DotsLoader } from '@/components/ui/DotsLoader';
+import { IconCheck, IconSparkles } from '@/components/ui/Icons';
 
 type ServiceOption = { id: string; label: string; description: string; group: string };
 
@@ -95,7 +95,15 @@ export function ContactForm() {
 
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error(body?.error || 'Submission failed');
+        const fieldErrors: Record<string, string[]> | undefined = body?.details?.fieldErrors;
+        const allFieldMessages = fieldErrors
+          ? Object.values(fieldErrors).flat().filter((m: unknown): m is string => typeof m === 'string' && m.trim().length > 0)
+          : [];
+        const msg =
+          (typeof body?.error === 'string' && body.error.trim()) ||
+          allFieldMessages[0] ||
+          'Submission failed';
+        throw new Error(msg);
       }
 
       setStatus('success');
@@ -105,48 +113,114 @@ export function ContactForm() {
     }
   }
 
+  const selectedLabels = selected
+    .map((id) => SERVICES.find((s) => s.id === id)?.label || id)
+    .filter(Boolean);
+
   if (status === 'success') {
     return (
-      <div className="rounded-3xl border p-8 md:p-10" style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}>
-        <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
-          Submitted
-        </p>
-        <h2 className="mt-2 text-3xl font-bold" style={{ color: 'var(--color-text)' }}>
-          Thanks — we’ll get back quickly.
-        </h2>
-        <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-          We’ve received your request. A specialist will respond with next steps and a recommended service stack.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Button href="/mlm-software" variant="outline" accent="orange" className="rounded-full px-7 py-3">
-            Explore MLM Software
-          </Button>
-          <Button href="/" variant="outline" accent="cyan" className="rounded-full px-7 py-3">
-            Back to Home
-          </Button>
+      <div
+        className="relative overflow-hidden rounded-3xl border p-6 md:p-8"
+        style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}
+      >
+        <div className="pointer-events-none absolute inset-0 opacity-40">
+          <div className="absolute -right-32 -top-32 h-72 w-72 rounded-full blur-3xl" style={{ backgroundColor: 'var(--color-accent-1-muted)' }} />
+          <div className="absolute -left-32 bottom-0 h-72 w-72 rounded-full blur-3xl" style={{ backgroundColor: 'var(--color-accent-2-muted)' }} />
+        </div>
+
+        <div className="relative">
+          <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--color-accent-3-muted)', color: 'var(--color-accent-3)' }}>
+              <IconCheck size="sm" />
+            </span>
+            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
+              Submitted
+            </span>
+          </div>
+
+          <div className="mt-4 flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <h2 className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>
+                Thanks — we’ll get back quickly.
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+                We’ve received your request. A specialist will respond with next steps and a recommended service stack.
+              </p>
+            </div>
+            <div className="hidden shrink-0 sm:block" style={{ color: 'var(--color-accent-4)' }}>
+              <IconSparkles size="lg" />
+            </div>
+          </div>
+
+          {selectedLabels.length > 0 && (
+            <div className="mt-5">
+              <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
+                Selected
+              </p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {selectedLabels.slice(0, 10).map((label) => (
+                  <span
+                    key={label}
+                    className="rounded-full border px-3 py-1 text-xs font-semibold"
+                    style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}
+                  >
+                    {label}
+                  </span>
+                ))}
+                {selectedLabels.length > 10 && (
+                  <span className="text-xs" style={{ color: 'var(--color-text-subtle)' }}>
+                    +{selectedLabels.length - 10} more
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl border px-4 py-3" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
+              <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>Next</p>
+              <p className="mt-1 text-sm font-semibold" style={{ color: 'var(--color-text)' }}>We review</p>
+              <p className="mt-0.5 text-xs" style={{ color: 'var(--color-text-muted)' }}>Your goals and requirements</p>
+            </div>
+            <div className="rounded-2xl border px-4 py-3" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
+              <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>Then</p>
+              <p className="mt-1 text-sm font-semibold" style={{ color: 'var(--color-text)' }}>We recommend</p>
+              <p className="mt-0.5 text-xs" style={{ color: 'var(--color-text-muted)' }}>Modules and integrations</p>
+            </div>
+            <div className="rounded-2xl border px-4 py-3" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
+              <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>You get</p>
+              <p className="mt-1 text-sm font-semibold" style={{ color: 'var(--color-text)' }}>A clear plan</p>
+              <p className="mt-0.5 text-xs" style={{ color: 'var(--color-text-muted)' }}>Scope + timeline + demo</p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button href="/mlm-software" variant="outline" accent="orange" className="rounded-full px-7 py-3">
+              Explore MLM Software
+            </Button>
+            <Button href="/" variant="outline" accent="cyan" className="rounded-full px-7 py-3">
+              Back to Home
+            </Button>
+          </div>
         </div>
       </div>
     );
   }
 
-  const selectedLabels = selected
-    .map((id) => SERVICES.find((s) => s.id === id)?.label || id)
-    .filter(Boolean);
-
   return (
-    <form onSubmit={onSubmit} className="rounded-3xl border p-6 md:p-8" style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}>
+    <form onSubmit={onSubmit} className="rounded-3xl border p-4 md:p-5" style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}>
       <style>{`
         details[open] .contact-dd-chevron { transform: rotate(180deg); }
       `}</style>
       <div className="text-center">
         <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
-          Contact now
+          Contact
         </p>
         <h2 className="mt-2 text-3xl font-bold" style={{ color: 'var(--color-text)' }}>
-          Tell us what you need — services or products.
+          Tell us what you need.
         </h2>
         <p className="mx-auto mt-2 max-w-3xl text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-          Choose what you need (software, marketing, design, consulting, or an existing product). We’ll respond with the best next step.
+          Select your services and share a few details. We will reply with the best next step.
         </p>
       </div>
 
@@ -158,12 +232,12 @@ export function ContactForm() {
         </label>
       </div>
 
-      <div className="mt-6 grid gap-5 lg:grid-cols-2">
-        <div className="space-y-3">
-          <div className="mb-2">
+      <div className="mt-5 grid gap-4 lg:grid-cols-2">
+        <div className="space-y-2.5">
+          <div className="mb-1">
             <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Your details</p>
             <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              Share the best contact information so we can reply quickly.
+              Share your contact details so we can reply quickly.
             </p>
           </div>
 
@@ -173,7 +247,7 @@ export function ContactForm() {
               required
               value={form.name}
               onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-              className="mt-1.5 w-full rounded-2xl border px-4 py-2.5 text-sm outline-none focus:ring-2"
+              className="mt-1 w-full rounded-2xl border px-3.5 py-2 text-sm outline-none focus:ring-2"
               style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
               placeholder="Your name"
             />
@@ -186,69 +260,19 @@ export function ContactForm() {
               type="email"
               value={form.email}
               onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
-              className="mt-1.5 w-full rounded-2xl border px-4 py-2.5 text-sm outline-none focus:ring-2"
+              className="mt-1 w-full rounded-2xl border px-3.5 py-2 text-sm outline-none focus:ring-2"
               style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
               placeholder="name@company.com"
             />
           </label>
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            <label className="block">
-              <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Phone (optional)</span>
-              <div className="mt-1.5 flex gap-2">
-                <select
-                  value={form.countryCode}
-                  onChange={(e) => setForm((p) => ({ ...p, countryCode: e.target.value }))}
-                  className="w-28 rounded-2xl border px-3 py-2.5 text-sm outline-none focus:ring-2"
-                  style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-                >
-                  <option value="+91">🇮🇳 +91</option>
-                  <option value="+1">🇺🇸 +1</option>
-                  <option value="+44">🇬🇧 +44</option>
-                  <option value="+971">🇦🇪 +971</option>
-                  <option value="+61">🇦🇺 +61</option>
-                  <option value="+65">🇸🇬 +65</option>
-                  <option value="+other">Other</option>
-                </select>
-                <input
-                  value={form.phone}
-                  onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
-                  className="flex-1 rounded-2xl border px-4 py-2.5 text-sm outline-none focus:ring-2"
-                  style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-                  placeholder="Phone number"
-                />
-              </div>
-            </label>
-            <label className="block">
-              <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Company (optional)</span>
-              <input
-                value={form.company}
-                onChange={(e) => setForm((p) => ({ ...p, company: e.target.value }))}
-                className="mt-1.5 w-full rounded-2xl border px-4 py-2.5 text-sm outline-none focus:ring-2"
-                style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-                placeholder="Company name"
-              />
-            </label>
-          </div>
-
-          <label className="block">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Website (optional)</span>
-            <input
-              value={form.website}
-              onChange={(e) => setForm((p) => ({ ...p, website: e.target.value }))}
-              className="mt-1.5 w-full rounded-2xl border px-4 py-2.5 text-sm outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-              placeholder="https://"
-            />
-          </label>
-
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-2.5 sm:grid-cols-2">
             <label className="block">
               <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Budget</span>
               <select
                 value={form.budgetRange}
                 onChange={(e) => setForm((p) => ({ ...p, budgetRange: e.target.value }))}
-                className="mt-1.5 w-full rounded-2xl border px-4 py-2.5 text-sm outline-none focus:ring-2"
+                className="mt-1 w-full rounded-2xl border px-3.5 py-2 text-sm outline-none focus:ring-2"
                 style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
               >
                 {BUDGETS.map((b) => <option key={b} value={b}>{b}</option>)}
@@ -259,7 +283,7 @@ export function ContactForm() {
               <select
                 value={form.timeline}
                 onChange={(e) => setForm((p) => ({ ...p, timeline: e.target.value }))}
-                className="mt-1.5 w-full rounded-2xl border px-4 py-2.5 text-sm outline-none focus:ring-2"
+                className="mt-1 w-full rounded-2xl border px-3.5 py-2 text-sm outline-none focus:ring-2"
                 style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
               >
                 {TIMELINES.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -268,24 +292,24 @@ export function ContactForm() {
           </div>
 
           <label className="block">
-            <span className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Project details</span>
+            <span className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Requirements</span>
             <textarea
               value={form.message}
               onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
-              className="mt-1.5 w-full min-h-[120px] rounded-2xl border px-4 py-2.5 text-sm outline-none focus:ring-2"
+              className="mt-1 w-full min-h-[96px] rounded-2xl border px-3.5 py-2 text-sm outline-none focus:ring-2"
               style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-              placeholder="Example: compensation plan, distributor levels, required integrations (payment/SMS/WhatsApp), admin dashboard needs..."
+              placeholder="Share your goals, required features, and integrations."
             />
           </label>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>What you need</p>
+                <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Services</p>
                 <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                  Pick one or more. This helps us route your request to the right specialist team.
+                  Choose one or more services.
                 </p>
               </div>
               {selected.length > 0 && (
@@ -300,7 +324,7 @@ export function ContactForm() {
               )}
             </div>
             {selectedLabels.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-2 flex flex-wrap gap-1.5">
                 {selectedLabels.slice(0, 8).map((label) => (
                   <span
                     key={label}
@@ -317,14 +341,13 @@ export function ContactForm() {
                 )}
               </div>
             )}
-            <div className="mt-4 space-y-5">
-              {Array.from(new Set(SERVICES.map((s) => s.group))).map((group) => (
+            <div className="mt-3 space-y-3.5">
+              {Array.from(new Set(SERVICES.map((s) => s.group)))
+                .filter((group) => group !== 'Other')
+                .map((group) => (
                 <div key={group}>
-                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
-                    {group}
-                  </p>
                   <details
-                    className="mt-3 rounded-2xl border p-4"
+                    className="rounded-2xl border p-3"
                     style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}
                     open={group === 'MLM & Direct Selling'}
                   >
@@ -334,7 +357,7 @@ export function ContactForm() {
                     >
                       <div className="flex items-center justify-between gap-4">
                         <span className="text-sm font-semibold">
-                          Select from {group}
+                          {group}
                         </span>
                         <span className="inline-flex items-center gap-3">
                           <span className="text-xs font-semibold" style={{ color: 'var(--color-text-subtle)' }}>
@@ -353,13 +376,13 @@ export function ContactForm() {
                       </div>
                     </summary>
 
-                    <div className="mt-4 grid gap-3">
+                    <div className="mt-3 grid gap-2">
                       {SERVICES.filter((s) => s.group === group).map((s) => {
                         const active = selected.includes(s.id);
                         return (
                           <label
                             key={s.id}
-                            className="flex items-start gap-3 rounded-xl border px-4 py-3 transition"
+                            className="flex items-start gap-2.5 rounded-xl border px-3 py-2.5 transition"
                             style={{
                               borderColor: active ? 'var(--color-accent-1)' : 'var(--color-border)',
                               backgroundColor: active ? 'var(--color-accent-1-muted)' : 'transparent',
@@ -376,7 +399,7 @@ export function ContactForm() {
                               <span className="block text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
                                 {s.label}
                               </span>
-                              <span className="mt-1 block text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                              <span className="mt-0.5 block text-xs" style={{ color: 'var(--color-text-muted)' }}>
                                 {s.description}
                               </span>
                             </span>
@@ -410,23 +433,16 @@ export function ContactForm() {
         </div>
       )}
 
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <p className="text-xs" style={{ color: 'var(--color-text-subtle)' }}>
           Protected against automated submissions. If you have trouble submitting, email us from the footer.
         </p>
         <Button
           type="submit"
           accent="orange"
-          className="rounded-full px-8 py-3.5 text-sm font-semibold text-white"
+          className="rounded-full px-7 py-3 text-sm font-semibold text-white"
         >
-          {status === 'submitting' ? (
-            <span className="inline-flex items-center gap-3">
-              <DotsLoader size="sm" color="currentColor" label="Submitting" />
-              Submitting…
-            </span>
-          ) : (
-            'Send message'
-          )}
+          {status === 'submitting' ? 'Submitting…' : 'Send message'}
         </Button>
       </div>
     </form>

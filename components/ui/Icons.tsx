@@ -127,3 +127,64 @@ export function IconGlobe(props: SVGProps<SVGSVGElement> & { size?: 'sm' | 'md' 
     </svg>
   );
 }
+
+export function IconMail(props: SVGProps<SVGSVGElement> & { size?: 'sm' | 'md' | 'lg' }) {
+  const { size, className, ...rest } = props;
+  return (
+    <svg className={`${sizeClass(size)} ${className ?? ''}`} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...rest}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 7.5v9a2.25 2.25 0 01-2.25 2.25H4.5A2.25 2.25 0 012.25 16.5v-9A2.25 2.25 0 014.5 5.25h15A2.25 2.25 0 0121.75 7.5z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 7.5l-8.62 5.747a2.25 2.25 0 01-2.26 0L2.25 7.5" />
+    </svg>
+  );
+}
+
+export function IconPhone(props: SVGProps<SVGSVGElement> & { size?: 'sm' | 'md' | 'lg' }) {
+  const { size, className, ...rest } = props;
+  return (
+    <svg className={`${sizeClass(size)} ${className ?? ''}`} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...rest}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-2.007a2.25 2.25 0 00-1.726-2.19l-3.1-.775a2.25 2.25 0 00-2.334.915l-.71 1.065a12.06 12.06 0 01-5.516-5.516l1.065-.71a2.25 2.25 0 00.915-2.334l-.775-3.1A2.25 2.25 0 006.507 3H4.5A2.25 2.25 0 002.25 5.25v1.5z"
+      />
+    </svg>
+  );
+}
+
+export function IconLinkedIn(props: SVGProps<SVGSVGElement> & { size?: 'sm' | 'md' | 'lg' }) {
+  const { size, className, ...rest } = props;
+  return (
+    <svg className={`${sizeClass(size)} ${className ?? ''}`} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...rest}>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.046c.476-.9 1.637-1.85 3.369-1.85 3.602 0 4.268 2.37 4.268 5.456v6.285zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM6.815 20.452H3.86V9h2.955v11.452z" />
+    </svg>
+  );
+}
+
+export function IconFacebook(props: SVGProps<SVGSVGElement> & { size?: 'sm' | 'md' | 'lg' }) {
+  const { size, className, ...rest } = props;
+  return (
+    <svg className={`${sizeClass(size)} ${className ?? ''}`} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...rest}>
+      <path d="M22 12a10 10 0 10-11.563 9.875v-6.987H7.898V12h2.539V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.196 2.238.196v2.46h-1.26c-1.242 0-1.63.771-1.63 1.562V12h2.773l-.443 2.888h-2.33v6.987A10.003 10.003 0 0022 12z" />
+    </svg>
+  );
+}
+
+export function IconYouTube(props: SVGProps<SVGSVGElement> & { size?: 'sm' | 'md' | 'lg' }) {
+  const { size, className, ...rest } = props;
+  return (
+    <svg className={`${sizeClass(size)} ${className ?? ''}`} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...rest}>
+      <path d="M21.582 7.2a2.5 2.5 0 00-1.758-1.768C18.268 5 12 5 12 5s-6.268 0-7.824.432A2.5 2.5 0 002.418 7.2C2 8.77 2 12 2 12s0 3.23.418 4.8a2.5 2.5 0 001.758 1.768C5.732 19 12 19 12 19s6.268 0 7.824-.432a2.5 2.5 0 001.758-1.768C22 15.23 22 12 22 12s0-3.23-.418-4.8zM10 15.5V8.5L16 12l-6 3.5z" />
+    </svg>
+  );
+}
+
+export function IconInstagram(props: SVGProps<SVGSVGElement> & { size?: 'sm' | 'md' | 'lg' }) {
+  const { size, className, ...rest } = props;
+  return (
+    <svg className={`${sizeClass(size)} ${className ?? ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true" {...rest}>
+      <rect x="4" y="4" width="16" height="16" rx="4" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 16a4 4 0 100-8 4 4 0 000 8z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M17.5 6.5h.01" />
+    </svg>
+  );
+}

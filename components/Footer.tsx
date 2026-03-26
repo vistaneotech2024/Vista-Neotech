@@ -26,8 +26,8 @@ export function Footer({ services: servicesProp, company: companyProp }: FooterP
   const company = companyProp?.length ? companyProp : defaultCompany;
   return (
     <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg-muted)] tech-grid">
-      <div className="container-wide section-padding">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
+      <div className="container-wide py-4 md:py-6 lg:py-7">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2">
               <img
@@ -35,26 +35,26 @@ export function Footer({ services: servicesProp, company: companyProp }: FooterP
                 alt="Vista Neotech"
                 width={340}
                 height={80}
-                className="h-16 w-auto dark:hidden"
+                className="h-10 w-auto dark:hidden"
               />
               <img
                 src="/images/logo_white.png?v=20260324"
                 alt="Vista Neotech"
                 width={340}
                 height={80}
-                className="hidden h-16 w-auto dark:block"
+                className="hidden h-10 w-auto dark:block"
               />
             </Link>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+            <p className="mt-2 max-w-sm text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
               Technology and consultancy for MLM and direct selling. In pursuit of excellence.
             </p>
-            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: 'var(--color-accent-2)' }}>
+            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: 'var(--color-accent-2)' }}>
               In pursuit of excellence
             </p>
           </div>
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>Services</h4>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-2 space-y-1.5">
               {services.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} target={link.target} rel={link.target === '_blank' ? 'noopener noreferrer' : undefined} className="text-sm transition hover:opacity-80" style={{ color: 'var(--color-text-muted)' }}>
@@ -66,7 +66,7 @@ export function Footer({ services: servicesProp, company: companyProp }: FooterP
           </div>
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>Company</h4>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-2 space-y-1.5">
               {company.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} target={link.target} rel={link.target === '_blank' ? 'noopener noreferrer' : undefined} className="text-sm transition hover:opacity-80" style={{ color: 'var(--color-text-muted)' }}>
@@ -77,7 +77,7 @@ export function Footer({ services: servicesProp, company: companyProp }: FooterP
             </ul>
           </div>
         </div>
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-[var(--color-border)] pt-8 md:flex-row">
+        <div className="mt-7 flex flex-col items-center justify-between gap-2 border-t border-[var(--color-border)] pt-4 md:flex-row">
           <p className="text-xs" style={{ color: 'var(--color-text-subtle)' }}>
             © {new Date().getFullYear()} Vista Neotech Private Limited. All rights reserved.
           </p>

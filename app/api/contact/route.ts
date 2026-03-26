@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import crypto from 'crypto';
 import { createAdminSupabase } from '@/lib/supabase-admin';
+import { createServerSupabase } from '@/lib/supabase-server';
 import { sendAdminLeadNotification, sendLeadAutoReply } from '@/lib/email';
 
 const ContactSchema = z
@@ -48,9 +49,18 @@ function sha256(input: string) {
 }
 
 export async function POST(req: Request) {
-  const supabase = createAdminSupabase();
+  const admin = createAdminSupabase();
+  const supabase = admin ?? createServerSupabase();
+  const usingServiceRole = !!admin;
   if (!supabase) {
-    return NextResponse.json({ ok: false, error: 'Server not configured' }, { status: 500 });
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          'Server not configured. Set NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_ANON_KEY (and SUPABASE_SERVICE_ROLE_KEY for production writes).',
+      },
+      { status: 500 }
+    );
   }
 
   let json: unknown;
@@ -62,8 +72,10 @@ export async function POST(req: Request) {
 
   const parsed = ContactSchema.safeParse(json);
   if (!parsed.success) {
+    const firstIssue = parsed.error.issues?.[0];
+    const firstMessage = firstIssue?.message || 'Validation failed';
     return NextResponse.json(
-      { ok: false, error: 'Validation failed', details: parsed.error.flatten() },
+      { ok: false, error: firstMessage, details: parsed.error.flatten() },
       { status: 400 }
     );
   }
@@ -85,7 +97,8 @@ export async function POST(req: Request) {
   }
 
   // IP rate limit (max 5 submissions / hour)
-  if (ipHash) {
+  // Only enforce DB-backed rate limit when using service role (RLS can block SELECT for anon).
+  if (usingServiceRole && ipHash) {
     const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
     const { count } = await supabase
       .from('contact_submissions')
@@ -138,11 +151,45 @@ export async function POST(req: Request) {
   };
   if (data.source) insertRow.source = data.source;
 
-  const { data: inserted, error } = await supabase
-    .from('contact_submissions')
-    .insert(insertRow)
-    .select('id')
-    .maybeSingle();
+  // If service role is unavailable, use RPC to safely insert + return ID without requiring SELECT on the table.
+  let insertedId: string | null = null;
+  let error: unknown = null;
+
+  if (!usingServiceRole) {
+    const rpcPayload = {
+      name: insertRow.name,
+      email: insertRow.email,
+      phone: insertRow.phone,
+      company: insertRow.company,
+      website: insertRow.website,
+      message: insertRow.message,
+      budget_range: insertRow.budget_range,
+      timeline: insertRow.timeline,
+      consent: insertRow.consent,
+      source: insertRow.source ?? 'contact_form',
+      page_path: insertRow.page_path,
+      referrer: insertRow.referrer,
+      user_agent: insertRow.user_agent,
+      ip_hash: insertRow.ip_hash,
+      time_to_submit_ms: insertRow.time_to_submit_ms,
+      honeypot: insertRow.honeypot,
+      services_ids: requestedServiceIds,
+    };
+
+    const { data: rpcId, error: rpcErr } = await supabase.rpc('submit_contact_form', {
+      payload: rpcPayload,
+    });
+    if (rpcErr) error = rpcErr;
+    insertedId = rpcId ? String(rpcId) : null;
+  } else {
+    const { data: inserted, error: insertErr } = await supabase
+      .from('contact_submissions')
+      .insert(insertRow)
+      .select('id')
+      .maybeSingle();
+    error = insertErr;
+    insertedId = inserted?.id ? String(inserted.id) : null;
+  }
 
   if (isBot) return NextResponse.json({ ok: true });
 
@@ -150,11 +197,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: 'Failed to submit' }, { status: 500 });
   }
 
-  // Insert join rows for services that exist in the master list
-  if (inserted?.id && requestedServiceIds.length > 0) {
+  // Join rows are inserted by RPC (anon mode) or here (service-role mode).
+  if (usingServiceRole && insertedId && requestedServiceIds.length > 0) {
     const validIds = requestedServiceIds.filter((id) => labelById.has(id));
     if (validIds.length > 0) {
-      const joinRows = validIds.map((service_id) => ({ submission_id: inserted.id, service_id }));
+      const joinRows = validIds.map((service_id) => ({ submission_id: insertedId, service_id }));
       const { error: joinErr } = await supabase.from('contact_submission_services').insert(joinRows);
       if (joinErr) console.error('[contact] Failed to insert submission services:', joinErr);
     }

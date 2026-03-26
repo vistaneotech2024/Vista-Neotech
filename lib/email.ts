@@ -1,7 +1,11 @@
 /**
  * Lead notification emails.
- * Uses Resend API (https://resend.com) when RESEND_API_KEY is set.
- * Set ADMIN_EMAIL and LEAD_FROM_EMAIL in env for admin notification and auto-reply from address.
+ * Priority:
+ * 1) Resend API (https://resend.com) when RESEND_API_KEY is set.
+ * 2) SMTP (Gmail supported) when SMTP_HOST/SMTP_USER/SMTP_PASSWORD are set.
+ *
+ * Set ADMIN_EMAIL to receive notifications.
+ * Set LEAD_FROM_EMAIL (or SMTP_FROM) as the "from" address for SMTP.
  */
 
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || 'Vista Neotech';
@@ -11,9 +15,23 @@ export type LeadPayload = {
   email: string;
   phone?: string | null;
   message?: string | null;
+  services?: string[] | null;
   pagePath?: string | null;
   source?: string;
 };
+
+function getDefaultFromEmail(): string {
+  return (
+    process.env.LEAD_FROM_EMAIL ||
+    process.env.SMTP_FROM ||
+    process.env.ADMIN_EMAIL ||
+    `noreply@${
+      typeof window === 'undefined'
+        ? process.env.NEXT_PUBLIC_SITE_URL?.replace(/^https?:\/\//, '').replace(/\/$/, '') || 'vistaneotech.com'
+        : 'vistaneotech.com'
+    }`
+  );
+}
 
 async function sendResend(params: {
   to: string;
@@ -46,14 +64,65 @@ async function sendResend(params: {
   return { ok: true as const };
 }
 
+async function sendSmtp(params: {
+  to: string;
+  subject: string;
+  html: string;
+  from: string;
+}) {
+  const host = process.env.SMTP_HOST;
+  const port = Number.parseInt(process.env.SMTP_PORT || '587', 10);
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASSWORD;
+
+  if (!host || !user || !pass) return { ok: false as const, skip: true };
+
+  try {
+    const nodemailer = await import('nodemailer');
+    const transport = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+    });
+
+    await transport.sendMail({
+      from: params.from,
+      to: params.to,
+      subject: params.subject,
+      html: params.html,
+    });
+
+    return { ok: true as const };
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('[email] SMTP error:', msg);
+    return { ok: false as const, skip: false };
+  }
+}
+
+async function sendEmail(params: {
+  to: string;
+  subject: string;
+  html: string;
+  from: string;
+}): Promise<{ ok: boolean; skip?: boolean }> {
+  const viaResend = await sendResend(params);
+  if (viaResend.ok || viaResend.skip === false) return viaResend;
+
+  const viaSmtp = await sendSmtp(params);
+  return viaSmtp;
+}
+
 /** Admin notification when a new lead is received. */
 export async function sendAdminLeadNotification(lead: LeadPayload): Promise<{ ok: boolean; skip?: boolean }> {
   const adminEmail = process.env.ADMIN_EMAIL;
-  const fromEmail = process.env.LEAD_FROM_EMAIL || process.env.ADMIN_EMAIL || `noreply@${typeof window === 'undefined' ? process.env.NEXT_PUBLIC_SITE_URL?.replace(/^https?:\/\//, '').replace(/\/$/, '') || 'vistaneotech.com' : 'vistaneotech.com'}`;
+  const fromEmail = getDefaultFromEmail();
 
   if (!adminEmail) return { ok: false, skip: true };
 
   const subject = `New Lead Received – ${SITE_NAME}`;
+  const services = (lead.services || []).filter(Boolean);
   const html = `
     <div style="font-family: system-ui, sans-serif; max-width: 560px;">
       <h2 style="margin: 0 0 16px;">New lead</h2>
@@ -61,6 +130,7 @@ export async function sendAdminLeadNotification(lead: LeadPayload): Promise<{ ok
         <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Name</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${escapeHtml(lead.name)}</td></tr>
         <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Email</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${escapeHtml(lead.email)}</td></tr>
         <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Mobile</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${escapeHtml(lead.phone || '—')}</td></tr>
+        <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Services</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${escapeHtml(services.length ? services.join(', ') : '—')}</td></tr>
         <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Message</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${escapeHtml(lead.message || '—')}</td></tr>
         <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Page URL</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${escapeHtml(lead.pagePath || '—')}</td></tr>
         <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Source</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${escapeHtml(lead.source || 'contact_form')}</td></tr>
@@ -70,7 +140,7 @@ export async function sendAdminLeadNotification(lead: LeadPayload): Promise<{ ok
     </div>
   `;
 
-  return sendResend({
+  return sendEmail({
     from: fromEmail,
     to: adminEmail,
     subject,
@@ -80,7 +150,7 @@ export async function sendAdminLeadNotification(lead: LeadPayload): Promise<{ ok
 
 /** Auto-reply to the lead. */
 export async function sendLeadAutoReply(lead: LeadPayload): Promise<{ ok: boolean; skip?: boolean }> {
-  const fromEmail = process.env.LEAD_FROM_EMAIL || process.env.ADMIN_EMAIL;
+  const fromEmail = getDefaultFromEmail();
   if (!fromEmail) return { ok: false, skip: true };
 
   const subject = `Thank you for reaching out – ${SITE_NAME}`;
@@ -93,7 +163,7 @@ export async function sendLeadAutoReply(lead: LeadPayload): Promise<{ ok: boolea
     </div>
   `;
 
-  return sendResend({
+  return sendEmail({
     from: fromEmail,
     to: lead.email,
     subject,

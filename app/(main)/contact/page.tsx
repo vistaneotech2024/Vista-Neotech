@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ContactForm } from '@/components/contact/ContactForm';
 import { Button } from '@/components/Button';
-import { IconArrowRight } from '@/components/ui/Icons';
+import { IconArrowRight, IconFacebook, IconInstagram, IconLinkedIn, IconMail, IconPhone, IconYouTube } from '@/components/ui/Icons';
 
 export const metadata = {
   title: 'Contact – Vista Neotech',
@@ -29,7 +29,7 @@ export default function ContactPage() {
           <div className="absolute -left-40 bottom-0 h-96 w-96 rounded-full blur-3xl" style={{ backgroundColor: 'var(--color-accent-2-muted)' }} />
         </div>
 
-        <div className="container-tight relative z-10">
+        <div className="container-wide relative z-10">
           <nav className="mb-8 flex items-center gap-2 text-sm" aria-label="Breadcrumb">
             <Link href="/" className="transition hover:opacity-80" style={{ color: 'var(--color-text-muted)' }}>
               Home
@@ -50,18 +50,12 @@ export default function ContactPage() {
             Contact Now
           </span>
 
-          <h1 className="display-1 max-w-4xl" style={{ color: 'var(--color-hero-text)' }}>
+          <h1 className="display-1" style={{ color: 'var(--color-hero-text)' }}>
             Let’s build, market, or design what your business needs next.
           </h1>
-          <p className="prose-lead mt-6 max-w-3xl" style={{ color: 'var(--color-hero-text-muted)' }}>
+          <p className="prose-lead mt-6" style={{ color: 'var(--color-hero-text-muted)' }}>
             Share your requirements and select what you need—software, marketing, design, consulting, or support for our products. We’ll respond with a clear plan and next steps.
           </p>
-
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            <InfoCard label="Response time" value="Fast" hint="Typically within the same business day." />
-            <InfoCard label="Covers" value="All services + products" hint="Software, marketing, design, consulting, support." />
-            <InfoCard label="You get" value="Clear next step" hint="Recommendation, scope, timeline, demo/proposal." />
-          </div>
         </div>
       </section>
 
@@ -74,8 +68,8 @@ export default function ContactPage() {
             </div>
 
             {/* Move sidebar below form so the form can use full width */}
-            <aside className="lg:col-span-12 h-fit space-y-3">
-              <div className="rounded-3xl border p-7" style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}>
+            <aside className="lg:col-span-12 grid gap-3 md:grid-cols-2">
+              <div className="rounded-3xl border p-7 h-full" style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}>
                 <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
                   What happens next
                 </p>
@@ -103,7 +97,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="rounded-3xl border p-7" style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}>
+              <div className="rounded-3xl border p-7 h-full" style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}>
                 <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
                   Explore
                 </p>
@@ -156,6 +150,114 @@ export default function ContactPage() {
                 </div>
               </div>
             </aside>
+
+            <div className="lg:col-span-12">
+              <div className="rounded-3xl border p-7" style={{ backgroundColor: 'var(--color-bg-elevated)', borderColor: 'var(--color-border)' }}>
+                <div className="grid gap-5 lg:grid-cols-12 lg:items-stretch">
+                  <div className="min-w-0 lg:col-span-4 xl:col-span-3">
+                    <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
+                      Map
+                    </p>
+                    <p className="mt-2 text-base font-semibold" style={{ color: 'var(--color-text)' }}>
+                      MLM Software & MLM Consultant | Vista Neotech Pvt Ltd
+                    </p>
+                    <p className="mt-1 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                      5th Floor, Jaina Tower 1, 517, Janakpuri District Center, Janakpuri, New Delhi, Delhi, 110058
+                    </p>
+                    <div className="mt-2 space-y-1.5 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                      <p>
+                        <a
+                          href="mailto:info@vistaneotech.com"
+                          className="inline-flex items-center gap-2 font-semibold transition hover:opacity-80"
+                          style={{ color: 'var(--color-text)' }}
+                        >
+                          <IconMail size="sm" style={{ color: 'var(--color-accent-2)' }} />
+                          info@vistaneotech.com
+                        </a>
+                      </p>
+                      <p>
+                        <a
+                          href="tel:+919811190082"
+                          className="inline-flex items-center gap-2 font-semibold transition hover:opacity-80"
+                          style={{ color: 'var(--color-text)' }}
+                        >
+                          <IconPhone size="sm" style={{ color: 'var(--color-accent-3)' }} />
+                          098111 90082
+                        </a>
+                      </p>
+                      <p>Open · Closes 7 pm</p>
+                    </div>
+
+                    <div className="mt-4">
+                      <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
+                        Social
+                      </p>
+                      <div className="mt-2 grid grid-cols-2 gap-2">
+                        <a
+                          href="https://www.linkedin.com/search/results/all/?keywords=Vista%20Neotech"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition hover:opacity-90"
+                          style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+                        >
+                          <IconLinkedIn size="sm" style={{ color: 'var(--color-accent-2)' }} />
+                          LinkedIn
+                        </a>
+                        <a
+                          href="https://www.instagram.com/explore/search/keyword/?q=Vista%20Neotech"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition hover:opacity-90"
+                          style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+                        >
+                          <IconInstagram size="sm" style={{ color: 'var(--color-accent-1)' }} />
+                          Instagram
+                        </a>
+                        <a
+                          href="https://www.facebook.com/search/top?q=Vista%20Neotech"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition hover:opacity-90"
+                          style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+                        >
+                          <IconFacebook size="sm" style={{ color: 'var(--color-accent-2)' }} />
+                          Facebook
+                        </a>
+                        <a
+                          href="https://www.youtube.com/results?search_query=Vista%20Neotech"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition hover:opacity-90"
+                          style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+                        >
+                          <IconYouTube size="sm" style={{ color: 'var(--color-accent-1)' }} />
+                          YouTube
+                        </a>
+                      </div>
+                    </div>
+                    <a
+                      href="https://www.google.com/maps?q=MLM%20Software%20%26%20MLM%20Consultant%20%7C%20Vista%20Neotech%20Pvt%20Ltd%2C%205th%20Floor%2C%20Jaina%20Tower%201%2C%20517%2C%20Janakpuri%20District%20Center%2C%20Janakpuri%2C%20New%20Delhi%2C%20Delhi%2C%20110058&z=16"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex w-full items-center justify-center rounded-full border px-5 py-2.5 text-sm font-semibold transition hover:opacity-90"
+                      style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+                    >
+                      Open in Google Maps
+                    </a>
+                  </div>
+
+                  <div className="relative overflow-hidden rounded-2xl border lg:col-span-8 xl:col-span-9" style={{ borderColor: 'var(--color-border)' }}>
+                    <iframe
+                      title="Vista Neotech location map"
+                      src="https://www.google.com/maps?q=MLM%20Software%20%26%20MLM%20Consultant%20%7C%20Vista%20Neotech%20Pvt%20Ltd%2C%205th%20Floor%2C%20Jaina%20Tower%201%2C%20517%2C%20Janakpuri%20District%20Center%2C%20Janakpuri%2C%20New%20Delhi%2C%20Delhi%2C%20110058&z=16&output=embed"
+                      className="h-[320px] w-full lg:h-[360px] xl:h-[400px]"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
