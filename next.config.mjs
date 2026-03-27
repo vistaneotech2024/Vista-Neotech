@@ -13,6 +13,7 @@ const nextConfig = (phase) => ({
       { protocol: 'https', hostname: 'www.vistaneotech.com', pathname: '/**' },
       { protocol: 'http', hostname: 'vistaneotech.com', pathname: '/**' },
       { protocol: 'http', hostname: 'www.vistaneotech.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'tbctgfdcjhyoijmvwiku.supabase.co', pathname: '/storage/v1/object/public/**' },
     ],
   },
   experimental: {

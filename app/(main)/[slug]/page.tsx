@@ -687,7 +687,13 @@ export default async function SlugPage({ params }: Props) {
     })),
   };
 
-  const featuredImageUrl = isBlogPost ? getFeaturedImageForPost(pathname, bodyContent) : null;
+  const featuredImageUrl = isBlogPost
+    ? (
+        (dbPost?.og_image ? toAbsoluteImageUrl(dbPost.og_image) : null) ||
+        getFeaturedImageForPost(pathname, bodyContent) ||
+        getFeaturedImageByPath(pathname)
+      )
+    : null;
 
   function normalizePreservedToRootSlug(oldUrl: string): string {
     const cleaned = (oldUrl || '').trim().replace(/^\/+|\/+$/g, '');
@@ -761,7 +767,7 @@ export default async function SlugPage({ params }: Props) {
       {/* Hero / Header */}
       <header
         role="banner"
-        className="relative min-h-[55vh] overflow-hidden pt-20 pb-12 md:min-h-[58vh] md:pt-24 md:pb-14"
+        className={`relative overflow-hidden ${isBlogPost ? 'pt-20 pb-6 md:pt-24 md:pb-8' : 'min-h-[55vh] pt-20 pb-12 md:min-h-[58vh] md:pt-24 md:pb-14'}`}
         style={{ backgroundColor: 'var(--color-hero-bg)', color: 'var(--color-hero-text)' }}
       >
         <div className="absolute inset-0 overflow-hidden opacity-30">
@@ -775,23 +781,7 @@ export default async function SlugPage({ params }: Props) {
           />
         </div>
 
-        {/* Blog post hero image as design element – same URLs as WordPress for image SEO */}
-        {isBlogPost && featuredImageUrl && (
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-[var(--color-hero-bg)]/60" />
-            <OptimizedBlogImage
-              src={featuredImageUrl}
-              alt=""
-              priority
-              quality={85}
-              cover
-              sizes="100vw"
-              className="opacity-50"
-            />
-          </div>
-        )}
-
-        <div className="container-wide relative z-10 flex min-h-[45vh] flex-col justify-center md:min-h-[48vh]">
+        <div className={`container-wide relative z-10 flex flex-col ${isBlogPost ? '' : 'min-h-[45vh] justify-center md:min-h-[48vh]'}`}>
           {/* Breadcrumb */}
           <nav className="mb-8 flex items-center gap-2 text-sm" aria-label="Breadcrumb">
             <Link href="/" className="transition hover:opacity-80" style={{ color: 'var(--color-text-muted)' }}>
@@ -811,26 +801,17 @@ export default async function SlugPage({ params }: Props) {
             </span>
           </nav>
 
-          {/* Blog Post Badge */}
-          {isBlogPost && (
-            <span
-              className="inline-flex items-center rounded-full px-4 py-2 text-xs font-semibold mb-6"
-              style={{
-                backgroundColor: 'var(--color-accent-1-muted)',
-                color: 'var(--color-accent-1)',
-              }}
-            >
-              Blog Article
-            </span>
-          )}
-
-          <h1 className="display-1 mb-6 max-w-4xl" style={{ color: 'var(--color-hero-text)' }}>
-            {toSafeString(displayTitle)}
-          </h1>
-          {toSafeString(displayDescription) && (
-            <p className="prose-lead mb-8 max-w-3xl" style={{ color: 'var(--color-hero-text-muted)' }}>
-              {toSafeString(displayDescription)}
-            </p>
+          {!isBlogPost && (
+            <>
+              <h1 className="display-1 mb-6 max-w-4xl" style={{ color: 'var(--color-hero-text)' }}>
+                {toSafeString(displayTitle)}
+              </h1>
+              {toSafeString(displayDescription) && (
+                <p className="prose-lead mb-8 max-w-3xl" style={{ color: 'var(--color-hero-text-muted)' }}>
+                  {toSafeString(displayDescription)}
+                </p>
+              )}
+            </>
           )}
           {!isBlogPost && (
             <div className="flex flex-wrap items-center gap-4">
@@ -923,38 +904,29 @@ export default async function SlugPage({ params }: Props) {
                   </a>
                 </div>
 
+                <h1 className="mb-4 text-3xl font-bold leading-tight md:text-4xl" style={{ color: 'var(--color-text)' }}>
+                  {toSafeString(displayTitle)}
+                </h1>
+
+                {toSafeString(displayDescription) && (
+                  <p className="mb-5 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+                    {toSafeString(displayDescription)}
+                  </p>
+                )}
+
                 {featuredImageUrl ? (
-                  <div className="relative mb-5 overflow-hidden rounded-2xl bg-[var(--color-hero-bg)]" style={{ height: '260px' }}>
-                    <OptimizedBlogImage
-                      src={featuredImageUrl}
-                      alt=""
-                      priority
-                      quality={85}
-                      cover
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="opacity-50"
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: 'linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%)',
-                      }}
-                    />
-                    <div className="relative p-5">
-                      <p
-                        className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em]"
-                        style={{ color: 'rgba(255,255,255,0.9)' }}
-                      >
-                        BLOG SPOTLIGHT
-                      </p>
-                      <h1
-                        className="line-clamp-3 text-2xl font-bold leading-snug"
-                        style={{ color: 'white' }}
-                      >
-                        {toSafeString(displayTitle)}
-                      </h1>
+                  <figure className="mb-5 overflow-hidden rounded-2xl border" style={{ borderColor: 'var(--color-border)' }}>
+                    <div className="relative aspect-[16/9] w-full bg-[var(--color-hero-bg)]">
+                      <OptimizedBlogImage
+                        src={featuredImageUrl}
+                        alt={toSafeString(displayTitle)}
+                        priority
+                        quality={85}
+                        cover
+                        sizes="(max-width: 768px) 100vw, 70vw"
+                      />
                     </div>
-                  </div>
+                  </figure>
                 ) : null}
 
                 <ProsePageContent
@@ -992,7 +964,7 @@ export default async function SlugPage({ params }: Props) {
                             {p.featured_image_url ? (
                               <OptimizedBlogImage
                                 src={p.featured_image_url}
-                                alt=""
+                                alt={toSafeString(p.title)}
                                 quality={75}
                                 cover
                                 sizes="112px"

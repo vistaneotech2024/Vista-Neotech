@@ -18,10 +18,22 @@ function decodeUrl(url: string): string {
 export function toAbsoluteImageUrl(src: string): string {
   const s = decodeUrl(src.trim());
   if (s.startsWith('http://') || s.startsWith('https://')) return s;
+  const normalized = s.replace(/\\/g, '/');
+
+  // Support DB-stored local paths like \public\blog\covers\file.jpg
+  if (normalized.startsWith('/public/')) {
+    return normalized.slice('/public'.length);
+  }
+  if (normalized.startsWith('public/')) {
+    return `/${normalized.slice('public/'.length)}`;
+  }
+
+  // Already a site-relative path (dynamic base handled by browser/Next)
+  if (normalized.startsWith('/')) return normalized;
+
   const base = getWordPressBaseUrl();
-  if (s.startsWith('//')) return `https:${s}`;
-  if (s.startsWith('/')) return `${base}${s}`;
-  return `${base}/${s}`;
+  if (normalized.startsWith('//')) return `https:${normalized}`;
+  return `${base}/${normalized}`;
 }
 
 /** True if URL looks like a real image, not a placeholder */

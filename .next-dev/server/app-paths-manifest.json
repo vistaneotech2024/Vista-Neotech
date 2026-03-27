@@ -1,7 +1,5 @@
 {
-  "/secureadmin/login/page": "app/secureadmin/login/page.js",
-  "/brands/tripgate/page": "app/brands/tripgate/page.js",
   "/blog/page": "app/blog/page.js",
   "/(main)/page": "app/(main)/page.js",
-  "/(main)/contact/page": "app/(main)/contact/page.js"
+  "/(main)/[slug]/page": "app/(main)/[slug]/page.js"
 }

@@ -16,7 +16,8 @@
     "migrate:extract": "node scripts/extract-wpress.js",
     "migrate:import": "node scripts/migrate-to-supabase.js",
     "migrate:full": "npm run migrate:extract && npm run migrate:import",
-    "create:admin": "tsx scripts/create-admin-user.ts"
+    "create:admin": "tsx scripts/create-admin-user.ts",
+    "blog:upload-images": "tsx scripts/bulk-upload-blog-post-images.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.19.1",
@@ -49,6 +50,7 @@
     "tsx": "^4.16.2",
     "typescript": "^5.5.4",
     "wpress-extract": "^1.0.0",
+    "xlsx": "^0.18.5",
     "xml2js": "^0.6.2"
   }
 }
