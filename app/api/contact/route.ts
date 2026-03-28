@@ -21,22 +21,7 @@ const ContactSchema = z
     hp: z.string().max(300).optional().nullable(),
     timeToSubmitMs: z.number().int().min(0).max(60 * 60 * 1000).optional().nullable(),
     pagePath: z.string().max(300).optional().nullable(),
-  })
-  .refine(
-    (data) => {
-      if (data.source === 'popup') return true;
-      return (data.services?.length ?? 0) >= 1;
-    },
-    { message: 'Please select at least one service', path: ['services'] }
-  )
-  .refine(
-    (data) => {
-      if (data.source === 'popup') return true;
-      const msg = (data.message || '').trim();
-      return msg.length >= 10;
-    },
-    { message: 'Message must be at least 10 characters', path: ['message'] }
-  );
+  });
 
 function getClientIp(req: Request) {
   const xfwd = req.headers.get('x-forwarded-for');
@@ -116,14 +101,16 @@ export async function POST(req: Request) {
 
   // Normalize services: frontend sends service IDs; map them to labels using contact_service_options.
   const requestedServiceIds = (data.services || []).map((s) => s.trim()).filter(Boolean).slice(0, 12);
-  const { data: svcRows } = await supabase
-    .from('contact_service_options')
-    .select('id,label')
-    .in('id', requestedServiceIds);
-  const labelById = new Map<string, string>(
-    (svcRows || [])
-      .map((r: any) => [String(r.id), String(r.label)])
-  );
+  let labelById = new Map<string, string>();
+  if (requestedServiceIds.length > 0) {
+    const { data: svcRows } = await supabase
+      .from('contact_service_options')
+      .select('id,label')
+      .in('id', requestedServiceIds);
+    labelById = new Map<string, string>(
+      (svcRows || []).map((r: any) => [String(r.id), String(r.label)])
+    );
+  }
   const servicesLabels = requestedServiceIds.map((id) => labelById.get(id) || id);
 
   const insertRow: Record<string, unknown> = {

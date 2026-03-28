@@ -623,6 +623,8 @@ export default async function SlugPage({ params }: Props) {
   const rawContent = dbPage?.content ?? dbPost?.content ?? null;
   const bodyContent = typeof rawContent === 'string' ? rawContent : (rawContent != null ? String(rawContent) : null);
   const focusKeyword = toSafeString(dbPage?.focus_keyword ?? urlMapPage?.focus_keyword ?? null) || null;
+  const blogCategoryLabel = toSafeString(dbPost?.category_name ?? null) || null;
+  const blogPublishedLabel = formatPostDate(dbPost?.published_at ?? null);
 
   if (!fromDb && !urlMapPage) notFound();
 
@@ -636,6 +638,7 @@ export default async function SlugPage({ params }: Props) {
         canonicalUrl={pageUrl}
         publishedAt={dbPost?.published_at ?? null}
         focusKeyword={focusKeyword}
+        categoryName={dbPost?.category_name ?? null}
       />
     );
   }
@@ -907,6 +910,24 @@ export default async function SlugPage({ params }: Props) {
                 <h1 className="mb-4 text-3xl font-bold leading-tight md:text-4xl" style={{ color: 'var(--color-text)' }}>
                   {toSafeString(displayTitle)}
                 </h1>
+
+                {(blogCategoryLabel || blogPublishedLabel) && (
+                  <div className="mb-4 flex flex-wrap items-center gap-2">
+                    {blogCategoryLabel ? (
+                      <span
+                        className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em]"
+                        style={{ backgroundColor: 'var(--color-accent-1-muted)', color: 'var(--color-accent-1)' }}
+                      >
+                        {blogCategoryLabel}
+                      </span>
+                    ) : null}
+                    {blogPublishedLabel ? (
+                      <span className="text-xs font-medium" style={{ color: 'var(--color-text-muted)' }}>
+                        {blogPublishedLabel}
+                      </span>
+                    ) : null}
+                  </div>
+                )}
 
                 {toSafeString(displayDescription) && (
                   <p className="mb-5 text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>

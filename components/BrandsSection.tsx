@@ -217,7 +217,7 @@ function BrandCard({ title, description, logo, href, externalUrl, accent, featur
 export function BrandsSection() {
   const brands = [
     {
-      title: 'AIML Software',
+      title: 'AIMLM Software',
       description:
         'AI-powered MLM Software dedicated to the Direct Selling Industry. Combining cutting-edge AI technology with 25 years of Vista\'s experience to revolutionize network marketing.',
       logo: '/images/aimlmsoftware_logo.png?v=20260324',

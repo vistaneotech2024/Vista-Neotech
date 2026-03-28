@@ -35,6 +35,20 @@ function logContentError(context: string, error: unknown) {
   console.error(`[Supabase] ${context}:`, msg, details ?? '');
 }
 
+/** Single FAQ row from `pages.custom_fields.faq_items` (JSONB). */
+export type PageFaqItemField = {
+  id?: string | number;
+  question?: string;
+  answer?: string;
+};
+
+/** `pages.custom_fields` JSONB — home FAQ and other CMS fields. */
+export type PageCustomFields = {
+  faq_enabled?: boolean;
+  faq_items?: PageFaqItemField[];
+  [key: string]: unknown;
+};
+
 export type PageFromDB = {
   id: string;
   slug: string;
@@ -48,6 +62,7 @@ export type PageFromDB = {
   focus_keyword: string | null;
   published_at: string | null;
   updated_at: string | null;
+  custom_fields: PageCustomFields | null;
 };
 
 export type PostFromDB = {
@@ -60,6 +75,8 @@ export type PostFromDB = {
   meta_title: string | null;
   meta_description: string | null;
   og_image: string | null;
+  category_name?: string | null;
+  category_slug?: string | null;
   published_at: string | null;
   updated_at: string | null;
 };
@@ -78,7 +95,7 @@ export const getPageBySlugFromDB = cache(async (slug: string): Promise<PageFromD
     // Do not filter by status here: column is enum ContentStatus; RLS already restricts to published.
     const { data, error } = await supabase
       .from('pages')
-      .select('id, slug, title, content, excerpt, status, meta_title, meta_description, published_at')
+      .select('id, slug, title, content, excerpt, status, meta_title, meta_description, published_at, custom_fields')
       .eq('slug', slug)
       .maybeSingle();
 
@@ -92,6 +109,11 @@ export const getPageBySlugFromDB = cache(async (slug: string): Promise<PageFromD
     }
     if (process.env.NODE_ENV === 'development') console.info('[Supabase] page from DB:', slug);
     const row = data as Record<string, unknown>;
+    const rawCf = row.custom_fields;
+    const custom_fields: PageCustomFields | null =
+      rawCf != null && typeof rawCf === 'object' && !Array.isArray(rawCf)
+        ? (rawCf as PageCustomFields)
+        : null;
     return {
       id: row.id as string,
       slug: row.slug as string,
@@ -105,7 +127,8 @@ export const getPageBySlugFromDB = cache(async (slug: string): Promise<PageFromD
       focus_keyword: (row.focus_keyword as string | null | undefined) ?? null,
       published_at: row.published_at as string | null,
       updated_at: null,
-    } as PageFromDB;
+      custom_fields,
+    };
   } catch (e) {
     logContentError('getPageBySlugFromDB throw', e);
     return null;
@@ -121,7 +144,9 @@ export const getPostBySlugFromDB = cache(async (slug: string): Promise<PostFromD
     // Do not filter by status here: column is enum ContentStatus; RLS already restricts to published.
     const { data, error } = await supabase
       .from('posts')
-      .select('id, slug, title, content, excerpt, status, meta_title, meta_description, og_image, published_at')
+      .select(
+        'id, slug, title, content, excerpt, status, meta_title, meta_description, og_image, published_at, post_categories(categories(name, slug))'
+      )
       .eq('slug', slug)
       .maybeSingle();
 
@@ -135,8 +160,12 @@ export const getPostBySlugFromDB = cache(async (slug: string): Promise<PostFromD
     }
     if (process.env.NODE_ENV === 'development') console.info('[Supabase] post from DB:', slug);
     const row = data as Record<string, unknown>;
+    const rels = (row.post_categories as any[] | undefined) ?? [];
+    const firstCat = rels?.[0]?.categories ?? null;
     return {
       ...row,
+      category_name: typeof firstCat?.name === 'string' ? firstCat.name : null,
+      category_slug: typeof firstCat?.slug === 'string' ? firstCat.slug : null,
       updated_at: null,
     } as PostFromDB;
   } catch (e) {
@@ -153,6 +182,8 @@ export type PostListItem = {
   meta_title: string | null;
   meta_description: string | null;
   og_image: string | null;
+  category_name?: string | null;
+  category_slug?: string | null;
   published_at: string | null;
   updated_at: string | null;
 };
@@ -173,7 +204,10 @@ export async function getPostsForBlogPaginated(
     // Explicit filters are required because service-role bypasses RLS.
     const { data, error, count } = await supabase
       .from('posts')
-      .select('slug, title, excerpt, meta_title, meta_description, og_image, published_at', { count: 'exact' })
+      .select(
+        'slug, title, excerpt, meta_title, meta_description, og_image, published_at, post_categories(categories(name, slug))',
+        { count: 'exact' }
+      )
       .eq('content_type', 'post')
       .eq('status', 'published')
       .not('published_at', 'is', null)
@@ -191,16 +225,22 @@ export async function getPostsForBlogPaginated(
     }
     return {
       total: count ?? 0,
-      posts: data.map((row: Record<string, unknown>) => ({
-      slug: row.slug as string,
-      title: row.title as string | null,
-      excerpt: row.excerpt as string | null,
-      meta_title: row.meta_title as string | null,
-      meta_description: row.meta_description as string | null,
-      og_image: row.og_image as string | null,
-      published_at: row.published_at as string | null,
-      updated_at: null,
-      })) as PostListItem[],
+      posts: data.map((row: Record<string, unknown>) => {
+        const rels = (row.post_categories as any[] | undefined) ?? [];
+        const firstCat = rels?.[0]?.categories ?? null;
+        return {
+          slug: row.slug as string,
+          title: row.title as string | null,
+          excerpt: row.excerpt as string | null,
+          meta_title: row.meta_title as string | null,
+          meta_description: row.meta_description as string | null,
+          og_image: row.og_image as string | null,
+          category_name: typeof firstCat?.name === 'string' ? firstCat.name : null,
+          category_slug: typeof firstCat?.slug === 'string' ? firstCat.slug : null,
+          published_at: row.published_at as string | null,
+          updated_at: null,
+        };
+      }) as PostListItem[],
     };
   } catch (e) {
     logContentError('getPostsForBlogPaginated throw', e);

@@ -38,7 +38,7 @@ export function TrustBar() {
   return (
     <div
       ref={sectionRef}
-      className="border-y py-5 md:py-6"
+      className="trustbar-section border-y py-5 md:py-6"
       style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}
     >
       <div className="container-wide">

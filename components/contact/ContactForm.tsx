@@ -1,23 +1,23 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from '@/components/Button';
 import { IconCheck, IconSparkles } from '@/components/ui/Icons';
 
 type ServiceOption = { id: string; label: string; description: string; group: string };
 
 const SERVICES: ServiceOption[] = [
-  // MLM & Direct Selling
-  { id: 'mlm_software', label: 'MLM Software', description: 'Binary/Matrix/Board plans, genealogy, wallets, dashboards, apps.', group: 'MLM & Direct Selling' },
-  { id: 'direct_selling_software', label: 'Direct Selling Software', description: 'Distributor onboarding, inventory, franchise, incentives, compliance.', group: 'MLM & Direct Selling' },
-  { id: 'consulting_launch', label: 'Consulting & Business Setup', description: 'Company registration, plan design, SOPs, training & rollout support.', group: 'MLM & Direct Selling' },
-
-  // Software Development
+  // Software Development (listed first in the Services UI)
   { id: 'custom_software', label: 'Custom Software Development', description: 'Web apps, portals, automation, integrations.', group: 'Software Development' },
   { id: 'web_development', label: 'Web Development', description: 'Fast websites, landing pages, performance + SEO foundations.', group: 'Software Development' },
   { id: 'mobile_apps', label: 'Mobile App Development', description: 'Android/iOS apps for customers, distributors, and admins.', group: 'Software Development' },
   { id: 'portals_ecommerce', label: 'Shopping/Travel Portals', description: 'Shopping portal & travel portal development with integrations.', group: 'Software Development' },
   { id: 'api_integrations', label: 'API & Payment Integrations', description: 'Payment gateways, SMS/WhatsApp, e-commerce, analytics, CRMs.', group: 'Software Development' },
+
+  // MLM & Direct Selling
+  { id: 'mlm_software', label: 'MLM Software', description: 'Binary/Matrix/Board plans, genealogy, wallets, dashboards, apps.', group: 'MLM & Direct Selling' },
+  { id: 'direct_selling_software', label: 'Direct Selling Software', description: 'Distributor onboarding, inventory, franchise, incentives, compliance.', group: 'MLM & Direct Selling' },
+  { id: 'consulting_launch', label: 'Consulting & Business Setup', description: 'Company registration, plan design, SOPs, training & rollout support.', group: 'MLM & Direct Selling' },
 
   // Digital Marketing
   { id: 'seo', label: 'SEO Services', description: 'On-page, technical SEO, content, reporting.', group: 'Digital Marketing' },
@@ -44,9 +44,20 @@ const BUDGETS = ['< ₹50k', '₹50k–₹2L', '₹2L–₹10L', '₹10L+', 'Not
 const TIMELINES = ['ASAP', '2–4 weeks', '1–2 months', '3+ months', 'Not sure'];
 
 export function ContactForm() {
+  const introRef = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState<string[]>([]);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    const el = introRef.current;
+    if (!el) return;
+    const reduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    el.focus({ preventScroll: true });
+  }, []);
 
   const [form, setForm] = useState({
     name: '',
@@ -56,8 +67,8 @@ export function ContactForm() {
     company: '',
     website: '',
     message: '',
-    budgetRange: 'Not sure',
-    timeline: 'Not sure',
+    budgetRange: '',
+    timeline: '',
     consent: true,
     hp: '', // honeypot (must stay empty)
   });
@@ -71,12 +82,6 @@ export function ContactForm() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
-
-    if (selected.length === 0) {
-      setStatus('error');
-      setError('Please select at least 1 service you need.');
-      return;
-    }
 
     setStatus('submitting');
     try {
@@ -212,15 +217,22 @@ export function ContactForm() {
       <style>{`
         details[open] .contact-dd-chevron { transform: rotate(180deg); }
       `}</style>
-      <div className="text-center">
+      <div
+        ref={introRef}
+        id="contact-form-intro"
+        tabIndex={-1}
+        className="text-center scroll-mt-24 outline-none focus:outline-none md:scroll-mt-[5.5rem]"
+        role="region"
+        aria-labelledby="contact-form-heading"
+      >
         <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>
           Contact
         </p>
-        <h2 className="mt-2 text-3xl font-bold" style={{ color: 'var(--color-text)' }}>
+        <h2 id="contact-form-heading" className="mt-2 text-3xl font-bold" style={{ color: 'var(--color-text)' }}>
           Tell us what you need.
         </h2>
         <p className="mx-auto mt-2 max-w-3xl text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-          Select your services and share a few details. We will reply with the best next step.
+          Share your details — services, requirements, budget, and timeline are optional. We will reply with the best next step.
         </p>
       </div>
 
@@ -268,31 +280,47 @@ export function ContactForm() {
 
           <div className="grid gap-2.5 sm:grid-cols-2">
             <label className="block">
-              <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Budget</span>
+              <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                Budget <span className="font-normal" style={{ color: 'var(--color-text-muted)' }}>(optional)</span>
+              </span>
               <select
                 value={form.budgetRange}
                 onChange={(e) => setForm((p) => ({ ...p, budgetRange: e.target.value }))}
                 className="mt-1 w-full rounded-2xl border px-3.5 py-2 text-sm outline-none focus:ring-2"
                 style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
               >
-                {BUDGETS.map((b) => <option key={b} value={b}>{b}</option>)}
+                <option value="">No preference</option>
+                {BUDGETS.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
               </select>
             </label>
             <label className="block">
-              <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Timeline</span>
+              <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                Timeline <span className="font-normal" style={{ color: 'var(--color-text-muted)' }}>(optional)</span>
+              </span>
               <select
                 value={form.timeline}
                 onChange={(e) => setForm((p) => ({ ...p, timeline: e.target.value }))}
                 className="mt-1 w-full rounded-2xl border px-3.5 py-2 text-sm outline-none focus:ring-2"
                 style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
               >
-                {TIMELINES.map((t) => <option key={t} value={t}>{t}</option>)}
+                <option value="">No preference</option>
+                {TIMELINES.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
 
           <label className="block">
-            <span className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Requirements</span>
+            <span className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+              Requirements <span className="font-normal" style={{ color: 'var(--color-text-muted)' }}>(optional)</span>
+            </span>
             <textarea
               value={form.message}
               onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
@@ -307,9 +335,11 @@ export function ContactForm() {
           <div>
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Services</p>
+                <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+                  Services <span className="font-normal" style={{ color: 'var(--color-text-muted)' }}>(optional)</span>
+                </p>
                 <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                  Choose one or more services.
+                  Choose any that apply — you can leave this blank.
                 </p>
               </div>
               {selected.length > 0 && (
@@ -349,7 +379,6 @@ export function ContactForm() {
                   <details
                     className="rounded-2xl border p-3"
                     style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}
-                    open={group === 'MLM & Direct Selling'}
                   >
                     <summary
                       className="cursor-pointer list-none select-none"

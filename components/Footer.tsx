@@ -80,21 +80,33 @@ export function Footer({ services: servicesProp, company: companyProp }: FooterP
           <div className="lg:col-start-5 lg:text-right">
             <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-subtle)' }}>Contact</h4>
             <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: 'var(--color-text)' }}>
-              MLM Software & MLM Consultant | Vista Neotech Pvt Ltd
+              Vista Neotech Pvt Ltd
             </p>
-            <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              5th Floor, Jaina Tower 1, 517, Janakpuri District Center, Janakpuri, New Delhi, Delhi, 110058
-            </p>
-            <div className="mt-2 space-y-1.5 text-sm">
-              <a href="mailto:info@vistaneotech.com" className="inline-flex items-center gap-2 transition hover:opacity-80" style={{ color: 'var(--color-text-muted)' }}>
-                <IconMail size="sm" style={{ color: 'var(--color-accent-2)' }} />
+            <div className="mt-1 space-y-0.5 text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+              <p>5th Floor, Jaina Tower 1, 517, Janakpuri District Center, Janakpuri</p>
+              <p>New Delhi, Delhi, 110058</p>
+            </div>
+            <div className="mt-3 flex flex-col gap-3 text-base md:text-lg lg:items-end">
+              <a
+                href="mailto:info@vistaneotech.com"
+                className="inline-flex items-center gap-2.5 font-semibold transition hover:opacity-80"
+                style={{ color: 'var(--color-text)' }}
+              >
+                <IconMail size="md" className="shrink-0" style={{ color: 'var(--color-accent-2)' }} />
                 info@vistaneotech.com
               </a>
-              <p className="text-xs font-semibold uppercase tracking-[0.12em]" style={{ color: 'var(--color-accent-1)' }}>
+              <p
+                className="text-sm font-bold uppercase tracking-[0.14em] md:text-base"
+                style={{ color: 'var(--color-accent-1)' }}
+              >
                 Let&apos;s talk
               </p>
-              <a href="tel:+919811190082" className="inline-flex items-center gap-2 transition hover:opacity-80" style={{ color: 'var(--color-text-muted)' }}>
-                <IconPhone size="sm" style={{ color: 'var(--color-accent-3)' }} />
+              <a
+                href="tel:+919811190082"
+                className="inline-flex items-center gap-2.5 font-semibold transition hover:opacity-80"
+                style={{ color: 'var(--color-text)' }}
+              >
+                <IconPhone size="md" className="shrink-0" style={{ color: 'var(--color-accent-3)' }} />
                 +91 98111 90082
               </a>
             </div>

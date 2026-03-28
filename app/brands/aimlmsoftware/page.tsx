@@ -5,11 +5,11 @@ import { Button } from '@/components/Button';
 import { IconArrowRight } from '@/components/ui/Icons';
 
 export const metadata: Metadata = {
-  title: 'AIML Software - AI-Powered MLM Software | Vista Neotech',
+  title: 'AIMLM Software - AI-Powered MLM Software | Vista Neotech',
   description:
     'AI-powered MLM Software dedicated to the Direct Selling Industry. Combining cutting-edge AI technology with 25 years of Vista\'s experience.',
   openGraph: {
-    title: 'AIML Software - AI-Powered MLM Software',
+    title: 'AIMLM Software - AI-Powered MLM Software',
     description: 'Revolutionizing network marketing with AI technology and 25 years of expertise.',
   },
 };
@@ -81,7 +81,7 @@ export default function AIMLSoftwarePage() {
           >
             <Image
               src="/images/aimlmsoftware_logo.png"
-              alt="AIML Software Logo"
+              alt="AIMLM Software Logo"
               width={160}
               height={160}
               className="h-32 w-32 object-contain"
@@ -89,7 +89,7 @@ export default function AIMLSoftwarePage() {
             />
           </div>
           <h1 className="display-1 mb-6 max-w-4xl" style={{ color: 'var(--color-hero-text)' }}>
-            AIML Software
+            AIMLM Software
           </h1>
           <p className="prose-lead mx-auto mb-8 max-w-3xl" style={{ color: 'var(--color-hero-text-muted)' }}>
             AI-powered MLM Software dedicated to the Direct Selling Industry. Combining cutting-edge AI technology with
@@ -161,7 +161,7 @@ export default function AIMLSoftwarePage() {
         <div className="container-tight">
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
             <div>
-              <p className="section-label mb-4">Why Choose AIML Software</p>
+              <p className="section-label mb-4">Why Choose AIMLM Software</p>
               <h2 className="display-3 mb-6" style={{ color: 'var(--color-text)' }}>
                 Built on Experience, Powered by Innovation
               </h2>
@@ -204,7 +204,7 @@ export default function AIMLSoftwarePage() {
                   Experience the Future of MLM
                 </h3>
                 <p className="mb-8 text-base leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-                  Join leading direct selling companies who trust AIML Software to power their network marketing
+                  Join leading direct selling companies who trust AIMLM Software to power their network marketing
                   operations.
                 </p>
                 <Button
@@ -241,7 +241,7 @@ export default function AIMLSoftwarePage() {
                 Ready to Transform Your MLM Business?
               </h2>
               <p className="prose-lead mx-auto mb-8 max-w-xl" style={{ color: 'var(--color-text-muted)' }}>
-                Discover how AIML Software can revolutionize your direct selling operations with AI-powered solutions.
+                Discover how AIMLM Software can revolutionize your direct selling operations with AI-powered solutions.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <Button

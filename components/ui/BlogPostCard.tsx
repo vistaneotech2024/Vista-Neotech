@@ -10,6 +10,8 @@ export type BlogPostCardPost = {
   slug?: string | null;
   meta_description?: string | null;
   featured_image_url?: string | null;
+  category_name?: string | null;
+  category_slug?: string | null;
   /** ISO date string for display (e.g. Mar 17, 2026) */
   published_at?: string | null;
 };
@@ -43,6 +45,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       : null;
 
   const dateLabel = formatPostDate(post.published_at);
+  const categoryLabel = typeof post.category_name === 'string' && post.category_name.trim() ? post.category_name.trim() : null;
 
   return (
     <a
@@ -80,15 +83,25 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        {dateLabel ? (
-          <time
-            dateTime={post.published_at ?? undefined}
-            className="mb-2 text-xs font-normal leading-none"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
-            {dateLabel}
-          </time>
-        ) : null}
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          {categoryLabel ? (
+            <span
+              className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em]"
+              style={{ backgroundColor: 'var(--color-accent-1-muted)', color: 'var(--color-accent-1)' }}
+            >
+              {categoryLabel}
+            </span>
+          ) : null}
+          {dateLabel ? (
+            <time
+              dateTime={post.published_at ?? undefined}
+              className="text-xs font-normal leading-none"
+              style={{ color: 'var(--color-text-muted)' }}
+            >
+              {dateLabel}
+            </time>
+          ) : null}
+        </div>
 
         <h2
           className="mb-2 line-clamp-2 text-[16px] font-bold leading-6 tracking-tight transition-colors group-hover:text-[var(--color-accent-1)]"

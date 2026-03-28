@@ -1,11 +1,14 @@
 import { Button } from '@/components/Button';
 import { HomeHeroCarousel } from '@/components/HomeHeroCarousel';
 import { getHomeHeroConfig } from '@/lib/cms/hero';
+import { getPageBySlugFromDB, type PageFaqItemField } from '@/lib/cms/pages-db';
 import { TrustBar } from '@/components/TrustBar';
 import { StatsBar } from '@/components/StatsBar';
 import { ProcessTimeline } from '@/components/ProcessTimeline';
 import { BentoServices } from '@/components/BentoServices';
 import { BrandsSection } from '@/components/BrandsSection';
+import { ProsePageContent } from '@/components/ui/ProsePageContent';
+import { FaqSection, type FaqItem } from '@/components/ui/FaqSection';
 import { getExploreMoreLinks } from '@/lib/internal-links';
 import { RelatedInternalLinks } from '@/components/ui/RelatedInternalLinks';
 
@@ -13,10 +16,41 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function HomePage() {
-  const heroConfig = await getHomeHeroConfig();
+  const [heroConfig, homePage] = await Promise.all([
+    getHomeHeroConfig(),
+    getPageBySlugFromDB('home'),
+  ]);
+
+  const homeContent =
+    typeof homePage?.content === 'string' ? homePage.content : null;
+  const customFields = homePage?.custom_fields ?? null;
+
+  const faqItems =
+    customFields &&
+    Array.isArray(customFields.faq_items)
+      ? customFields.faq_items
+          .map((item: PageFaqItemField, index: number) => {
+            const question =
+              typeof item?.question === 'string' ? item.question.trim() : '';
+            const answer =
+              typeof item?.answer === 'string' ? item.answer.trim() : '';
+            if (!question || !answer) return null;
+            return {
+              id: String(item.id || index),
+              question,
+              answer,
+            };
+          })
+          .filter((item): item is FaqItem => item !== null)
+      : [];
+
+  const faqEnabled =
+    !!customFields &&
+    customFields.faq_enabled !== false &&
+    faqItems.length > 0;
 
   return (
-    <>
+    <main className="home-page-compact">
       <HomeHeroCarousel config={heroConfig} />
 
       <TrustBar />
@@ -26,6 +60,18 @@ export default async function HomePage() {
       <StatsBar />
 
       <ProcessTimeline />
+
+      {/* Home page body content from CMS (optional) */}
+      {homeContent && (
+        <section
+          className="section-padding"
+          style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}
+        >
+          <div className="container-tight">
+            <ProsePageContent html={homeContent} />
+          </div>
+        </section>
+      )}
 
       {/* Mid-content CTA – strong conversion prompt */}
       <section
@@ -76,6 +122,9 @@ export default async function HomePage() {
         description="Full-service IT, MLM software, direct selling consultancy, and digital solutions. Explore our core services."
       />
 
+      {/* Home page FAQ – managed via Pages → slug `home` */}
+      {faqEnabled && <FaqSection items={faqItems} />}
+
       {/* CTA – display typography, gradient border, international-creative */}
       <section
         className="section-padding tech-grid"
@@ -124,6 +173,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

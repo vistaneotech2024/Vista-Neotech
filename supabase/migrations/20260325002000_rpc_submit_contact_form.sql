@@ -143,4 +143,3 @@ $$;
 
 -- Allow anon/authenticated to call RPC
 grant execute on function public.submit_contact_form(jsonb) to anon, authenticated;
-

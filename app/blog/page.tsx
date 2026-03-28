@@ -80,6 +80,8 @@ export default async function BlogIndexPage({
       slug,
       meta_description: toSafeText(p.meta_description ?? p.excerpt) || undefined,
       featured_image_url,
+      category_name: toSafeText((p as any).category_name) || undefined,
+      category_slug: toSafeText((p as any).category_slug) || undefined,
       published_at: p.published_at ?? null,
     };
   })
@@ -96,13 +98,16 @@ export default async function BlogIndexPage({
       style={{ backgroundColor: 'var(--color-bg-muted)', color: 'var(--color-text)' }}
     >
       <div className="container-wide relative z-10">
-        {/* Header */}
-        <div className="mb-12 text-center md:mb-14">
-          <p className="section-label mb-4">Blog</p>
-          <h1 className="display-1 mb-5" style={{ color: 'var(--color-text)' }}>
+        {/* Header — compact so the grid owns the fold */}
+        <div className="mb-8 text-center md:mb-10">
+          <p className="section-label mb-2">Blog</p>
+          <h1 className="display-3 mb-3" style={{ color: 'var(--color-text)' }}>
             Insights & Updates
           </h1>
-          <p className="prose-lead mx-auto max-w-2xl" style={{ color: 'var(--color-text-muted)' }}>
+          <p
+            className="mx-auto max-w-xl text-sm leading-relaxed md:text-base"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
             Expert insights, industry trends, and updates on MLM software, direct selling, and network marketing.
           </p>
         </div>

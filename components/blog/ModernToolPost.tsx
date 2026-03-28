@@ -144,6 +144,7 @@ export function ModernToolPost({
   canonicalUrl,
   publishedAt,
   focusKeyword,
+  categoryName,
 }: {
   title: string;
   description: string;
@@ -151,6 +152,7 @@ export function ModernToolPost({
   canonicalUrl: string;
   publishedAt?: string | null;
   focusKeyword?: string | null;
+  categoryName?: string | null;
 }) {
   const contentWithIds = injectH2Ids(html);
   const tools = buildTools(html);
@@ -216,7 +218,7 @@ export function ModernToolPost({
 
           <div className="flex flex-wrap items-center gap-2 mb-5">
             <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold" style={{ backgroundColor: 'var(--color-accent-1-muted)', color: 'var(--color-accent-1)' }}>
-              Playbook
+              {categoryName || 'Playbook'}
             </span>
             <span className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold" style={{ backgroundColor: 'var(--color-bg-muted)', color: 'var(--color-text-muted)' }}>
               {minutes} min read

@@ -2,7 +2,7 @@
 
 Please add the following logo files to this directory:
 
-1. **aimlmsoftware_logo.png** - Logo for AIML Software brand
+1. **aimlmsoftware_logo.png** - Logo for AIMLM Software brand
 2. **tripgate_logo.png** - Logo for Tripgate.in brand  
 3. **verifizy_logo.png** - Logo for Verifizy brand
 

@@ -22,15 +22,15 @@ function InfoCard({ label, value, hint }: { label: unknown; value: unknown; hint
 export default function ContactPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden pt-24 pb-10" style={{ backgroundColor: 'var(--color-hero-bg)' }}>
+      {/* Hero — compact so the form owns attention */}
+      <section className="relative overflow-hidden pt-20 pb-5 md:pt-22 md:pb-6" style={{ backgroundColor: 'var(--color-hero-bg)' }}>
         <div className="absolute inset-0 overflow-hidden opacity-30">
-          <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full blur-3xl" style={{ backgroundColor: 'var(--color-accent-1-muted)' }} />
-          <div className="absolute -left-40 bottom-0 h-96 w-96 rounded-full blur-3xl" style={{ backgroundColor: 'var(--color-accent-2-muted)' }} />
+          <div className="absolute -right-40 -top-40 h-72 w-72 rounded-full blur-3xl md:h-80 md:w-80" style={{ backgroundColor: 'var(--color-accent-1-muted)' }} />
+          <div className="absolute -left-40 bottom-0 h-72 w-72 rounded-full blur-3xl md:h-80 md:w-80" style={{ backgroundColor: 'var(--color-accent-2-muted)' }} />
         </div>
 
         <div className="container-wide relative z-10">
-          <nav className="mb-8 flex items-center gap-2 text-sm" aria-label="Breadcrumb">
+          <nav className="mb-3 flex items-center gap-2 text-xs md:text-sm" aria-label="Breadcrumb">
             <Link href="/" className="transition hover:opacity-80" style={{ color: 'var(--color-text-muted)' }}>
               Home
             </Link>
@@ -39,21 +39,21 @@ export default function ContactPage() {
           </nav>
 
           <span
-            className="overline-lg mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-2.5 backdrop-blur-sm"
+            className="overline mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 backdrop-blur-sm"
             style={{
               borderColor: 'var(--color-border)',
               backgroundColor: 'var(--color-accent-1-muted)',
               color: 'var(--color-hero-text)',
             }}
           >
-            <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: 'var(--color-accent-1)' }} />
+            <span className="h-1 w-1 rounded-full" style={{ backgroundColor: 'var(--color-accent-1)' }} />
             Contact Now
           </span>
 
-          <h1 className="display-1" style={{ color: 'var(--color-hero-text)' }}>
+          <h1 className="display-3 max-w-3xl" style={{ color: 'var(--color-hero-text)' }}>
             Let’s build, market, or design what your business needs next.
           </h1>
-          <p className="prose-lead mt-6" style={{ color: 'var(--color-hero-text-muted)' }}>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed md:text-base" style={{ color: 'var(--color-hero-text-muted)' }}>
             Share your requirements and select what you need—software, marketing, design, consulting, or support for our products. We’ll respond with a clear plan and next steps.
           </p>
         </div>
@@ -159,7 +159,7 @@ export default function ContactPage() {
                       Map
                     </p>
                     <p className="mt-2 text-base font-semibold" style={{ color: 'var(--color-text)' }}>
-                      MLM Software & MLM Consultant | Vista Neotech Pvt Ltd
+                      Vista Neotech Pvt Ltd
                     </p>
                     <p className="mt-1 text-sm" style={{ color: 'var(--color-text-muted)' }}>
                       5th Floor, Jaina Tower 1, 517, Janakpuri District Center, Janakpuri, New Delhi, Delhi, 110058

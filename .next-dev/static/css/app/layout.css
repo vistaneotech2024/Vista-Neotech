@@ -642,6 +642,17 @@ html.dark .bg-section-gradient {
     padding-bottom: 1.25rem;
   }
 }
+.home-page-compact .trustbar-section {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+@media (min-width: 768px) {
+
+  .home-page-compact .trustbar-section {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
 .home-page-compact .statsbar-section {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1740,6 +1751,9 @@ html.dark .bg-section-gradient {
 .resize {
   resize: both;
 }
+.scroll-mt-24 {
+  scroll-margin-top: 6rem;
+}
 .list-none {
   list-style-type: none;
 }
@@ -1859,6 +1873,11 @@ html.dark .bg-section-gradient {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+.space-y-0\.5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.125rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.125rem * var(--tw-space-y-reverse));
 }
 .overflow-auto {
   overflow: auto;
@@ -2221,6 +2240,9 @@ html.dark .bg-section-gradient {
 .pt-4 {
   padding-top: 1rem;
 }
+.pb-5 {
+  padding-bottom: 1.25rem;
+}
 .text-left {
   text-align: left;
 }
@@ -2348,6 +2370,9 @@ html.dark .bg-section-gradient {
 }
 .tracking-widest {
   letter-spacing: 0.1em;
+}
+.tracking-\[0\.14em\] {
+  letter-spacing: 0.14em;
 }
 .text-\[var\(--color-accent-1\)\] {
   color: var(--color-accent-1);
@@ -3180,6 +3205,10 @@ html.dark .bg-section-gradient {
     margin-bottom: 3.5rem;
   }
 
+  .md\:mb-10 {
+    margin-bottom: 2.5rem;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -3194,6 +3223,10 @@ html.dark .bg-section-gradient {
 
   .md\:h-18 {
     height: 4.5rem;
+  }
+
+  .md\:h-80 {
+    height: 20rem;
   }
 
   .md\:min-h-\[48vh\] {
@@ -3214,6 +3247,14 @@ html.dark .bg-section-gradient {
 
   .md\:w-64 {
     width: 16rem;
+  }
+
+  .md\:w-80 {
+    width: 20rem;
+  }
+
+  .md\:scroll-mt-\[5\.5rem\] {
+    scroll-margin-top: 5.5rem;
   }
 
   .md\:grid-cols-2 {
@@ -3333,6 +3374,14 @@ html.dark .bg-section-gradient {
     padding-top: 6rem;
   }
 
+  .md\:pb-6 {
+    padding-bottom: 1.5rem;
+  }
+
+  .md\:pt-22 {
+    padding-top: 5.5rem;
+  }
+
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 1.2;
@@ -3361,6 +3410,16 @@ html.dark .bg-section-gradient {
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.6;
+  }
+
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
   }
 }
 @media (min-width: 1024px) {
@@ -3401,10 +3460,6 @@ html.dark .bg-section-gradient {
     margin-bottom: 2.5rem;
   }
 
-  .lg\:mt-6 {
-    margin-top: 1.5rem;
-  }
-
   .lg\:block {
     display: block;
   }
@@ -3439,6 +3494,10 @@ html.dark .bg-section-gradient {
 
   .lg\:grid-cols-\[1fr_360px\] {
     grid-template-columns: 1fr 360px;
+  }
+
+  .lg\:items-end {
+    align-items: flex-end;
   }
 
   .lg\:items-stretch {
@@ -3483,6 +3542,9 @@ html.dark .bg-section-gradient {
   .xl\:h-\[400px\] {
     height: 400px;
   }
+}
+.\[\&\:\:-webkit-details-marker\]\:hidden::-webkit-details-marker {
+  display: none;
 }
 
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\

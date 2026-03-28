@@ -12,3 +12,4 @@ CREATE POLICY "Allow public read published posts" ON posts
   FOR SELECT
   TO anon, authenticated
   USING (LOWER(TRIM(COALESCE(status::text, ''))) = 'published');
+
