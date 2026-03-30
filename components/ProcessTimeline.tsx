@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { IconChat, IconCode, IconScale, IconHeadset } from '@/components/ui/Icons';
 import { IconArrowRight } from '@/components/ui/Icons';
 
@@ -48,43 +48,11 @@ const steps = [
 ];
 
 export function ProcessTimeline() {
-  const [visibleItems, setVisibleItems] = useState<boolean[]>(new Array(steps.length).fill(false));
+  const visibleItems = useMemo(() => new Array(steps.length).fill(true), []);
   const [activeStep, setActiveStep] = useState<number | null>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          steps.forEach((_, index) => {
-            setTimeout(() => {
-              setVisibleItems((prev) => {
-                const newState = [...prev];
-                newState[index] = true;
-                return newState;
-              });
-            }, index * 150);
-          });
-        }
-      },
-      { threshold: 0.2, rootMargin: '0px 0px -100px 0px' }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   return (
     <section
-      ref={sectionRef}
       className="section-padding relative overflow-hidden"
       style={{ backgroundColor: 'var(--color-bg)' }}
     >
@@ -153,9 +121,6 @@ export function ProcessTimeline() {
               return (
                 <div
                   key={s.step}
-                  ref={(el) => {
-                    cardRefs.current[i] = el;
-                  }}
                   className="relative group"
                   onMouseEnter={() => setActiveStep(i)}
                   onMouseLeave={() => setActiveStep(null)}
@@ -259,9 +224,6 @@ export function ProcessTimeline() {
             return (
               <div
                 key={s.step}
-                ref={(el) => {
-                  cardRefs.current[i] = el;
-                }}
                 className="relative group"
                 onMouseEnter={() => setActiveStep(i)}
                 onMouseLeave={() => setActiveStep(null)}

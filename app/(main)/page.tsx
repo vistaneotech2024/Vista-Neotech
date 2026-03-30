@@ -7,10 +7,12 @@ import { StatsBar } from '@/components/StatsBar';
 import { ProcessTimeline } from '@/components/ProcessTimeline';
 import { BentoServices } from '@/components/BentoServices';
 import { BrandsSection } from '@/components/BrandsSection';
+import { GoogleReviewsSection } from '@/components/GoogleReviewsSection';
 import { ProsePageContent } from '@/components/ui/ProsePageContent';
 import { FaqSection, type FaqItem } from '@/components/ui/FaqSection';
 import { getExploreMoreLinks } from '@/lib/internal-links';
 import { RelatedInternalLinks } from '@/components/ui/RelatedInternalLinks';
+import { getGoogleReviewsFromPlacesAPI } from '@/lib/google-reviews';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -24,6 +26,26 @@ export default async function HomePage() {
   const homeContent =
     typeof homePage?.content === 'string' ? homePage.content : null;
   const customFields = homePage?.custom_fields ?? null;
+  const googleReviewsIframeSrcFromCMS =
+    customFields && typeof (customFields as any).google_reviews_iframe_src === 'string'
+      ? String((customFields as any).google_reviews_iframe_src)
+      : '';
+  const googleReviewsIframeSrc =
+    googleReviewsIframeSrcFromCMS ||
+    process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_IFRAME_SRC ||
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.1199045945223!2d77.0809865!3d28.630017100000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03e0fdda324b%3A0x32910c4d5dd6a6' +
+      '77!2sMLM%20Software%20%26%20MLM%20Consultant%20%7C%20Vista%20Neotech%20Pvt%20Ltd!5e1!3m2!1sen!2sin!4v1774868138450!5m2!1sen!2sin';
+
+  const googlePlaceIdFromCMS =
+    customFields && typeof (customFields as any).google_place_id === 'string'
+      ? String((customFields as any).google_place_id)
+      : '';
+  const googlePlaceId = googlePlaceIdFromCMS || process.env.GOOGLE_PLACE_ID || '';
+  const reviewsData = await getGoogleReviewsFromPlacesAPI({
+    apiKey: process.env.GOOGLE_PLACES_API_KEY,
+    placeId: googlePlaceId,
+    limit: 6,
+  });
 
   const faqItems =
     customFields &&
@@ -58,6 +80,8 @@ export default async function HomePage() {
       <BrandsSection />
 
       <StatsBar />
+
+      <GoogleReviewsSection reviewsData={reviewsData} iframeSrc={googleReviewsIframeSrc} />
 
       <ProcessTimeline />
 

@@ -1,8 +1,5 @@
-'use client';
-
 import Link from 'next/link';
 import { FeatureCard } from '@/components/ui/FeatureCard';
-import { useStaggeredAnimation } from '@/lib/useScrollAnimation';
 import {
   IconCpu,
   IconCode,
@@ -138,8 +135,6 @@ export function BentoServices() {
       emoji: null,
     })),
   ];
-  const totalItems = serviceCards.length;
-  const { refs, visibleItems } = useStaggeredAnimation(totalItems, 100);
 
   return (
     <section
@@ -205,15 +200,11 @@ export function BentoServices() {
             return (
               <div
                 key={item.href}
-                ref={(el) => {
-                  refs.current[index] = el as HTMLElement | null;
-                }}
                 className="relative"
                 style={{
                   display: 'flex',
-                  opacity: visibleItems[index] ? 1 : 0,
-                  transform: visibleItems[index] ? 'translateY(0)' : 'translateY(16px)',
-                  transition: `opacity 0.45s ease ${index * 0.05}s, transform 0.45s ease ${index * 0.05}s`,
+                  opacity: 1,
+                  transform: 'translateY(0)',
                 }}
               >
                 <FeatureCard

@@ -95,21 +95,29 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
   const industriesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const closeAll = () => {
+      setBrandsOpen(false);
+      setServicesOpen(false);
+      setIndustriesOpen(false);
+    };
+
     const handleClickOutside = (event: MouseEvent) => {
-      if (brandsRef.current && !brandsRef.current.contains(event.target as Node)) {
-        setBrandsOpen(false);
-      }
-      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
-        setServicesOpen(false);
-      }
-      if (industriesRef.current && !industriesRef.current.contains(event.target as Node)) {
-        setIndustriesOpen(false);
-      }
+      const target = event.target as Node;
+      const insideBrands = !!brandsRef.current && brandsRef.current.contains(target);
+      const insideServices = !!servicesRef.current && servicesRef.current.contains(target);
+      const insideIndustries = !!industriesRef.current && industriesRef.current.contains(target);
+      if (!insideBrands && !insideServices && !insideIndustries) closeAll();
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeAll();
     };
 
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -143,8 +151,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
               href={link.href}
               target={link.target}
               rel={link.target === '_blank' ? 'noopener noreferrer' : undefined}
-              className="rounded-lg px-4 py-2.5 text-sm font-medium transition hover:opacity-80"
-              style={{ color: 'var(--color-text-muted)' }}
+              className="rounded-lg px-4 py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent-1)]"
             >
               {typeof link.label === 'string' ? link.label : ''}
             </Link>
@@ -154,9 +161,12 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
           <div ref={servicesRef} className="relative">
             <button
               type="button"
-              onClick={() => setServicesOpen(!servicesOpen)}
-              className="rounded-lg px-4 py-2.5 text-sm font-medium transition hover:opacity-80 flex items-center gap-1"
-              style={{ color: 'var(--color-text-muted)' }}
+              onClick={() => {
+                setServicesOpen((v) => !v);
+                setBrandsOpen(false);
+                setIndustriesOpen(false);
+              }}
+              className="flex cursor-pointer items-center gap-1 rounded-lg px-4 py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent-1)]"
               aria-expanded={servicesOpen}
               aria-haspopup="true"
             >
@@ -189,9 +199,8 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                         <Link
                           key={service.href}
                           href={service.href}
-                          className="block rounded-lg px-3 py-2 text-sm transition-colors hover:opacity-90 group"
+                          className="group block rounded-lg px-3 py-2 text-sm text-[var(--color-text)] transition-colors hover:text-[var(--color-accent-1)] hover:opacity-90"
                           style={{
-                            color: 'var(--color-text)',
                             backgroundColor: 'transparent',
                           }}
                           onMouseEnter={(e) => {
@@ -237,9 +246,12 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
             <div ref={industriesRef} className="relative">
               <button
                 type="button"
-                onClick={() => setIndustriesOpen(!industriesOpen)}
-                className="rounded-lg px-4 py-2.5 text-sm font-medium transition hover:opacity-80 flex items-center gap-1"
-                style={{ color: 'var(--color-text-muted)' }}
+                onClick={() => {
+                  setIndustriesOpen((v) => !v);
+                  setBrandsOpen(false);
+                  setServicesOpen(false);
+                }}
+                className="flex cursor-pointer items-center gap-1 rounded-lg px-4 py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent-1)]"
                 aria-expanded={industriesOpen}
                 aria-haspopup="true"
               >
@@ -267,9 +279,8 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                       <Link
                         key={ind.slug}
                         href={`/${ind.slug}`}
-                        className="block rounded-lg px-3 py-2 text-sm transition-colors hover:opacity-90"
+                        className="block rounded-lg px-3 py-2 text-sm text-[var(--color-text)] transition-colors hover:text-[var(--color-accent-1)] hover:opacity-90"
                         style={{
-                          color: 'var(--color-text)',
                           backgroundColor: 'transparent',
                         }}
                         onMouseEnter={(e) => {
@@ -293,9 +304,12 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
           <div ref={brandsRef} className="relative">
             <button
               type="button"
-              onClick={() => setBrandsOpen(!brandsOpen)}
-              className="rounded-lg px-4 py-2.5 text-sm font-medium transition hover:opacity-80 flex items-center gap-1"
-              style={{ color: 'var(--color-text-muted)' }}
+              onClick={() => {
+                setBrandsOpen((v) => !v);
+                setServicesOpen(false);
+                setIndustriesOpen(false);
+              }}
+              className="flex cursor-pointer items-center gap-1 rounded-lg px-4 py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent-1)]"
               aria-expanded={brandsOpen}
               aria-haspopup="true"
             >
@@ -323,9 +337,8 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                     <div key={brand.href} className="group">
                       <Link
                         href={brand.href}
-                        className="block rounded-lg px-4 py-3 text-sm transition-colors hover:opacity-90"
+                        className="block rounded-lg px-4 py-3 text-sm text-[var(--color-text)] transition-colors hover:text-[var(--color-accent-1)] hover:opacity-90"
                         style={{
-                          color: 'var(--color-text)',
                           backgroundColor: 'transparent',
                         }}
                         onMouseEnter={(e) => {
@@ -363,10 +376,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                         href={brand.external}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block rounded-lg px-4 py-1.5 text-xs transition-colors hover:opacity-90"
-                        style={{
-                          color: 'var(--color-text-muted)',
-                        }}
+                        className="block rounded-lg px-4 py-1.5 text-xs text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent-1)] hover:opacity-90"
                         onClick={(e) => e.stopPropagation()}
                       >
                         Visit Site →
@@ -428,7 +438,11 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
             <div className="mt-2">
               <button
                 type="button"
-                onClick={() => setServicesOpen(!servicesOpen)}
+                onClick={() => {
+                  setServicesOpen((v) => !v);
+                  setBrandsOpen(false);
+                  setIndustriesOpen(false);
+                }}
                 className="w-full rounded-xl px-4 py-3 text-left text-base font-medium transition hover:opacity-80 flex items-center justify-between"
                 style={{ color: 'var(--color-text)' }}
               >
@@ -453,8 +467,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                         <Link
                           key={service.href}
                           href={service.href}
-                          className="block rounded-lg px-3 py-2 text-sm font-medium transition hover:opacity-80"
-                          style={{ color: 'var(--color-text-muted)' }}
+                  className="block rounded-lg px-3 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent-1)] hover:opacity-80"
                           onClick={() => {
                             setOpen(false);
                             setServicesOpen(false);
@@ -474,7 +487,11 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
               <div className="mt-2">
                 <button
                   type="button"
-                  onClick={() => setIndustriesOpen(!industriesOpen)}
+                  onClick={() => {
+                    setIndustriesOpen((v) => !v);
+                    setBrandsOpen(false);
+                    setServicesOpen(false);
+                  }}
                   className="w-full rounded-xl px-4 py-3 text-left text-base font-medium transition hover:opacity-80 flex items-center justify-between"
                   style={{ color: 'var(--color-text)' }}
                 >
@@ -494,8 +511,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                       <Link
                         key={ind.slug}
                         href={`/${ind.slug}`}
-                        className="block rounded-lg px-3 py-2 text-sm font-medium transition hover:opacity-80"
-                        style={{ color: 'var(--color-text-muted)' }}
+                      className="block rounded-lg px-3 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent-1)] hover:opacity-80"
                         onClick={() => {
                           setOpen(false);
                           setIndustriesOpen(false);
@@ -513,7 +529,11 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
             <div className="mt-2">
               <button
                 type="button"
-                onClick={() => setBrandsOpen(!brandsOpen)}
+                onClick={() => {
+                  setBrandsOpen((v) => !v);
+                  setServicesOpen(false);
+                  setIndustriesOpen(false);
+                }}
                 className="w-full rounded-xl px-4 py-3 text-left text-base font-medium transition hover:opacity-80 flex items-center justify-between"
                 style={{ color: 'var(--color-text)' }}
               >
@@ -533,8 +553,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                     <div key={brand.href}>
                       <Link
                         href={brand.href}
-                        className="block rounded-lg px-3 py-2 text-sm font-medium transition hover:opacity-80"
-                        style={{ color: 'var(--color-text-muted)' }}
+                        className="block rounded-lg px-3 py-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent-1)] hover:opacity-80"
                         onClick={() => {
                           setOpen(false);
                           setBrandsOpen(false);
@@ -557,8 +576,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                         href={brand.external}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block rounded-lg px-3 py-1 text-xs transition hover:opacity-80"
-                        style={{ color: 'var(--color-text-muted)' }}
+                        className="block rounded-lg px-3 py-1 text-xs text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent-1)] hover:opacity-80"
                         onClick={() => {
                           setOpen(false);
                           setBrandsOpen(false);

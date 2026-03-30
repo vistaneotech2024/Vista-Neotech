@@ -17,56 +17,36 @@ interface BrandCardProps {
 }
 
 function BrandCard({ title, description, logo, href, externalUrl, accent, features, index }: BrandCardProps) {
-  const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
-    };
-  }, []);
 
   const accentColor = `var(--color-accent-${accent})`;
   const accentMuted = `var(--color-accent-${accent}-muted)`;
 
   return (
     <div
-      ref={cardRef}
       className="group relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link
-        href={href}
+      <div
         className="relative block overflow-hidden rounded-3xl border transition-all duration-500 hover:shadow-2xl"
         style={{
           backgroundColor: 'var(--color-bg-elevated)',
           borderColor: 'var(--color-border)',
-          transform: isVisible
-            ? `translateY(0) scale(1)`
-            : `translateY(60px) scale(0.95)`,
-          opacity: isVisible ? 1 : 0,
+          transform: `translateY(0) scale(1)`,
+          opacity: 1,
           transitionDelay: `${index * 150}ms`,
           borderLeftWidth: '4px',
           borderLeftColor: accentColor,
         }}
       >
+        {/* Stretched internal link (avoid nested <a>) */}
+        <Link
+          href={href}
+          aria-label={`Explore ${title}`}
+          className="absolute inset-0 z-0"
+        />
+
         {/* Animated gradient background */}
         <div
           className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -184,7 +164,11 @@ function BrandCard({ title, description, logo, href, externalUrl, accent, featur
               href={externalUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.open(externalUrl, '_blank', 'noopener,noreferrer');
+              }}
               className="text-xs font-medium opacity-60 transition-opacity hover:opacity-100"
               style={{ color: 'var(--color-text-muted)' }}
             >
@@ -198,7 +182,7 @@ function BrandCard({ title, description, logo, href, externalUrl, accent, featur
           className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-all duration-1000 group-hover:translate-x-full group-hover:opacity-100"
           style={{ transform: isHovered ? 'translateX(100%)' : 'translateX(-100%)' }}
         />
-      </Link>
+      </div>
 
       <style jsx>{`
         @keyframes float {

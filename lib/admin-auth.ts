@@ -1,6 +1,5 @@
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
-import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import { createAdminSupabase } from '@/lib/supabase-admin';
 
@@ -17,18 +16,26 @@ export async function authenticateAdmin(email: string, password: string): Promis
   const supabase = createAdminSupabase();
   if (!supabase) return null;
 
+  const normalizedEmail = email.trim().toLowerCase();
+
   const { data: user } = await supabase
     .from('users')
-    .select('id, email, password_hash, role, display_name')
-    .eq('email', email.toLowerCase())
+    .select('id, email, password, role, status, display_name')
+    .eq('email', normalizedEmail)
+    .eq('status', 'active')
     .limit(1)
     .maybeSingle();
 
   if (!user) return null;
   if (!['super_admin', 'admin', 'editor'].includes(user.role)) return null;
 
-  const ok = await bcrypt.compare(password, user.password_hash);
-  if (!ok) return null;
+  if (user.password !== password) return null;
+
+  // best-effort: do not block login if this fails
+  await supabase
+    .from('users')
+    .update({ last_login_at: new Date().toISOString(), updated_at: new Date().toISOString() })
+    .eq('id', user.id);
 
   return {
     id: user.id,

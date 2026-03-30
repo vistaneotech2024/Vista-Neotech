@@ -7,7 +7,7 @@ import { CRITICAL_CSS } from '@/lib/critical-css';
 import { ThemeProvider } from '@/lib/theme-context';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { ConditionalFooter } from '@/components/ConditionalFooter';
 import { getHeaderNavLinks, getFooterMenu } from '@/lib/cms/menus';
 
 const ConversionUI = dynamic(() => import('@/components/ConversionUI').then((m) => ({ default: m.ConversionUI })), {
@@ -55,7 +55,7 @@ function RootLayoutShell({
         <ThemeProvider>
           <Header navLinks={headerNavLinks} industries={industryPages} />
           <main className="flex-1" style={{ color: 'var(--color-text)' }}>{children}</main>
-          <Footer services={footerMenu.services} company={footerMenu.company} />
+          <ConditionalFooter services={footerMenu.services} company={footerMenu.company} />
           <ConversionUI />
         </ThemeProvider>
       </body>

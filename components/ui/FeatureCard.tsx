@@ -41,31 +41,8 @@ export function FeatureCard({
   className = '',
   noBorderAccent = false,
 }: FeatureCardProps) {
-  const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement | HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    const currentRef = cardRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
 
   const accentColor = accentVar(accent);
   const mutedBg = accentMutedVar(accent);
@@ -170,9 +147,8 @@ export function FeatureCard({
   const cardStyle = {
     backgroundColor: 'var(--color-bg-elevated)',
     borderColor: 'var(--color-border)',
-    transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.98)',
-    opacity: isVisible ? 1 : 0,
-    transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+    transform: 'translateY(0) scale(1)',
+    opacity: 1,
     ...(noBorderAccent ? {} : { borderLeftWidth: '4px', borderLeftColor: accentColor }),
   };
 
