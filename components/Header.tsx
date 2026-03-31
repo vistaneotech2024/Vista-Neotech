@@ -144,7 +144,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
           />
         </Link>
 
-        <nav className="hidden md:flex md:items-center md:gap-0.5">
+        <nav className="hidden sm:flex sm:items-center sm:gap-0.5">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -393,7 +393,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
           <ThemeToggle />
           <Link
             href="/contact"
-            className="hidden rounded-full px-5 py-2.5 text-sm font-semibold text-white md:inline-flex transition hover:opacity-90"
+            className="hidden rounded-full px-5 py-2.5 text-sm font-semibold text-white sm:inline-flex transition hover:opacity-90"
             style={{ backgroundColor: 'var(--color-accent-1)' }}
           >
             Get in touch
@@ -402,7 +402,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
 
         <button
           type="button"
-          className="flex flex-col gap-1.5 p-2 md:hidden"
+          className="hidden max-sm:flex flex-col gap-1.5 p-2"
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
           aria-label="Toggle menu"
@@ -416,7 +416,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
 
       {open && (
         <div
-          className="border-t border-[var(--color-border)] px-4 py-6 md:hidden"
+          className="hidden max-sm:block border-t border-[var(--color-border)] px-4 py-6"
           style={{ backgroundColor: 'var(--color-bg-elevated)' }}
         >
           <nav className="flex flex-col gap-1">

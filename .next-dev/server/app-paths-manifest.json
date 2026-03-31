@@ -1,7 +1,7 @@
 {
   "/secureadmin/login/page": "app/secureadmin/login/page.js",
-  "/(main)/page": "app/(main)/page.js",
+  "/blog/page": "app/blog/page.js",
   "/(main)/[slug]/page": "app/(main)/[slug]/page.js",
-  "/admin/blog/page": "app/admin/blog/page.js",
-  "/admin/blog/new/page": "app/admin/blog/new/page.js"
+  "/admin/blog/new/page": "app/admin/blog/new/page.js",
+  "/(main)/page": "app/(main)/page.js"
 }

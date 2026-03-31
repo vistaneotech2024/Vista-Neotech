@@ -3289,6 +3289,17 @@ html.dark .bg-section-gradient {
   opacity: 0.4;
 }
 
+@media not all and (min-width: 640px) {
+
+  .max-sm\:block {
+    display: block;
+  }
+
+  .max-sm\:flex {
+    display: flex;
+  }
+}
+
 @media (min-width: 640px) {
 
   .sm\:ml-auto {
@@ -3303,8 +3314,20 @@ html.dark .bg-section-gradient {
     display: block;
   }
 
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:inline-flex {
+    display: inline-flex;
+  }
+
   .sm\:grid {
     display: grid;
+  }
+
+  .sm\:hidden {
+    display: none;
   }
 
   .sm\:w-\[420px\] {
@@ -3366,6 +3389,10 @@ html.dark .bg-section-gradient {
 
   .sm\:gap-4 {
     gap: 1rem;
+  }
+
+  .sm\:gap-0\.5 {
+    gap: 0.125rem;
   }
 
   .sm\:self-start {
