@@ -1527,6 +1527,9 @@ html.dark .bg-section-gradient {
 .min-h-screen {
   min-height: 100vh;
 }
+.min-h-\[104px\] {
+  min-height: 104px;
+}
 .w-0\.5 {
   width: 0.125rem;
 }
@@ -2057,6 +2060,9 @@ html.dark .bg-section-gradient {
 }
 .bg-white\/5 {
   background-color: rgb(255 255 255 / 0.05);
+}
+.bg-current {
+  background-color: currentColor;
 }
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
@@ -3433,6 +3439,14 @@ html.dark .bg-section-gradient {
     height: 20rem;
   }
 
+  .md\:h-10 {
+    height: 2.5rem;
+  }
+
+  .md\:h-16 {
+    height: 4rem;
+  }
+
   .md\:min-h-\[48vh\] {
     min-height: 48vh;
   }
@@ -3449,12 +3463,24 @@ html.dark .bg-section-gradient {
     min-height: 78vh;
   }
 
+  .md\:min-h-\[116px\] {
+    min-height: 116px;
+  }
+
   .md\:w-64 {
     width: 16rem;
   }
 
   .md\:w-80 {
     width: 20rem;
+  }
+
+  .md\:w-10 {
+    width: 2.5rem;
+  }
+
+  .md\:w-16 {
+    width: 4rem;
   }
 
   .md\:scroll-mt-\[5\.5rem\] {
@@ -3556,6 +3582,11 @@ html.dark .bg-section-gradient {
   .md\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .md\:pb-14 {

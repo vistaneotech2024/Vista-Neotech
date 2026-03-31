@@ -408,9 +408,9 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
           aria-label="Toggle menu"
           style={{ color: 'var(--color-text)' }}
         >
-          <span className={`block h-0.5 w-6 rounded-full transition ${open ? 'translate-y-2 rotate-45' : ''}`} />
-          <span className={`block h-0.5 w-6 rounded-full transition ${open ? 'opacity-0' : ''}`} />
-          <span className={`block h-0.5 w-6 rounded-full transition ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+          <span className={`block h-0.5 w-6 rounded-full bg-current transition ${open ? 'translate-y-2 rotate-45' : ''}`} />
+          <span className={`block h-0.5 w-6 rounded-full bg-current transition ${open ? 'opacity-0' : ''}`} />
+          <span className={`block h-0.5 w-6 rounded-full bg-current transition ${open ? '-translate-y-2 -rotate-45' : ''}`} />
         </button>
       </div>
 

@@ -59,7 +59,7 @@ export function StatsBar() {
               ref={(el) => {
                 refs.current[index] = el;
               }}
-              className="group relative flex overflow-hidden rounded-2xl border py-6 pl-6 pr-6 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 md:py-8 md:pl-8"
+              className="group relative flex min-h-[104px] items-center gap-3 overflow-hidden rounded-2xl border px-4 py-4 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl md:min-h-[116px] md:gap-4 md:px-6 md:py-6"
               style={{
                 backgroundColor: 'var(--color-bg)',
                 borderColor: 'var(--color-border)',
@@ -70,19 +70,19 @@ export function StatsBar() {
               }}
             >
               <div
-                className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl text-2xl transition-transform duration-300 group-hover:scale-110"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 md:h-16 md:w-16"
                 style={{ backgroundColor: accentMutedVar(s.accent), color: accentVar(s.accent) }}
               >
-                <s.icon className="h-16 w-16" />
+                <s.icon className="h-8 w-8 md:h-10 md:w-10" />
               </div>
-              <div className="ml-4 min-w-0">
+              <div className="min-w-0">
                 <span
-                  className="block text-2xl font-bold tracking-tight md:text-3xl"
+                  className="block text-xl font-bold tracking-tight md:text-2xl"
                   style={{ color: 'var(--color-text)' }}
                 >
                   {s.value}
                 </span>
-                <p className="mt-0.5 text-sm font-medium" style={{ color: 'var(--color-text-muted)' }}>
+                <p className="mt-0.5 text-xs font-medium md:text-sm" style={{ color: 'var(--color-text-muted)' }}>
                   {s.label} <span style={{ color: 'var(--color-text-subtle)' }}>{s.sub}</span>
                 </p>
               </div>
