@@ -6,14 +6,14 @@ import { organizationSchema } from '@/lib/seo';
 import { CRITICAL_CSS } from '@/lib/critical-css';
 import { ThemeProvider } from '@/lib/theme-context';
 import dynamic from 'next/dynamic';
-import { Header } from '@/components/Header';
+import { ConditionalHeader } from '@/components/ConditionalHeader';
 import { ConditionalFooter } from '@/components/ConditionalFooter';
 import { getHeaderNavLinks, getFooterMenu } from '@/lib/cms/menus';
+import { getIndustryPages } from '@/lib/cms/pages-db';
 
 const ConversionUI = dynamic(() => import('@/components/ConversionUI').then((m) => ({ default: m.ConversionUI })), {
   ssr: false,
 });
-import { getIndustryPages } from '@/lib/cms/pages-db';
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -53,7 +53,7 @@ function RootLayoutShell({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
         <ThemeProvider>
-          <Header navLinks={headerNavLinks} industries={industryPages} />
+          <ConditionalHeader navLinks={headerNavLinks} industries={industryPages} />
           <main className="flex-1" style={{ color: 'var(--color-text)' }}>{children}</main>
           <ConditionalFooter services={footerMenu.services} company={footerMenu.company} />
           <ConversionUI />

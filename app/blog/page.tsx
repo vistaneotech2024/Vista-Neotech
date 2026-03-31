@@ -2,9 +2,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getPostsForBlogPaginated } from '@/lib/cms/pages-db';
 import { getFeaturedImageByPath, toAbsoluteImageUrl } from '@/lib/blog-images';
-import { getExploreMoreLinks } from '@/lib/internal-links';
 import { BlogPostCard } from '@/components/ui/BlogPostCard';
-import { RelatedInternalLinks } from '@/components/ui/RelatedInternalLinks';
 
 export const dynamic = 'force-dynamic';
 // Keep blog dynamic in dev so pagination/searchParams are always fresh.
@@ -204,12 +202,6 @@ export default async function BlogIndexPage({
                 })}
               </div>
             )}
-            <RelatedInternalLinks
-              links={getExploreMoreLinks(5)}
-              title="Explore More"
-              description="Discover our services and get in touch for MLM software, direct selling consultancy, and digital solutions."
-              className="mt-16"
-            />
           </>
         )}
       </div>

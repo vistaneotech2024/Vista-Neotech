@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getPageByPath, buildMetadata, getAllPreservedUrls, getBaseUrl } from '@/lib/url-map';
-import { getPageBySlugFromDB, getPostBySlugFromDB } from '@/lib/cms/pages-db';
+import { getLatestPosts, getPageBySlugFromDB, getPostBySlugFromDB } from '@/lib/cms/pages-db';
 import { getFeaturedImageByPath, getFeaturedImageForPost, toAbsoluteImageUrl } from '@/lib/blog-images';
 import { OptimizedBlogImage } from '@/components/ui/OptimizedBlogImage';
 import { getRelatedInternalLinks } from '@/lib/internal-links';
@@ -714,45 +714,39 @@ export default async function SlugPage({ params }: Props) {
 
   const relatedSidebarPosts = isBlogPost
     ? await (async () => {
-        const preserved = getAllPreservedUrls().filter((p) => p.content_type === 'post');
-        const preservedBySlug = new Map<string, (typeof preserved)[number]>();
-        for (const p of preserved) {
-          const s = normalizePreservedToRootSlug(p.old_url);
-          if (s) preservedBySlug.set(s, p);
-        }
-
-        const candidates = preserved
-          .map((p) => normalizePreservedToRootSlug(p.old_url))
-          .filter((s) => s && s !== pathname);
-
-        const uniqueSlugs = Array.from(new Set(candidates)).slice(0, 3);
-        if (uniqueSlugs.length === 0) return [];
-
-        const rows = await Promise.all(
-          uniqueSlugs.map(async (slug) => {
-            const db = await getPostBySlugFromDB(slug);
-            const preserved = preservedBySlug.get(slug);
-            const title = db?.meta_title ?? db?.title ?? preserved?.meta_title ?? preserved?.slug ?? slug;
-            const excerpt = db?.meta_description ?? db?.excerpt ?? preserved?.meta_description ?? null;
-            const publishedAt = db?.published_at ?? null;
-            const dateLabel = formatPostDate(publishedAt);
-
-            const dbOg = db?.og_image ?? null;
-            const featured_image_url =
-              dbOg ? toAbsoluteImageUrl(dbOg) : (getFeaturedImageByPath(slug) ?? null);
-
+        // Prefer DB "latest posts" so this is truly newest content.
+        const latest = await getLatestPosts(10, pathname);
+        if (latest.length > 0) {
+          return latest.map((p) => {
+            const title = p.meta_title ?? p.title ?? p.slug;
+            const excerpt = p.meta_description ?? p.excerpt ?? null;
+            const dateLabel = formatPostDate(p.published_at ?? null);
+            const featured_image_url = p.og_image ? toAbsoluteImageUrl(p.og_image) : (getFeaturedImageByPath(p.slug) ?? null);
             return {
-              slug,
-              old_url: `/${slug}`,
+              slug: p.slug,
+              old_url: `/${p.slug}`,
               title: toSafeString(title),
               excerpt,
               dateLabel,
               featured_image_url,
             };
-          })
-        );
+          });
+        }
 
-        return rows.filter((r) => r.old_url);
+        // Fallback (e.g. when Supabase isn’t configured): use preserved URL map.
+        const preserved = getAllPreservedUrls().filter((p) => p.content_type === 'post');
+        const candidates = preserved
+          .map((p) => normalizePreservedToRootSlug(p.old_url))
+          .filter((s) => s && s !== pathname);
+        const uniqueSlugs = Array.from(new Set(candidates)).slice(0, 10);
+        return uniqueSlugs.map((slug) => ({
+          slug,
+          old_url: `/${slug}`,
+          title: toSafeString(slug.replace(/-/g, ' ')),
+          excerpt: null,
+          dateLabel: null,
+          featured_image_url: getFeaturedImageByPath(slug) ?? null,
+        }));
       })()
     : [];
 
@@ -770,7 +764,7 @@ export default async function SlugPage({ params }: Props) {
       {/* Hero / Header */}
       <header
         role="banner"
-        className={`relative overflow-hidden ${isBlogPost ? 'pt-20 pb-6 md:pt-24 md:pb-8' : 'min-h-[55vh] pt-20 pb-12 md:min-h-[58vh] md:pt-24 md:pb-14'}`}
+        className={`relative overflow-hidden ${isBlogPost ? 'pt-20 pb-4 md:pt-22 md:pb-5' : 'min-h-[55vh] pt-20 pb-12 md:min-h-[58vh] md:pt-24 md:pb-14'}`}
         style={{ backgroundColor: 'var(--color-hero-bg)', color: 'var(--color-hero-text)' }}
       >
         <div className="absolute inset-0 overflow-hidden opacity-30">
@@ -786,7 +780,7 @@ export default async function SlugPage({ params }: Props) {
 
         <div className={`container-wide relative z-10 flex flex-col ${isBlogPost ? '' : 'min-h-[45vh] justify-center md:min-h-[48vh]'}`}>
           {/* Breadcrumb */}
-          <nav className="mb-8 flex items-center gap-2 text-sm" aria-label="Breadcrumb">
+          <nav className={`flex items-center gap-2 text-sm ${isBlogPost ? 'mb-4 md:mb-5' : 'mb-8'}`} aria-label="Breadcrumb">
             <Link href="/" className="transition hover:opacity-80" style={{ color: 'var(--color-text-muted)' }}>
               Home
             </Link>
@@ -876,7 +870,10 @@ export default async function SlugPage({ params }: Props) {
       )}
 
       {/* Content Section – modern prose styling for WordPress/builder content; article for blog for semantic/AI clarity */}
-      <section className={`section-padding ${isServicePage ? '' : 'pt-0'}`} style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}>
+      <section
+        className={`${isBlogPost ? 'py-6 md:py-8' : 'section-padding'} ${isServicePage ? '' : 'pt-0'}`}
+        style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}
+      >
         <div className="container-wide">
           {isServicePage && serviceDef.features.length > 0 && (
             <div className="mb-10">
@@ -888,7 +885,7 @@ export default async function SlugPage({ params }: Props) {
           )}
           {/* Summary section removed (matches requested UI). */}
           {isBlogPost ? (
-            <div className="grid gap-6 lg:grid-cols-[1fr_360px] items-start">
+            <div className="grid gap-5 lg:grid-cols-[1fr_360px] items-start">
               <article
                 className="rounded-3xl border p-6 md:p-8"
                 style={{
@@ -972,7 +969,10 @@ export default async function SlugPage({ params }: Props) {
                     Explore more.
                   </h2>
 
-                  <div className="space-y-3">
+                  <div
+                    className="scrollbar-elegant max-h-[560px] space-y-3 overflow-y-auto pr-1"
+                    aria-label="Latest posts"
+                  >
                     {relatedSidebarPosts.map((p) => (
                       <a
                         key={p.old_url}
@@ -1062,18 +1062,6 @@ export default async function SlugPage({ params }: Props) {
 
       {/* (Removed) bottom related posts list; related blogs now show in the right sidebar */}
 
-      {/* Internal links for blog – link to key service pages for SEO */}
-      {isBlogPost && (() => {
-        const serviceLinks = getRelatedInternalLinks(pathname, 4);
-        return serviceLinks.length > 0 ? (
-          <RelatedInternalLinks
-            links={serviceLinks}
-            title="Explore our services"
-            description="MLM software, direct selling consultancy, and digital solutions."
-          />
-        ) : null;
-      })()}
-
       {/* Strong CTA Section – contextual headline and contact prompt (pages) */}
       {!isBlogPost && (() => {
         const cta = getCTACopy(pathname, displayTitle);
@@ -1097,7 +1085,7 @@ export default async function SlugPage({ params }: Props) {
 
       {/* Blog CTA – after article content */}
       {isBlogPost && (
-        <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-muted)', color: 'var(--color-text)' }}>
+        <section className="py-6 md:py-8" style={{ backgroundColor: 'var(--color-bg-muted)', color: 'var(--color-text)' }}>
           <div className="container-tight">
             <PageCTA
               headline="Start Your Growth Journey"

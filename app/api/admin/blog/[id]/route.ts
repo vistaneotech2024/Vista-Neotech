@@ -27,6 +27,19 @@ export async function POST(req: NextRequest, { params }: Params) {
   const status = String(body.status || 'draft').trim();
   const metaTitle = typeof body.metaTitle === 'string' ? body.metaTitle.trim() : null;
   const metaDescription = typeof body.metaDescription === 'string' ? body.metaDescription.trim() : null;
+  const focusKeyword = typeof body.focusKeyword === 'string' ? body.focusKeyword.trim() : null;
+  const canonicalUrl = typeof body.canonicalUrl === 'string' ? body.canonicalUrl.trim() : null;
+  const ogTitle = typeof body.ogTitle === 'string' ? body.ogTitle.trim() : null;
+  const ogDescription = typeof body.ogDescription === 'string' ? body.ogDescription.trim() : null;
+  const ogImage = typeof body.ogImage === 'string' ? body.ogImage.trim() : null;
+  const ogType = typeof body.ogType === 'string' ? body.ogType.trim() : null;
+  const twitterCard = typeof body.twitterCard === 'string' ? body.twitterCard.trim() : null;
+  const twitterTitle = typeof body.twitterTitle === 'string' ? body.twitterTitle.trim() : null;
+  const twitterDescription = typeof body.twitterDescription === 'string' ? body.twitterDescription.trim() : null;
+  const twitterImage = typeof body.twitterImage === 'string' ? body.twitterImage.trim() : null;
+  const schemaMarkup = body.schemaMarkup ?? null;
+  const customFields = body.customFields ?? null;
+  const imageUrl = typeof body.imageUrl === 'string' ? body.imageUrl.trim() : null;
   const excerpt = typeof body.excerpt === 'string' ? body.excerpt : '';
   const content = typeof body.content === 'string' ? body.content : '';
 
@@ -38,16 +51,39 @@ export async function POST(req: NextRequest, { params }: Params) {
     return NextResponse.json({ error: 'Invalid status' }, { status: 400 });
   }
 
+  const nowIso = new Date().toISOString();
+  const { data: existing } = await supabase
+    .from('posts')
+    .select('published_at')
+    .eq('id', id)
+    .maybeSingle();
+  const shouldSetPublishedAt = status === 'published' && !existing?.published_at;
+
   const { error } = await supabase
     .from('posts')
     .update({
-      title: title || null,
+      title: title || slug || '(untitled)',
       slug,
       status,
       meta_title: metaTitle,
       meta_description: metaDescription,
+      focus_keyword: focusKeyword,
+      canonical_url: canonicalUrl,
+      og_title: ogTitle,
+      og_description: ogDescription,
+      og_image: ogImage,
+      og_type: ogType,
+      twitter_card: twitterCard,
+      twitter_title: twitterTitle,
+      twitter_description: twitterDescription,
+      twitter_image: twitterImage,
+      schema_markup: schemaMarkup,
+      custom_fields: customFields,
+      image_url: imageUrl,
       excerpt,
       content,
+      updated_at: nowIso,
+      ...(shouldSetPublishedAt ? { published_at: nowIso } : {}),
     })
     .eq('id', id);
 

@@ -253,6 +253,58 @@ export async function getPostsForBlog(): Promise<PostListItem[]> {
   return result.posts;
 }
 
+/** Latest posts for sidebars/related sections (metadata only). */
+export async function getLatestPosts(limit = 10, excludeSlug?: string): Promise<PostListItem[]> {
+  try {
+    const supabase = getSupabaseForContent();
+    if (!supabase) return [];
+
+    const safeLimit = Number.isFinite(limit) && limit > 0 ? Math.floor(limit) : 10;
+    const fetchLimit = Math.min(50, safeLimit + (excludeSlug ? 1 : 0));
+
+    // Explicit filters are required because service-role bypasses RLS.
+    const { data, error } = await supabase
+      .from('posts')
+      .select(
+        'slug, title, excerpt, meta_title, meta_description, og_image, published_at, post_categories(categories(name, slug))'
+      )
+      .eq('content_type', 'post')
+      .eq('status', 'published')
+      .not('published_at', 'is', null)
+      .order('published_at', { ascending: false })
+      .limit(fetchLimit);
+
+    if (error) {
+      logContentError('getLatestPosts', error);
+      return [];
+    }
+    if (!data) return [];
+
+    const mapped: PostListItem[] = data.map((row: Record<string, unknown>) => {
+      const rels = (row.post_categories as any[] | undefined) ?? [];
+      const firstCat = rels?.[0]?.categories ?? null;
+      return {
+        slug: row.slug as string,
+        title: row.title as string | null,
+        excerpt: row.excerpt as string | null,
+        meta_title: row.meta_title as string | null,
+        meta_description: row.meta_description as string | null,
+        og_image: row.og_image as string | null,
+        category_name: typeof firstCat?.name === 'string' ? firstCat.name : null,
+        category_slug: typeof firstCat?.slug === 'string' ? firstCat.slug : null,
+        published_at: row.published_at as string | null,
+        updated_at: null,
+      };
+    });
+
+    const filtered = excludeSlug ? mapped.filter((p) => p.slug !== excludeSlug) : mapped;
+    return filtered.slice(0, safeLimit);
+  } catch (e) {
+    logContentError('getLatestPosts throw', e);
+    return [];
+  }
+}
+
 /** Pages marked as industry pages (template = 'industry' or custom_fields.is_industry = true) */
 export async function getIndustryPages(): Promise<IndustryPageSummary[]> {
   try {

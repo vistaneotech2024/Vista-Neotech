@@ -15,7 +15,9 @@ export default async function AdminBlogEditPage({ params }: Params) {
 
   const { data: post } = await supabase
     .from('posts')
-    .select('id, slug, title, status, meta_title, meta_description, excerpt, content')
+    .select(
+      'id, slug, title, status, meta_title, meta_description, excerpt, content, focus_keyword, canonical_url, og_title, og_description, og_image, og_type, twitter_card, twitter_title, twitter_description, twitter_image, schema_markup, custom_fields, image_url'
+    )
     .eq('id', params.id)
     .maybeSingle();
 
@@ -40,6 +42,19 @@ export default async function AdminBlogEditPage({ params }: Params) {
         initialStatus={(post.status as string) || 'draft'}
         initialMetaTitle={(post.meta_title as string) || ''}
         initialMetaDescription={(post.meta_description as string) || ''}
+        initialFocusKeyword={(post.focus_keyword as string) || ''}
+        initialCanonicalUrl={(post.canonical_url as string) || ''}
+        initialOgTitle={(post.og_title as string) || ''}
+        initialOgDescription={(post.og_description as string) || ''}
+        initialOgImage={(post.og_image as string) || ''}
+        initialOgType={(post.og_type as string) || 'article'}
+        initialTwitterCard={(post.twitter_card as string) || 'summary_large_image'}
+        initialTwitterTitle={(post.twitter_title as string) || ''}
+        initialTwitterDescription={(post.twitter_description as string) || ''}
+        initialTwitterImage={(post.twitter_image as string) || ''}
+        initialSchemaMarkup={post.schema_markup ? JSON.stringify(post.schema_markup, null, 2) : ''}
+        initialCustomFields={post.custom_fields ? JSON.stringify(post.custom_fields, null, 2) : '{}'}
+        initialImageUrl={(post.image_url as string) || ''}
         initialExcerpt={(post.excerpt as string) || ''}
         initialContent={(post.content as string) || ''}
       />

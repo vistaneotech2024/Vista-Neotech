@@ -12,10 +12,6 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Suspense
-      fallback={<DotsLoaderBlock minHeight="50vh" />}
-    >
-      {children}
-    </Suspense>
+    <Suspense fallback={<DotsLoaderBlock minHeight="50vh" />}>{children}</Suspense>
   );
 }
