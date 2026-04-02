@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { requireAdmin } from '@/lib/admin-auth';
 import { createAdminSupabase } from '@/lib/supabase-admin';
+import { CreateBlogPostModal } from './CreateBlogPostModal';
+import { BlogPostRowActions } from './BlogPostRowActions';
 
 type PostRow = {
   id: string;
@@ -116,13 +118,7 @@ export default async function AdminBlogList({
             </div>
           </form>
 
-          <Link
-            href="/admin/blog/new"
-            className="inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold transition hover:opacity-90 sm:self-start sm:ml-2"
-            style={{ backgroundColor: 'var(--color-accent-3)', color: '#fff' }}
-          >
-            Create blog
-          </Link>
+          <CreateBlogPostModal triggerLabel="Create blog" />
         </div>
       </div>
 
@@ -174,13 +170,7 @@ export default async function AdminBlogList({
                 </td>
                 <td className="px-4 py-3" style={{ color: 'var(--color-text-muted)' }}>{p.published_at ? new Date(p.published_at).toLocaleDateString() : '—'}</td>
                 <td className="px-4 py-3 text-right">
-                  <Link
-                    href={`/admin/blog/${p.id}`}
-                    className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold transition hover:opacity-90"
-                    style={{ backgroundColor: 'var(--color-accent-1-muted)', color: 'var(--color-accent-1)' }}
-                  >
-                    Edit
-                  </Link>
+                  <BlogPostRowActions id={p.id} />
                 </td>
               </tr>
             ))}

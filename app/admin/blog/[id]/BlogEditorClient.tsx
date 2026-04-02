@@ -2,6 +2,17 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { RichTextEditor } from '@/components/editor/RichTextEditor';
+
+function slugify(input: string) {
+  return String(input || '')
+    .toLowerCase()
+    .trim()
+    .replace(/['"]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
 
 export function BlogEditorClient(props: {
   id: string;
@@ -29,39 +40,41 @@ export function BlogEditorClient(props: {
   const router = useRouter();
   const [title, setTitle] = useState(props.initialTitle);
   const [slug, setSlug] = useState(props.initialSlug);
+  const [slugTouched, setSlugTouched] = useState(false);
   const [status, setStatus] = useState(props.initialStatus || 'draft');
   const [metaTitle, setMetaTitle] = useState(props.initialMetaTitle);
   const [metaDescription, setMetaDescription] = useState(props.initialMetaDescription);
   const [focusKeyword, setFocusKeyword] = useState(props.initialFocusKeyword);
   const [canonicalUrl, setCanonicalUrl] = useState(props.initialCanonicalUrl);
-  const [ogTitle, setOgTitle] = useState(props.initialOgTitle);
-  const [ogDescription, setOgDescription] = useState(props.initialOgDescription);
-  const [ogImage, setOgImage] = useState(props.initialOgImage);
-  const [ogType, setOgType] = useState(props.initialOgType || 'article');
-  const [twitterCard, setTwitterCard] = useState(props.initialTwitterCard || 'summary_large_image');
-  const [twitterTitle, setTwitterTitle] = useState(props.initialTwitterTitle);
-  const [twitterDescription, setTwitterDescription] = useState(props.initialTwitterDescription);
-  const [twitterImage, setTwitterImage] = useState(props.initialTwitterImage);
-  const [schemaMarkup, setSchemaMarkup] = useState(props.initialSchemaMarkup);
-  const [customFields, setCustomFields] = useState(props.initialCustomFields || '{}');
   const [imageUrl, setImageUrl] = useState(props.initialImageUrl);
   const [excerpt, setExcerpt] = useState(props.initialExcerpt);
   const [content, setContent] = useState(props.initialContent);
 
   const [saving, setSaving] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
 
-  function parseJsonOrThrow(label: string, value: string, { allowEmpty }: { allowEmpty: boolean }) {
-    const raw = value.trim();
-    if (!raw) {
-      if (allowEmpty) return null;
-      throw new Error(`${label} is required`);
-    }
+  async function uploadFeaturedImage(file: File) {
+    setUploadingImage(true);
+    setError(null);
+    setSaved(false);
     try {
-      return JSON.parse(raw);
-    } catch {
-      throw new Error(`${label} must be valid JSON`);
+      const form = new FormData();
+      form.set('file', file);
+      form.set('folder', 'uploads/blog');
+
+      const res = await fetch('/api/admin/uploads', { method: 'POST', body: form });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body?.error || 'Failed to upload image');
+
+      const url = typeof body?.url === 'string' ? body.url : '';
+      if (!url) throw new Error('Uploaded, but no URL returned');
+      setImageUrl(url);
+    } catch (err: any) {
+      setError(err?.message || 'Failed to upload image');
+    } finally {
+      setUploadingImage(false);
     }
   }
 
@@ -73,10 +86,6 @@ export function BlogEditorClient(props: {
 
     try {
       const isNew = props.id === 'new';
-      const parsedSchemaMarkup = schemaMarkup.trim()
-        ? parseJsonOrThrow('Schema markup', schemaMarkup, { allowEmpty: true })
-        : null;
-      const parsedCustomFields = parseJsonOrThrow('Custom fields', customFields, { allowEmpty: false }) ?? {};
 
       const res = await fetch(isNew ? '/api/admin/blog/new' : `/api/admin/blog/${props.id}`, {
         method: 'POST',
@@ -89,16 +98,7 @@ export function BlogEditorClient(props: {
           metaDescription,
           focusKeyword,
           canonicalUrl,
-          ogTitle,
-          ogDescription,
-          ogImage,
-          ogType,
-          twitterCard,
-          twitterTitle,
-          twitterDescription,
-          twitterImage,
-          schemaMarkup: parsedSchemaMarkup,
-          customFields: parsedCustomFields,
+          customFields: {},
           imageUrl,
           excerpt,
           content,
@@ -133,7 +133,13 @@ export function BlogEditorClient(props: {
           <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Title</span>
           <input
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+              const nextTitle = e.target.value;
+              setTitle(nextTitle);
+              if (props.id === 'new' && !slugTouched) {
+                setSlug(slugify(nextTitle));
+              }
+            }}
             className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
             style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
           />
@@ -142,7 +148,10 @@ export function BlogEditorClient(props: {
           <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Slug</span>
           <input
             value={slug}
-            onChange={(e) => setSlug(e.target.value)}
+            onChange={(e) => {
+              setSlugTouched(true);
+              setSlug(slugify(e.target.value));
+            }}
             className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
             style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
           />
@@ -205,100 +214,6 @@ export function BlogEditorClient(props: {
         </div>
       </details>
 
-      <details className="rounded-3xl border p-4 md:p-5" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg-elevated)' }}>
-        <summary className="cursor-pointer select-none text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
-          Open Graph (social preview)
-        </summary>
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <label className="block">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>OG title</span>
-            <input
-              value={ogTitle}
-              onChange={(e) => setOgTitle(e.target.value)}
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>OG type</span>
-            <input
-              value={ogType}
-              onChange={(e) => setOgType(e.target.value)}
-              placeholder="article"
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-          </label>
-          <label className="block md:col-span-2">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>OG description</span>
-            <textarea
-              rows={3}
-              value={ogDescription}
-              onChange={(e) => setOgDescription(e.target.value)}
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-          </label>
-          <label className="block md:col-span-2">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>OG image URL</span>
-            <input
-              value={ogImage}
-              onChange={(e) => setOgImage(e.target.value)}
-              placeholder="https://example.com/og.jpg"
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-          </label>
-        </div>
-      </details>
-
-      <details className="rounded-3xl border p-4 md:p-5" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg-elevated)' }}>
-        <summary className="cursor-pointer select-none text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
-          Twitter card
-        </summary>
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <label className="block">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Twitter card</span>
-            <input
-              value={twitterCard}
-              onChange={(e) => setTwitterCard(e.target.value)}
-              placeholder="summary_large_image"
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Twitter title</span>
-            <input
-              value={twitterTitle}
-              onChange={(e) => setTwitterTitle(e.target.value)}
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-          </label>
-          <label className="block md:col-span-2">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Twitter description</span>
-            <textarea
-              rows={3}
-              value={twitterDescription}
-              onChange={(e) => setTwitterDescription(e.target.value)}
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-          </label>
-          <label className="block md:col-span-2">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Twitter image URL</span>
-            <input
-              value={twitterImage}
-              onChange={(e) => setTwitterImage(e.target.value)}
-              placeholder="https://example.com/twitter.jpg"
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-          </label>
-        </div>
-      </details>
-
       <label className="block">
         <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Meta description</span>
         <textarea
@@ -323,63 +238,51 @@ export function BlogEditorClient(props: {
 
       <details className="rounded-3xl border p-4 md:p-5" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg-elevated)' }}>
         <summary className="cursor-pointer select-none text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
-          Advanced (JSON + image URL)
+          Advanced (JSON + featured image)
         </summary>
         <div className="mt-4 grid gap-4">
           <label className="block">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Image URL</span>
+            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Upload featured image</span>
             <input
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="https://example.com/featured.jpg"
+              type="file"
+              accept="image/*"
+              disabled={uploadingImage}
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) uploadFeaturedImage(f);
+              }}
               className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
               style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
             />
             <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              Stores to `posts.image_url`.
+              Uploads to `public/uploads/blog/`.
             </p>
           </label>
 
-          <label className="block">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Schema markup (JSON)</span>
-            <textarea
-              rows={8}
-              value={schemaMarkup}
-              onChange={(e) => setSchemaMarkup(e.target.value)}
-              placeholder='{"@context":"https://schema.org","@type":"BlogPosting"}'
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm font-mono outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-            <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              Optional. Leave empty to store NULL.
-            </p>
-          </label>
+          {imageUrl?.trim() ? (
+            <div className="rounded-2xl border p-3 md:p-4" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
+              <p className="text-xs mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                Preview
+              </p>
+              <img
+                src={imageUrl}
+                alt="Featured image preview"
+                className="h-48 w-full rounded-xl object-cover"
+                onError={() => setError('Image preview failed to load. Please check the Image URL.')}
+              />
+            </div>
+          ) : null}
 
-          <label className="block">
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Custom fields (JSON)</span>
-            <textarea
-              rows={8}
-              value={customFields}
-              onChange={(e) => setCustomFields(e.target.value)}
-              className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm font-mono outline-none focus:ring-2"
-              style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
-            />
-            <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              Required JSON (defaults to `{}`).
-            </p>
-          </label>
         </div>
       </details>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <div>
-          <p className="text-sm font-medium mb-2" style={{ color: 'var(--color-text)' }}>Content (HTML allowed)</p>
-          <textarea
-            rows={20}
+          <p className="text-sm font-medium mb-2" style={{ color: 'var(--color-text)' }}>Content</p>
+          <RichTextEditor
             value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="w-full rounded-2xl border px-4 py-3 text-sm font-mono outline-none focus:ring-2"
-            style={{ backgroundColor: 'var(--color-bg)', borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+            onChange={setContent}
+            placeholder="Write your post…"
           />
         </div>
         <div>

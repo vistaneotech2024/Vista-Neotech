@@ -162,7 +162,7 @@ export default function ContactPage() {
                       Vista Neotech Pvt Ltd
                     </p>
                     <p className="mt-1 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                      5th Floor, Jaina Tower 1, 517, Janakpuri District Center, Janakpuri, New Delhi, Delhi, 110058
+                      5th Floor, Jaina Tower 1, 517, Janakpuri District Center, New Delhi, 110058
                     </p>
                     <div className="mt-2 space-y-1.5 text-sm" style={{ color: 'var(--color-text-muted)' }}>
                       <p>

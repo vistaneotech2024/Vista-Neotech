@@ -48,6 +48,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             Blog posts
           </Link>
           <Link
+            href="/admin/blog-categories"
+            className="block rounded-xl px-3 py-2 hover:bg-[var(--color-bg-muted)]"
+            style={{ color: 'var(--color-text)' }}
+          >
+            Blog categories
+          </Link>
+          <Link
             href="/admin/menus"
             className="block rounded-xl px-3 py-2 hover:bg-[var(--color-bg-muted)]"
             style={{ color: 'var(--color-text)' }}

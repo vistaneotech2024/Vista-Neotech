@@ -101,3 +101,20 @@ export async function POST(req: NextRequest, { params }: Params) {
   return NextResponse.json({ ok: true });
 }
 
+export async function DELETE(_: NextRequest, { params }: Params) {
+  await requireAdmin();
+  const supabase = createAdminSupabase();
+  const { id } = await params;
+
+  if (!supabase) {
+    return NextResponse.json({ error: 'Server not configured' }, { status: 500 });
+  }
+
+  const { error } = await supabase.from('posts').delete().eq('id', id);
+  if (error) {
+    return NextResponse.json({ error: 'Failed to delete post' }, { status: 500 });
+  }
+
+  return NextResponse.json({ ok: true });
+}
+

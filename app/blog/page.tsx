@@ -68,9 +68,12 @@ export default async function BlogIndexPage({
     const slug = normalizePostSlug(toSafeText(p.slug));
     if (!slug) return null;
     const old_url = toPostHref(slug);
+    const dbImg = toSafeText((p as any).image_url);
     const dbOg = toSafeText(p.og_image);
     const featured_image_url = dbOg
       ? toAbsoluteImageUrl(dbOg) || undefined
+      : dbImg
+        ? toAbsoluteImageUrl(dbImg) || dbImg || undefined
       : getFeaturedImageByPath(slug) || undefined;
     return {
       old_url,

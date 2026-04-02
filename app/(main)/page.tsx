@@ -75,6 +75,28 @@ export default async function HomePage() {
     <main className="home-page-compact">
       <HomeHeroCarousel config={heroConfig} />
 
+      <section className="section-padding" style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}>
+        <div className="container-wide">
+          <div
+            className="overflow-hidden rounded-3xl border"
+            style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg-elevated)' }}
+          >
+            <div className="relative aspect-video w-full bg-black">
+              <video
+                src="/uploads/blog/7791993-hd_1920_1080_25fps.mp4"
+                className="absolute inset-0 h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                preload="metadata"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <TrustBar />
 
       <BrandsSection />

@@ -83,8 +83,8 @@ export function Footer({ services: servicesProp, company: companyProp }: FooterP
               Vista Neotech Pvt Ltd
             </p>
             <div className="mt-1 space-y-0.5 text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              <p>5th Floor, Jaina Tower 1, 517, Janakpuri District Center, Janakpuri</p>
-              <p>New Delhi, Delhi, 110058</p>
+              <p>5th Floor, Jaina Tower 1, 517, Janakpuri District Center</p>
+              <p>New Delhi, 110058</p>
             </div>
             <div className="mt-3 flex flex-col gap-3 text-base md:text-lg lg:items-end">
               <a

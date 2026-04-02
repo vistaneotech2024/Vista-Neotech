@@ -75,6 +75,7 @@ export type PostFromDB = {
   meta_title: string | null;
   meta_description: string | null;
   og_image: string | null;
+  image_url?: string | null;
   category_name?: string | null;
   category_slug?: string | null;
   published_at: string | null;
@@ -145,7 +146,7 @@ export const getPostBySlugFromDB = cache(async (slug: string): Promise<PostFromD
     const { data, error } = await supabase
       .from('posts')
       .select(
-        'id, slug, title, content, excerpt, status, meta_title, meta_description, og_image, published_at, post_categories(categories(name, slug))'
+        'id, slug, title, content, excerpt, status, meta_title, meta_description, og_image, image_url, published_at, custom_fields'
       )
       .eq('slug', slug)
       .maybeSingle();
@@ -160,12 +161,12 @@ export const getPostBySlugFromDB = cache(async (slug: string): Promise<PostFromD
     }
     if (process.env.NODE_ENV === 'development') console.info('[Supabase] post from DB:', slug);
     const row = data as Record<string, unknown>;
-    const rels = (row.post_categories as any[] | undefined) ?? [];
-    const firstCat = rels?.[0]?.categories ?? null;
+    const cf = (row.custom_fields as any) ?? {};
+    const categoryName = typeof cf?.category === 'string' ? cf.category : null;
     return {
       ...row,
-      category_name: typeof firstCat?.name === 'string' ? firstCat.name : null,
-      category_slug: typeof firstCat?.slug === 'string' ? firstCat.slug : null,
+      category_name: categoryName,
+      category_slug: null,
       updated_at: null,
     } as PostFromDB;
   } catch (e) {
@@ -182,6 +183,7 @@ export type PostListItem = {
   meta_title: string | null;
   meta_description: string | null;
   og_image: string | null;
+  image_url?: string | null;
   category_name?: string | null;
   category_slug?: string | null;
   published_at: string | null;
@@ -205,13 +207,14 @@ export async function getPostsForBlogPaginated(
     const { data, error, count } = await supabase
       .from('posts')
       .select(
-        'slug, title, excerpt, meta_title, meta_description, og_image, published_at, post_categories(categories(name, slug))',
+        'slug, title, excerpt, meta_title, meta_description, og_image, image_url, published_at, created_at, custom_fields',
         { count: 'exact' }
       )
-      .eq('content_type', 'post')
+      // Support WordPress-imported statuses like "publish" as well.
       .eq('status', 'published')
-      .not('published_at', 'is', null)
-      .order('published_at', { ascending: false })
+      // Some imports might not set published_at; still show them (but keep ordering sensible).
+      .order('published_at', { ascending: false, nullsFirst: false })
+      .order('created_at', { ascending: false })
       .range(from, to);
 
     if (error) {
@@ -226,8 +229,8 @@ export async function getPostsForBlogPaginated(
     return {
       total: count ?? 0,
       posts: data.map((row: Record<string, unknown>) => {
-        const rels = (row.post_categories as any[] | undefined) ?? [];
-        const firstCat = rels?.[0]?.categories ?? null;
+        const cf = (row.custom_fields as any) ?? {};
+        const categoryName = typeof cf?.category === 'string' ? cf.category : null;
         return {
           slug: row.slug as string,
           title: row.title as string | null,
@@ -235,8 +238,8 @@ export async function getPostsForBlogPaginated(
           meta_title: row.meta_title as string | null,
           meta_description: row.meta_description as string | null,
           og_image: row.og_image as string | null,
-          category_name: typeof firstCat?.name === 'string' ? firstCat.name : null,
-          category_slug: typeof firstCat?.slug === 'string' ? firstCat.slug : null,
+          category_name: categoryName,
+          category_slug: null,
           published_at: row.published_at as string | null,
           updated_at: null,
         };
@@ -266,12 +269,11 @@ export async function getLatestPosts(limit = 10, excludeSlug?: string): Promise<
     const { data, error } = await supabase
       .from('posts')
       .select(
-        'slug, title, excerpt, meta_title, meta_description, og_image, published_at, post_categories(categories(name, slug))'
+        'slug, title, excerpt, meta_title, meta_description, og_image, image_url, published_at, created_at, custom_fields'
       )
-      .eq('content_type', 'post')
       .eq('status', 'published')
-      .not('published_at', 'is', null)
-      .order('published_at', { ascending: false })
+      .order('published_at', { ascending: false, nullsFirst: false })
+      .order('created_at', { ascending: false })
       .limit(fetchLimit);
 
     if (error) {
@@ -281,8 +283,8 @@ export async function getLatestPosts(limit = 10, excludeSlug?: string): Promise<
     if (!data) return [];
 
     const mapped: PostListItem[] = data.map((row: Record<string, unknown>) => {
-      const rels = (row.post_categories as any[] | undefined) ?? [];
-      const firstCat = rels?.[0]?.categories ?? null;
+      const cf = (row.custom_fields as any) ?? {};
+      const categoryName = typeof cf?.category === 'string' ? cf.category : null;
       return {
         slug: row.slug as string,
         title: row.title as string | null,
@@ -290,8 +292,8 @@ export async function getLatestPosts(limit = 10, excludeSlug?: string): Promise<
         meta_title: row.meta_title as string | null,
         meta_description: row.meta_description as string | null,
         og_image: row.og_image as string | null,
-        category_name: typeof firstCat?.name === 'string' ? firstCat.name : null,
-        category_slug: typeof firstCat?.slug === 'string' ? firstCat.slug : null,
+        category_name: categoryName,
+        category_slug: null,
         published_at: row.published_at as string | null,
         updated_at: null,
       };

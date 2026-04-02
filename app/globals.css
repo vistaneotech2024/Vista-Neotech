@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'react-quill/dist/quill.snow.css';
+
 /* ========== LIGHT THEME (default) ========== */
 :root {
   /* Brand palette – fixed hues, used in both themes */
@@ -501,6 +503,25 @@
       display: none;
     }
   }
+}
+
+/* Quill editor theme alignment with app colors */
+.ql-toolbar.ql-snow,
+.ql-container.ql-snow {
+  border-color: var(--color-border) !important;
+}
+.ql-toolbar.ql-snow {
+  background: var(--color-bg-elevated) !important;
+}
+.ql-container.ql-snow {
+  background: var(--color-bg) !important;
+}
+.ql-editor {
+  min-height: 360px;
+  color: var(--color-text);
+}
+.ql-editor.ql-blank::before {
+  color: var(--color-text-muted) !important;
 }
 
 /* Tech grid – theme-aware */
