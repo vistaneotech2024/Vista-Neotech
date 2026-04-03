@@ -8,6 +8,7 @@
 import { cache } from 'react';
 import { createServerSupabase } from '@/lib/supabase-server';
 import { createAdminSupabase } from '@/lib/supabase-admin';
+import { isUuid } from '@/lib/parse-blog-category-id';
 
 let _loggedNoClient = false;
 let _loggedClientType = false;
@@ -184,15 +185,47 @@ export type PostListItem = {
   meta_description: string | null;
   og_image: string | null;
   image_url?: string | null;
+  category_id?: string | null;
   category_name?: string | null;
   category_slug?: string | null;
   published_at: string | null;
   updated_at: string | null;
 };
 
+export type BlogCategoryPublic = { id: string; name: string };
+
+/** Active categories for public blog filter (RLS allows anon read when is_active). */
+export const getActiveBlogCategories = cache(async (): Promise<BlogCategoryPublic[]> => {
+  try {
+    const supabase = getSupabaseForContent();
+    if (!supabase) return [];
+
+    const { data, error } = await supabase
+      .from('blog_categories')
+      .select('id, name')
+      .eq('is_active', true)
+      .order('name', { ascending: true });
+
+    if (error) {
+      logContentError('getActiveBlogCategories', error);
+      return [];
+    }
+    return (data ?? []).map((r) => ({ id: r.id as string, name: r.name as string }));
+  } catch (e) {
+    logContentError('getActiveBlogCategories throw', e);
+    return [];
+  }
+});
+
+export type GetPostsForBlogPaginatedOptions = {
+  /** Filter by `posts."Category"` (blog_categories.id). */
+  categoryId?: string | null;
+};
+
 export async function getPostsForBlogPaginated(
   page: number,
-  pageSize: number
+  pageSize: number,
+  options?: GetPostsForBlogPaginatedOptions
 ): Promise<{ posts: PostListItem[]; total: number }> {
   try {
     const supabase = getSupabaseForContent();
@@ -203,16 +236,26 @@ export async function getPostsForBlogPaginated(
     const from = (safePage - 1) * safePageSize;
     const to = from + safePageSize - 1;
 
+    const filterCategoryId =
+      options?.categoryId && isUuid(options.categoryId) ? options.categoryId : null;
+
+    const categories = await getActiveBlogCategories();
+    const nameByCategoryId = new Map(categories.map((c) => [c.id, c.name]));
+
     // Explicit filters are required because service-role bypasses RLS.
-    const { data, error, count } = await supabase
+    let query = supabase
       .from('posts')
       .select(
-        'slug, title, excerpt, meta_title, meta_description, og_image, image_url, published_at, created_at, custom_fields',
+        'slug, title, excerpt, meta_title, meta_description, og_image, image_url, published_at, created_at, custom_fields, Category',
         { count: 'exact' }
       )
-      // Support WordPress-imported statuses like "publish" as well.
-      .eq('status', 'published')
-      // Some imports might not set published_at; still show them (but keep ordering sensible).
+      .eq('status', 'published');
+
+    if (filterCategoryId) {
+      query = query.eq('Category', filterCategoryId);
+    }
+
+    const { data, error, count } = await query
       .order('published_at', { ascending: false, nullsFirst: false })
       .order('created_at', { ascending: false })
       .range(from, to);
@@ -230,7 +273,15 @@ export async function getPostsForBlogPaginated(
       total: count ?? 0,
       posts: data.map((row: Record<string, unknown>) => {
         const cf = (row.custom_fields as any) ?? {};
-        const categoryName = typeof cf?.category === 'string' ? cf.category : null;
+        const cfCategoryName = typeof cf?.category === 'string' ? cf.category : null;
+        const categoryCol =
+          row.Category != null && typeof row.Category === 'string'
+            ? row.Category
+            : row.category != null && typeof row.category === 'string'
+              ? row.category
+              : null;
+        const category_name =
+          (categoryCol && nameByCategoryId.get(categoryCol)) || cfCategoryName;
         return {
           slug: row.slug as string,
           title: row.title as string | null,
@@ -238,7 +289,8 @@ export async function getPostsForBlogPaginated(
           meta_title: row.meta_title as string | null,
           meta_description: row.meta_description as string | null,
           og_image: row.og_image as string | null,
-          category_name: categoryName,
+          category_id: categoryCol,
+          category_name,
           category_slug: null,
           published_at: row.published_at as string | null,
           updated_at: null,

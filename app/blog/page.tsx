@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { getPostsForBlogPaginated } from '@/lib/cms/pages-db';
+import { getActiveBlogCategories, getPostsForBlogPaginated } from '@/lib/cms/pages-db';
 import { getFeaturedImageByPath, toAbsoluteImageUrl } from '@/lib/blog-images';
 import { BlogPostCard } from '@/components/ui/BlogPostCard';
+import { isUuid } from '@/lib/parse-blog-category-id';
 
 export const dynamic = 'force-dynamic';
 // Keep blog dynamic in dev so pagination/searchParams are always fresh.
@@ -32,6 +33,14 @@ function toPostHref(slug: string): string {
   return `/${encoded}`;
 }
 
+function blogListPath(page: number, categoryId?: string): string {
+  const params = new URLSearchParams();
+  if (categoryId) params.set('category', categoryId);
+  if (page > 1) params.set('page', String(page));
+  const q = params.toString();
+  return q ? `/blog?${q}` : '/blog';
+}
+
 function buildPaginationItems(currentPage: number, totalPages: number): Array<number | '...'> {
   if (totalPages <= 7) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -51,16 +60,23 @@ function buildPaginationItems(currentPage: number, totalPages: number): Array<nu
 export default async function BlogIndexPage({
   searchParams,
 }: {
-  searchParams?: { page?: string };
+  searchParams?: { page?: string; category?: string };
 }) {
   const rawPage = searchParams?.page;
   const parsedPage = Number.parseInt(rawPage ?? '1', 10);
   const page = Number.isNaN(parsedPage) || parsedPage < 1 ? 1 : parsedPage;
 
-  const { posts: dbPosts, total } = await getPostsForBlogPaginated(page, PAGE_SIZE);
+  const rawCategory = typeof searchParams?.category === 'string' ? searchParams.category.trim() : '';
+  const categoryFilter = rawCategory && isUuid(rawCategory) ? rawCategory : undefined;
+
+  const [categories, { posts: dbPosts, total }] = await Promise.all([
+    getActiveBlogCategories(),
+    getPostsForBlogPaginated(page, PAGE_SIZE, { categoryId: categoryFilter }),
+  ]);
+
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
   if (total > 0 && page > totalPages) {
-    redirect(totalPages === 1 ? '/blog' : `/blog?page=${totalPages}`);
+    redirect(blogListPath(totalPages, categoryFilter));
   }
   const posts = dbPosts
     .slice(0, PAGE_SIZE)
@@ -113,11 +129,50 @@ export default async function BlogIndexPage({
           </p>
         </div>
 
+        {categories.length > 0 ? (
+          <div
+            className="mb-8 flex flex-wrap items-center justify-center gap-2 md:mb-10"
+            role="navigation"
+            aria-label="Filter by category"
+          >
+            <Link
+              href={blogListPath(1)}
+              className="rounded-full border px-3.5 py-1.5 text-sm font-semibold transition hover:opacity-90"
+              style={{
+                borderColor: !categoryFilter ? 'var(--color-accent-1)' : 'var(--color-border)',
+                backgroundColor: !categoryFilter ? 'var(--color-accent-1-muted)' : 'transparent',
+                color: !categoryFilter ? 'var(--color-accent-1)' : 'var(--color-text)',
+              }}
+            >
+              All
+            </Link>
+            {categories.map((c) => {
+              const active = categoryFilter === c.id;
+              return (
+                <Link
+                  key={c.id}
+                  href={blogListPath(1, c.id)}
+                  className="rounded-full border px-3.5 py-1.5 text-sm font-semibold transition hover:opacity-90"
+                  style={{
+                    borderColor: active ? 'var(--color-accent-1)' : 'var(--color-border)',
+                    backgroundColor: active ? 'var(--color-accent-1-muted)' : 'transparent',
+                    color: active ? 'var(--color-accent-1)' : 'var(--color-text)',
+                  }}
+                >
+                  {c.name}
+                </Link>
+              );
+            })}
+          </div>
+        ) : null}
+
         {/* Blog Posts Grid — reference: 4 columns desktop, white cards on light gray */}
         {posts.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-lg" style={{ color: 'var(--color-text-muted)' }}>
-              No blog posts available yet.
+              {categoryFilter
+                ? 'No posts in this category yet.'
+                : 'No blog posts available yet.'}
             </p>
           </div>
         ) : (
@@ -130,7 +185,7 @@ export default async function BlogIndexPage({
             <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
               {hasPrev ? (
                 <Link
-                  href={prevPage === 1 ? '/blog' : `/blog?page=${prevPage}`}
+                  href={blogListPath(prevPage, categoryFilter)}
                   className="rounded-full border px-4 py-2 text-sm font-semibold transition hover:opacity-90"
                   style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
                 >
@@ -149,7 +204,7 @@ export default async function BlogIndexPage({
               </span>
               {hasNext ? (
                 <Link
-                  href={`/blog?page=${nextPage}`}
+                  href={blogListPath(nextPage, categoryFilter)}
                   className="rounded-full border px-4 py-2 text-sm font-semibold transition hover:opacity-90"
                   style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
                 >
@@ -195,7 +250,7 @@ export default async function BlogIndexPage({
                   ) : (
                     <Link
                       key={`page-${item}`}
-                      href={item === 1 ? '/blog' : `/blog?page=${item}`}
+                      href={blogListPath(item, categoryFilter)}
                       className="rounded-full border px-3 py-1.5 text-sm font-semibold transition hover:opacity-90"
                       style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
                     >

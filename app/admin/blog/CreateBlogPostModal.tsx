@@ -34,7 +34,9 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
   const [slugTouched, setSlugTouched] = useState(false);
   const [status, setStatus] = useState<'draft' | 'published'>('published');
   const [categoryId, setCategoryId] = useState('');
+  const [metaTitle, setMetaTitle] = useState('');
   const [metaDescription, setMetaDescription] = useState('');
+  const [focusKeyword, setFocusKeyword] = useState('');
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [coverFile, setCoverFile] = useState<File | null>(null);
@@ -45,6 +47,12 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [categories, setCategories] = useState<BlogCategory[]>([]);
   const [loadingCategories, setLoadingCategories] = useState(false);
+
+  const [aiDialogOpen, setAiDialogOpen] = useState(false);
+  const [aiBriefTitle, setAiBriefTitle] = useState('');
+  const [aiBriefDescription, setAiBriefDescription] = useState('');
+  const [aiGenerating, setAiGenerating] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
 
   const canSubmit = useMemo(() => {
     return (
@@ -67,7 +75,9 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
     setSlugTouched(false);
     setStatus('published');
     setCategoryId('');
+    setMetaTitle('');
     setMetaDescription('');
+    setFocusKeyword('');
     setContent('');
     setImageUrl('');
     setCoverFile(null);
@@ -75,21 +85,36 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
     setSaving(false);
     setUploadingImage(false);
     setError(null);
+    setAiDialogOpen(false);
+    setAiBriefTitle('');
+    setAiBriefDescription('');
+    setAiGenerating(false);
+    setAiError(null);
   }, []);
 
   const close = useCallback(() => {
     setOpen(false);
+    setAiDialogOpen(false);
+    setAiError(null);
   }, []);
 
   useEffect(() => {
     if (!open) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close();
+      if (e.key !== 'Escape') return;
+      if (aiDialogOpen) {
+        if (!aiGenerating) {
+          setAiDialogOpen(false);
+          setAiError(null);
+        }
+        return;
+      }
+      close();
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [open, close]);
+  }, [open, close, aiDialogOpen, aiGenerating]);
 
   useEffect(() => {
     if (!open) return;
@@ -157,6 +182,59 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
     }
   }
 
+  function openAiDialog() {
+    setAiError(null);
+    setAiBriefTitle(title.trim() || '');
+    setAiBriefDescription('');
+    setAiDialogOpen(true);
+  }
+
+  async function runAiGenerate(e: React.FormEvent) {
+    e.preventDefault();
+    const t = aiBriefTitle.trim();
+    if (!t || aiGenerating) return;
+
+    setAiGenerating(true);
+    setAiError(null);
+    try {
+      const res = await fetch('/api/admin/blog/generate-ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          briefTitle: t,
+          briefDescription: aiBriefDescription.trim(),
+        }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(typeof body?.error === 'string' ? body.error : 'AI generation failed');
+      }
+
+      const nextTitle = typeof body.title === 'string' ? body.title.trim() : '';
+      const nextSlug = typeof body.slug === 'string' ? body.slug.trim() : '';
+      const nextContent = typeof body.content === 'string' ? body.content : '';
+      if (!nextTitle || !nextContent) {
+        throw new Error('AI returned an incomplete post');
+      }
+
+      setTitle(nextTitle);
+      setSlugTouched(true);
+      setSlug(nextSlug ? slugify(nextSlug) : slugify(nextTitle));
+      setMetaTitle(typeof body.metaTitle === 'string' ? body.metaTitle.trim() : '');
+      setMetaDescription(typeof body.metaDescription === 'string' ? body.metaDescription.trim() : '');
+      setFocusKeyword(typeof body.focusKeyword === 'string' ? body.focusKeyword.trim() : '');
+      setContent(nextContent);
+
+      setAiDialogOpen(false);
+      setAiBriefDescription('');
+      setAiError(null);
+    } catch (err: any) {
+      setAiError(err?.message || 'AI generation failed');
+    } finally {
+      setAiGenerating(false);
+    }
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!canSubmit) return;
@@ -180,9 +258,9 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
           title: title.trim(),
           slug: slug.trim(),
           status,
-          metaTitle: '',
+          metaTitle: metaTitle.trim(),
           metaDescription: metaDescription.trim(),
-          focusKeyword: '',
+          focusKeyword: focusKeyword.trim(),
           canonicalUrl: '',
           customFields: {
             categoryId: categoryId.trim(),
@@ -229,8 +307,9 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
           className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-6"
           role="dialog"
           aria-modal="true"
+          aria-labelledby="create-blog-heading"
           onMouseDown={(e) => {
-            if (e.target === e.currentTarget) close();
+            if (e.target === e.currentTarget && !aiDialogOpen) close();
           }}
           style={{ backgroundColor: 'rgba(0,0,0,0.45)' }}
         >
@@ -241,7 +320,7 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
           >
             <div className="flex items-start justify-between gap-3 border-b p-4 sm:p-5" style={{ borderColor: 'var(--color-border)' }}>
               <div className="min-w-0">
-                <h2 className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>
+                <h2 id="create-blog-heading" className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>
                   Create New Blog Post
                 </h2>
                 <p className="mt-1 text-sm" style={{ color: 'var(--color-text-muted)' }}>
@@ -251,10 +330,13 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  disabled
-                  className="rounded-full border px-3 py-1.5 text-xs font-semibold opacity-60"
-                  title="AI generation endpoint not configured yet"
-                  style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+                  onClick={openAiDialog}
+                  className="rounded-full border px-3 py-1.5 text-xs font-semibold transition hover:opacity-90"
+                  style={{
+                    borderColor: 'var(--color-accent-2, var(--color-border))',
+                    color: 'var(--color-text)',
+                    backgroundColor: 'var(--color-bg-muted)',
+                  }}
                 >
                   Generate with AI
                 </button>
@@ -369,6 +451,72 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
                   </label>
                 </div>
 
+                <div
+                  className="rounded-2xl border p-4 sm:p-5"
+                  style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg-muted)' }}
+                >
+                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+                    SEO & meta
+                  </p>
+                  <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                    Used for search snippets and on-page metadata. All optional.
+                  </p>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
+                    <label className="block">
+                      <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                        Meta title
+                      </span>
+                      <input
+                        name="meta_title"
+                        value={metaTitle}
+                        onChange={(e) => setMetaTitle(e.target.value)}
+                        className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
+                        style={{
+                          backgroundColor: 'var(--color-bg)',
+                          borderColor: 'var(--color-border)',
+                          color: 'var(--color-text)',
+                        }}
+                        placeholder="Override title in search results…"
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                        Focus keyword
+                      </span>
+                      <input
+                        name="focus_keyword"
+                        value={focusKeyword}
+                        onChange={(e) => setFocusKeyword(e.target.value)}
+                        className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
+                        style={{
+                          backgroundColor: 'var(--color-bg)',
+                          borderColor: 'var(--color-border)',
+                          color: 'var(--color-text)',
+                        }}
+                        placeholder="Primary keyword phrase…"
+                      />
+                    </label>
+                    <label className="block md:col-span-2">
+                      <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                        Meta description
+                      </span>
+                      <textarea
+                        name="meta_description"
+                        rows={3}
+                        value={metaDescription}
+                        onChange={(e) => setMetaDescription(e.target.value)}
+                        className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
+                        style={{
+                          backgroundColor: 'var(--color-bg)',
+                          borderColor: 'var(--color-border)',
+                          color: 'var(--color-text)',
+                        }}
+                        placeholder="Short summary for search results and social previews…"
+                      />
+                    </label>
+                  </div>
+                </div>
+
                 <div>
                   <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
                     Content *
@@ -378,50 +526,30 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
                   </div>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
-                  <label className="block">
-                    <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
-                      Cover Image
-                    </span>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      disabled={saving || uploadingImage}
-                      onChange={(e) => {
-                        const f = e.target.files?.[0];
-                        setCoverFile(f ?? null);
-                        setImageUrl('');
-                      }}
-                      className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-                      style={{
-                        backgroundColor: 'var(--color-bg)',
-                        borderColor: 'var(--color-border)',
-                        color: 'var(--color-text)',
-                      }}
-                    />
-                    <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                      Select an image now; it will be uploaded when you click “Create Post”.
-                    </p>
-                  </label>
-
-                  <label className="block">
-                    <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
-                      Meta Description
-                    </span>
-                    <textarea
-                      rows={3}
-                      value={metaDescription}
-                      onChange={(e) => setMetaDescription(e.target.value)}
-                      className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-                      style={{
-                        backgroundColor: 'var(--color-bg)',
-                        borderColor: 'var(--color-border)',
-                        color: 'var(--color-text)',
-                      }}
-                      placeholder="Enter meta description for search results…"
-                    />
-                  </label>
-                </div>
+                <label className="block">
+                  <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                    Cover Image
+                  </span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    disabled={saving || uploadingImage}
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      setCoverFile(f ?? null);
+                      setImageUrl('');
+                    }}
+                    className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
+                    style={{
+                      backgroundColor: 'var(--color-bg)',
+                      borderColor: 'var(--color-border)',
+                      color: 'var(--color-text)',
+                    }}
+                  />
+                  <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                    Select an image now; it will be uploaded when you click “Create Post”.
+                  </p>
+                </label>
 
                 {coverPreviewUrl ? (
                   <div className="rounded-2xl border p-3 md:p-4" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
@@ -473,6 +601,111 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
                 </div>
               </div>
             </form>
+
+            {aiDialogOpen ? (
+              <div
+                className="fixed inset-0 z-[60] flex items-start justify-center p-4 sm:p-6 sm:items-center"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="ai-generate-heading"
+                onMouseDown={(e) => {
+                  if (e.target === e.currentTarget && !aiGenerating) {
+                    setAiDialogOpen(false);
+                    setAiError(null);
+                  }
+                }}
+                style={{ backgroundColor: 'rgba(0,0,0,0.55)' }}
+              >
+                <div
+                  className="w-full max-w-lg overflow-hidden rounded-2xl border shadow-xl"
+                  style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg-elevated)' }}
+                  onMouseDown={(e) => e.stopPropagation()}
+                >
+                  <div className="border-b p-4 sm:p-5" style={{ borderColor: 'var(--color-border)' }}>
+                    <h3 id="ai-generate-heading" className="text-base font-semibold" style={{ color: 'var(--color-text)' }}>
+                      Generate with AI
+                    </h3>
+                    <p className="mt-1 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                      Describe what you want. We will draft the post and fill the form below for you to review and edit.
+                    </p>
+                  </div>
+                  <form onSubmit={runAiGenerate} className="space-y-4 p-4 sm:p-5">
+                    <label className="block">
+                      <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                        Topic / title idea *
+                      </span>
+                      <input
+                        value={aiBriefTitle}
+                        onChange={(e) => setAiBriefTitle(e.target.value)}
+                        disabled={aiGenerating}
+                        className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2 disabled:opacity-60"
+                        style={{
+                          backgroundColor: 'var(--color-bg)',
+                          borderColor: 'var(--color-border)',
+                          color: 'var(--color-text)',
+                        }}
+                        placeholder="e.g. Benefits of compliance-ready MLM software"
+                        autoFocus
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                        Description / angle
+                      </span>
+                      <textarea
+                        rows={4}
+                        value={aiBriefDescription}
+                        onChange={(e) => setAiBriefDescription(e.target.value)}
+                        disabled={aiGenerating}
+                        className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2 disabled:opacity-60"
+                        style={{
+                          backgroundColor: 'var(--color-bg)',
+                          borderColor: 'var(--color-border)',
+                          color: 'var(--color-text)',
+                        }}
+                        placeholder="Audience, tone, key points, length, or anything the model should emphasize…"
+                      />
+                    </label>
+                    {aiError ? (
+                      <p
+                        className="text-sm rounded-2xl border px-3 py-2"
+                        style={{
+                          color: 'var(--color-accent-1)',
+                          borderColor: 'var(--color-border)',
+                          backgroundColor: 'var(--color-bg-muted)',
+                        }}
+                      >
+                        {aiError}
+                      </p>
+                    ) : null}
+                    <div className="flex justify-end gap-2 pt-1">
+                      <button
+                        type="button"
+                        disabled={aiGenerating}
+                        onClick={() => {
+                          if (!aiGenerating) {
+                            setAiDialogOpen(false);
+                            setAiError(null);
+                          }
+                        }}
+                        className="rounded-full border px-4 py-2 text-sm font-semibold transition hover:opacity-90 disabled:opacity-50"
+                        style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={aiGenerating || !aiBriefTitle.trim()}
+                        className="rounded-full px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
+                        style={{ backgroundColor: 'var(--color-accent-1)' }}
+                      >
+                        {aiGenerating ? 'Generating…' : 'Generate draft'}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       ) : null}

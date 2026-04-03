@@ -3,6 +3,7 @@ import { requireAdmin } from '@/lib/admin-auth';
 import { createAdminSupabase } from '@/lib/supabase-admin';
 import { submitUrlToBing } from '@/lib/bing-submit';
 import { getBingWebmasterApiKey } from '@/lib/indexing-settings';
+import { isUuid, pickCategoryIdForUpdate } from '@/lib/parse-blog-category-id';
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -59,6 +60,26 @@ export async function POST(req: NextRequest, { params }: Params) {
     .maybeSingle();
   const shouldSetPublishedAt = status === 'published' && !existing?.published_at;
 
+  const categoryPatch = pickCategoryIdForUpdate(body);
+  let categoryColumn: string | null | undefined;
+  if (categoryPatch !== 'omit') {
+    if (categoryPatch === null) {
+      categoryColumn = null;
+    } else if (!isUuid(categoryPatch)) {
+      return NextResponse.json({ error: 'Invalid category id' }, { status: 400 });
+    } else {
+      const { data: categoryRow, error: categoryError } = await supabase
+        .from('blog_categories')
+        .select('id')
+        .eq('id', categoryPatch)
+        .maybeSingle();
+      if (categoryError || !categoryRow) {
+        return NextResponse.json({ error: 'Unknown category' }, { status: 400 });
+      }
+      categoryColumn = categoryPatch;
+    }
+  }
+
   const { error } = await supabase
     .from('posts')
     .update({
@@ -84,6 +105,7 @@ export async function POST(req: NextRequest, { params }: Params) {
       content,
       updated_at: nowIso,
       ...(shouldSetPublishedAt ? { published_at: nowIso } : {}),
+      ...(categoryColumn !== undefined ? { Category: categoryColumn } : {}),
     })
     .eq('id', id);
 

@@ -1,7 +1,8 @@
 {
-  "/blog/page": "app/blog/page.js",
-  "/admin/blog-categories/page": "app/admin/blog-categories/page.js",
-  "/admin/blog/page": "app/admin/blog/page.js",
+  "/api/admin/blog-categories/route": "app/api/admin/blog-categories/route.js",
+  "/api/admin/blog/generate-ai/route": "app/api/admin/blog/generate-ai/route.js",
+  "/(main)/page": "app/(main)/page.js",
   "/(main)/[slug]/page": "app/(main)/[slug]/page.js",
-  "/(main)/page": "app/(main)/page.js"
+  "/admin/page": "app/admin/page.js",
+  "/admin/blog/page": "app/admin/blog/page.js"
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
 import { createAdminSupabase } from '@/lib/supabase-admin';
+import { isUuid, pickCategoryIdInput } from '@/lib/parse-blog-category-id';
 
 export async function POST(req: NextRequest) {
   await requireAdmin();
@@ -49,6 +50,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid status' }, { status: 400 });
   }
 
+  const categoryIdRaw = pickCategoryIdInput(body);
+  let categoryColumn: string | undefined;
+  if (categoryIdRaw) {
+    if (!isUuid(categoryIdRaw)) {
+      return NextResponse.json({ error: 'Invalid category id' }, { status: 400 });
+    }
+    const { data: categoryRow, error: categoryError } = await supabase
+      .from('blog_categories')
+      .select('id')
+      .eq('id', categoryIdRaw)
+      .maybeSingle();
+    if (categoryError || !categoryRow) {
+      return NextResponse.json({ error: 'Unknown category' }, { status: 400 });
+    }
+    categoryColumn = categoryIdRaw;
+  }
+
   const published_at = status === 'published' ? new Date().toISOString() : null;
 
   const { data, error } = await supabase
@@ -76,6 +94,7 @@ export async function POST(req: NextRequest) {
       excerpt,
       content,
       published_at,
+      ...(categoryColumn !== undefined ? { Category: categoryColumn } : {}),
     })
     .select('id')
     .maybeSingle();
