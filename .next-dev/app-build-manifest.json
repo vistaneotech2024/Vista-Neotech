@@ -62,6 +62,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/blog/page.js"
+    ],
+    "/admin/indexing/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/indexing/page.js"
+    ],
+    "/secureadmin/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/secureadmin/login/page.js"
     ]
   }
 }

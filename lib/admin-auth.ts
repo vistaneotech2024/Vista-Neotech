@@ -1,9 +1,25 @@
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
 import { createAdminSupabase } from '@/lib/supabase-admin';
 
 const SESSION_COOKIE = 'vista_admin_session';
+
+function isBcryptHash(stored: string): boolean {
+  return /^\$2[aby]\$\d{2}\$.+/.test(stored);
+}
+
+/** `public.users.password` (text): plaintext or bcrypt (`$2a$` / `$2b$` / `$2y$`). */
+async function passwordMatches(plain: string, stored: string | null | undefined): Promise<boolean> {
+  if (stored == null || typeof stored !== 'string') return false;
+  const t = stored.trim();
+  if (!t) return false;
+  if (isBcryptHash(t)) {
+    return bcrypt.compare(plain, t);
+  }
+  return plain === t;
+}
 
 export type AdminUser = {
   id: string;
@@ -29,7 +45,9 @@ export async function authenticateAdmin(email: string, password: string): Promis
   if (!user) return null;
   if (!['super_admin', 'admin', 'editor'].includes(user.role)) return null;
 
-  if (user.password !== password) return null;
+  const row = user as { password?: string | null };
+  const ok = await passwordMatches(password, row.password);
+  if (!ok) return null;
 
   // best-effort: do not block login if this fails
   await supabase
