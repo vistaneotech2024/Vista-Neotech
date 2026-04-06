@@ -3,6 +3,7 @@ import { FeatureCard } from '@/components/ui/FeatureCard';
 import {
   IconCpu,
   IconCode,
+  IconChart,
   IconDeviceMobile,
   IconBriefcase,
   IconShield,
@@ -12,129 +13,107 @@ import {
   IconHeadset,
 } from '@/components/ui/Icons';
 
-const featured = {
-  title: 'MLM Software',
-  description:
-    'End-to-end MLM and direct selling software—compensation, genealogy, compliance, and distributor portals.',
-  href: '/mlm-software',
-  accent: 1 as const,
-  className: 'h-full',
-  label: '01',
-  emoji: '⚡',
-};
-
-const items = [
+/** Order matches home “What we do” grid (01–12). */
+const serviceCards = [
   {
+    label: '01',
     title: 'Software Development',
     desc: 'Custom web and mobile applications built with modern technologies.',
     href: '/software-development',
-    label: '02',
     accent: 2 as const,
     icon: <IconCode size="lg" />,
   },
   {
+    label: '02',
+    title: 'MLM Software',
+    desc: 'End-to-end MLM and direct selling software—compensation, genealogy, compliance, and distributor portals.',
+    href: '/mlm-software',
+    accent: 1 as const,
+    icon: <IconChart size="lg" />,
+  },
+  {
+    label: '03',
     title: 'Direct Selling Consultant',
     desc: 'Strategy, training, legal advisory, and business growth solutions.',
     href: '/direct-selling-consultant-mlm',
-    label: '03',
     accent: 3 as const,
     icon: <IconBriefcase size="lg" />,
   },
   {
+    label: '04',
     title: 'Android & iOS App Development',
     desc: 'Native and cross-platform mobile apps for Android and iOS—design, build, and launch.',
     href: '/android-app-development',
-    label: '04',
     accent: 3 as const,
     icon: <IconDeviceMobile size="lg" />,
   },
   {
-    title: 'AI & ML Solutions',
-    desc: 'Intelligent automation, predictive analytics, and AI-powered business tools.',
-    href: '/ai-ml-solutions',
     label: '05',
-    accent: 4 as const,
-    icon: <IconSparkles size="lg" />,
-  },
-  {
-    title: 'Digital Marketing',
-    desc: 'SEO, SEM, content marketing, and growth strategies for online presence.',
-    href: '/seo-services',
-    label: '06',
-    accent: 2 as const,
-    icon: <IconGlobe size="lg" />,
-  },
-  {
     title: 'Travel Portal Development',
     desc: 'B2B and B2C travel portals for agencies, OTAs, and tour operators.',
     href: '/travel-portal-development',
-    label: '07',
     accent: 2 as const,
     icon: <IconGlobe size="lg" />,
   },
   {
+    label: '06',
     title: 'Shopping Portal Development',
     desc: 'E-commerce and shopping portals with secure payments and order management.',
     href: '/shopping-portal-development',
-    label: '08',
     accent: 2 as const,
     icon: <IconCode size="lg" />,
   },
   {
-    title: 'WhatsApp Marketing',
-    desc: 'High-engagement campaigns, automation flows, and CRM-integrated messaging.',
-    href: '/whatsapp-marketing',
-    label: '09',
-    accent: 5 as const,
-    icon: <IconHeadset size="lg" />,
-  },
-  {
+    label: '07',
     title: 'API Integration',
     desc: 'Seamless third-party integrations, API development, and system connectivity.',
     href: '/api-integration',
-    label: '10',
     accent: 5 as const,
     icon: <IconCpu size="lg" />,
   },
   {
+    label: '08',
+    title: 'AI & ML Solutions',
+    desc: 'Intelligent automation, predictive analytics, and AI-powered business tools.',
+    href: '/ai-ml-solutions',
+    accent: 4 as const,
+    icon: <IconSparkles size="lg" />,
+  },
+  {
+    label: '09',
+    title: 'WhatsApp Marketing',
+    desc: 'High-engagement campaigns, automation flows, and CRM-integrated messaging.',
+    href: '/whatsapp-marketing',
+    accent: 5 as const,
+    icon: <IconHeadset size="lg" />,
+  },
+  {
+    label: '10',
+    title: 'Digital Marketing',
+    desc: 'SEO, SEM, content marketing, and growth strategies for online presence.',
+    href: '/seo-services',
+    accent: 2 as const,
+    icon: <IconGlobe size="lg" />,
+  },
+  {
+    label: '11',
     title: 'Cloud Infrastructure',
     desc: 'DevOps, cloud migration, scalable architecture, and infrastructure management.',
     href: '/cloud-infrastructure',
-    label: '11',
     accent: 4 as const,
     icon: <IconRocket size="lg" />,
   },
   {
+    label: '12',
     title: 'Compliance & Security',
     desc: 'KYC automation, regulatory compliance, security audits, and data protection.',
     href: '/compliance-security',
-    label: '12',
     accent: 5 as const,
     icon: <IconShield size="lg" />,
   },
 ];
 
 export function BentoServices() {
-  const serviceCards = [
-    {
-      title: featured.title,
-      desc: featured.description,
-      href: featured.href,
-      label: featured.label,
-      accent: featured.accent,
-      emoji: featured.emoji,
-      icon: null,
-    },
-    ...items.map((item) => ({
-      title: item.title,
-      desc: item.desc,
-      href: item.href,
-      label: item.label,
-      accent: item.accent,
-      icon: item.icon,
-      emoji: null,
-    })),
-  ];
 
   return (
     <section
@@ -170,18 +149,13 @@ export function BentoServices() {
 
       <div className="container-wide relative z-10">
         <div className="mb-8 flex flex-col items-center gap-4 text-center lg:mb-10">
-          <div className="animate-fade-in-up max-w-4xl">
-            <p className="section-label mb-4">What we do</p>
-            <h2 id="what-we-do-title" className="display-3" style={{ color: 'var(--color-text)' }}>
-              Full-service IT solutions—with deep MLM and direct selling expertise.
-            </h2>
-            <p
-              className="mx-auto mt-3 max-w-3xl text-sm md:text-base"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              From MLM platforms and travel portals to e-commerce, WhatsApp automation and real estate software, we design and build the digital systems that power your business.
-            </p>
-          </div>
+          <h2
+            id="what-we-do-title"
+            className="animate-fade-in-up display-3 text-balance font-bold leading-tight"
+            style={{ color: 'var(--color-text)' }}
+          >
+            What we do
+          </h2>
           <Link
             href="/mlm-software-direct-selling-consultant"
             className="group inline-flex w-fit shrink-0 items-center gap-2 text-sm font-semibold transition-all hover:gap-3 hover:opacity-90 animate-fade-in-up"
@@ -208,8 +182,7 @@ export function BentoServices() {
                 }}
               >
                 <FeatureCard
-                  icon={item.icon ?? undefined}
-                  emoji={item.emoji ?? undefined}
+                  icon={item.icon}
                   label={item.label}
                   title={item.title}
                   description={item.desc}

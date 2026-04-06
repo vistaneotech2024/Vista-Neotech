@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/Button';
+import { ServiceMarqueeBar } from '@/components/ServiceMarqueeBar';
 import { PageCTA } from '@/components/ui/PageCTA';
 import { IconArrowRight } from '@/components/ui/Icons';
 
@@ -228,11 +229,6 @@ export function AboutUsPage({ title, description, html, canonicalUrl, focusKeywo
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
           pointer-events: none; z-index: 1;
         }
-
-        /* Marquee */
-        @keyframes marquee { 0%{ transform:translateX(0) } 100%{ transform:translateX(-50%) } }
-        .marquee-track { display:flex; width:max-content; animation:marquee 28s linear infinite; }
-        .marquee-track:hover { animation-play-state:paused; }
 
         /* Stat card */
         .stat-card { transition:transform .35s var(--ease-expo),box-shadow .35s var(--ease-expo); position:relative; overflow:hidden; }
@@ -529,20 +525,8 @@ export function AboutUsPage({ title, description, html, canonicalUrl, focusKeywo
           </div>
         </section>
 
-        {/* ══════════ MARQUEE ══════════ */}
-        <div className="overflow-hidden border-y py-4" style={{ backgroundColor: 'var(--color-accent-1)', borderColor: 'var(--color-accent-1)' }}>
-          <div className="marquee-track select-none">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex items-center">
-                {['Software Engineering','MLM Solutions','Direct Selling','SEO & Marketing','UI/UX Design','Custom APIs','Consulting','Full Support'].map((item) => (
-                  <span key={item} className="mx-6 whitespace-nowrap text-sm font-semibold uppercase tracking-widest text-white" style={{ fontFamily: 'var(--font-body)' }}>
-                    {item}<span className="mx-6 opacity-40">✦</span>
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* ══════════ MARQUEE (shared with home) ══════════ */}
+        <ServiceMarqueeBar />
 
         {/* ══════════ STATS ══════════ */}
         <section className="py-14 md:py-16" style={{ backgroundColor: 'var(--color-bg)' }}>

@@ -728,6 +728,31 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .about-services-marquee-track {
+    animation: none !important;
+  }
+}
+
+/* Home + About – orange service ticker (matches About Us page) */
+@keyframes service-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.about-services-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: service-marquee-scroll 120s linear infinite;
+  will-change: transform;
+}
+
+.about-services-marquee-track:hover,
+.about-services-marquee-track:focus-within {
+  animation-play-state: paused;
 }
 
 @layer utilities {

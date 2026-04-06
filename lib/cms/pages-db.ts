@@ -9,6 +9,11 @@ import { cache } from 'react';
 import { createServerSupabase } from '@/lib/supabase-server';
 import { createAdminSupabase } from '@/lib/supabase-admin';
 import { isUuid } from '@/lib/parse-blog-category-id';
+import {
+  readUuidListFromCustomFields,
+  BLOG_CF_CATEGORY_IDS,
+  BLOG_CF_SUBCATEGORY_IDS,
+} from '@/lib/blog-post-taxonomy';
 
 let _loggedNoClient = false;
 let _loggedClientType = false;
@@ -34,6 +39,29 @@ function logContentError(context: string, error: unknown) {
   const msg = error instanceof Error ? error.message : String(error);
   const details = error && typeof error === 'object' && 'details' in error ? (error as { details?: string }).details : undefined;
   console.error(`[Supabase] ${context}:`, msg, details ?? '');
+}
+
+function blogListCategoryDisplayName(
+  cf: Record<string, unknown>,
+  categoryCol: string | null,
+  nameByCategoryId: Map<string, string>,
+): string | null {
+  const catIds = readUuidListFromCustomFields(cf, BLOG_CF_CATEGORY_IDS);
+  const subIds = readUuidListFromCustomFields(cf, BLOG_CF_SUBCATEGORY_IDS);
+  const names: string[] = [];
+  for (const id of catIds) {
+    const n = nameByCategoryId.get(id);
+    if (n) names.push(n);
+  }
+  for (const id of subIds) {
+    const n = nameByCategoryId.get(id);
+    if (n) names.push(n);
+  }
+  if (names.length > 0) return names.join(', ');
+  const cfCategory = typeof cf.category === 'string' ? cf.category.trim() : '';
+  if (cfCategory) return cfCategory;
+  if (categoryCol && nameByCategoryId.get(categoryCol)) return nameByCategoryId.get(categoryCol)!;
+  return null;
 }
 
 /** Single FAQ row from `pages.custom_fields.faq_items` (JSONB). */
@@ -192,25 +220,65 @@ export type PostListItem = {
   updated_at: string | null;
 };
 
-export type BlogCategoryPublic = { id: string; name: string };
+/** `displayName` for subcategories lists assigned categories when present. */
+export type BlogCategoryPublic = { id: string; name: string; displayName: string };
 
-/** Active categories for public blog filter (RLS allows anon read when is_active). */
+/** Active categories + subcategories for public blog filter (RLS on all three tables). */
 export const getActiveBlogCategories = cache(async (): Promise<BlogCategoryPublic[]> => {
   try {
     const supabase = getSupabaseForContent();
     if (!supabase) return [];
 
-    const { data, error } = await supabase
-      .from('blog_categories')
-      .select('id, name')
-      .eq('is_active', true)
-      .order('name', { ascending: true });
+    const [catsRes, subsRes, linksRes] = await Promise.all([
+      supabase.from('blog_categories').select('id, name').eq('is_active', true),
+      supabase.from('blog_subcategories').select('id, name').eq('is_active', true),
+      supabase.from('blog_category_subcategories').select('category_id, subcategory_id'),
+    ]);
 
-    if (error) {
-      logContentError('getActiveBlogCategories', error);
+    if (catsRes.error) {
+      logContentError('getActiveBlogCategories', catsRes.error);
       return [];
     }
-    return (data ?? []).map((r) => ({ id: r.id as string, name: r.name as string }));
+
+    const cats = (catsRes.data ?? []) as Array<{ id: string; name: string }>;
+    const out: BlogCategoryPublic[] = cats.map((c) => ({
+      id: c.id,
+      name: c.name,
+      displayName: c.name,
+    }));
+
+    if (subsRes.error || linksRes.error) {
+      if (subsRes.error) logContentError('getActiveBlogCategories subs', subsRes.error);
+      if (linksRes.error) logContentError('getActiveBlogCategories links', linksRes.error);
+      out.sort((a, b) => a.displayName.localeCompare(b.displayName));
+      return out;
+    }
+
+    const subs = (subsRes.data ?? []) as Array<{ id: string; name: string }>;
+    const nameByCatId = new Map(cats.map((c) => [c.id, c.name]));
+    const subIds = new Set(subs.map((s) => s.id));
+    const parentsBySub = new Map<string, string[]>();
+
+    for (const row of linksRes.data ?? []) {
+      const cid = row.category_id as string;
+      const sid = row.subcategory_id as string;
+      if (!subIds.has(sid) || !nameByCatId.has(cid)) continue;
+      const list = parentsBySub.get(sid) ?? [];
+      list.push(cid);
+      parentsBySub.set(sid, list);
+    }
+
+    for (const s of subs) {
+      const parentNames = (parentsBySub.get(s.id) ?? [])
+        .map((id) => nameByCatId.get(id))
+        .filter((n): n is string => !!n)
+        .sort();
+      const displayName = parentNames.length ? `${s.name} (${parentNames.join(', ')})` : s.name;
+      out.push({ id: s.id, name: s.name, displayName });
+    }
+
+    out.sort((a, b) => a.displayName.localeCompare(b.displayName));
+    return out;
   } catch (e) {
     logContentError('getActiveBlogCategories throw', e);
     return [];
@@ -218,7 +286,7 @@ export const getActiveBlogCategories = cache(async (): Promise<BlogCategoryPubli
 });
 
 export type GetPostsForBlogPaginatedOptions = {
-  /** Filter by `posts."Category"` (blog_categories.id). */
+  /** Filter by `posts."Category"` (blog_categories.id or blog_subcategories.id). */
   categoryId?: string | null;
 };
 
@@ -240,7 +308,57 @@ export async function getPostsForBlogPaginated(
       options?.categoryId && isUuid(options.categoryId) ? options.categoryId : null;
 
     const categories = await getActiveBlogCategories();
-    const nameByCategoryId = new Map(categories.map((c) => [c.id, c.name]));
+    const nameByCategoryId = new Map(categories.map((c) => [c.id, c.displayName]));
+
+    const mapRowToPost = (row: Record<string, unknown>) => {
+      const cf = (row.custom_fields as Record<string, unknown>) ?? {};
+      const categoryCol =
+        row.post_category != null && typeof row.post_category === 'string'
+          ? row.post_category
+          : row.Category != null && typeof row.Category === 'string'
+            ? row.Category
+            : row.category != null && typeof row.category === 'string'
+              ? row.category
+              : null;
+      const category_name = blogListCategoryDisplayName(cf, categoryCol, nameByCategoryId);
+      return {
+        slug: row.slug as string,
+        title: row.title as string | null,
+        excerpt: row.excerpt as string | null,
+        meta_title: row.meta_title as string | null,
+        meta_description: row.meta_description as string | null,
+        og_image: row.og_image as string | null,
+        category_id: categoryCol,
+        category_name,
+        category_slug: null,
+        published_at: row.published_at as string | null,
+        updated_at: null,
+      };
+    };
+
+    if (filterCategoryId) {
+      const countRes = await supabase.rpc('blog_posts_matching_category_count', {
+        p_category: filterCategoryId,
+      });
+      const pageRes = await supabase.rpc('blog_posts_matching_category_page', {
+        p_category: filterCategoryId,
+        p_limit: safePageSize,
+        p_offset: from,
+      });
+      const rpcOk = !countRes.error && !pageRes.error && pageRes.data != null;
+      if (rpcOk) {
+        const rows = pageRes.data as Record<string, unknown>[];
+        const total = Number(countRes.data ?? 0);
+        if (process.env.NODE_ENV === 'development') {
+          console.info('[Supabase] getPostsForBlogPaginated (rpc): returned', rows.length, 'posts');
+        }
+        return {
+          total,
+          posts: rows.map(mapRowToPost) as PostListItem[],
+        };
+      }
+      logContentError('getPostsForBlogPaginated rpc', countRes.error ?? pageRes.error);
+    }
 
     // Explicit filters are required because service-role bypasses RLS.
     let query = supabase
@@ -271,31 +389,7 @@ export async function getPostsForBlogPaginated(
     }
     return {
       total: count ?? 0,
-      posts: data.map((row: Record<string, unknown>) => {
-        const cf = (row.custom_fields as any) ?? {};
-        const cfCategoryName = typeof cf?.category === 'string' ? cf.category : null;
-        const categoryCol =
-          row.Category != null && typeof row.Category === 'string'
-            ? row.Category
-            : row.category != null && typeof row.category === 'string'
-              ? row.category
-              : null;
-        const category_name =
-          (categoryCol && nameByCategoryId.get(categoryCol)) || cfCategoryName;
-        return {
-          slug: row.slug as string,
-          title: row.title as string | null,
-          excerpt: row.excerpt as string | null,
-          meta_title: row.meta_title as string | null,
-          meta_description: row.meta_description as string | null,
-          og_image: row.og_image as string | null,
-          category_id: categoryCol,
-          category_name,
-          category_slug: null,
-          published_at: row.published_at as string | null,
-          updated_at: null,
-        };
-      }) as PostListItem[],
+      posts: data.map(mapRowToPost) as PostListItem[],
     };
   } catch (e) {
     logContentError('getPostsForBlogPaginated throw', e);
@@ -318,10 +412,14 @@ export async function getLatestPosts(limit = 10, excludeSlug?: string): Promise<
     const fetchLimit = Math.min(50, safeLimit + (excludeSlug ? 1 : 0));
 
     // Explicit filters are required because service-role bypasses RLS.
+    const nameByCategoryId = new Map(
+      (await getActiveBlogCategories()).map((c) => [c.id, c.displayName]),
+    );
+
     const { data, error } = await supabase
       .from('posts')
       .select(
-        'slug, title, excerpt, meta_title, meta_description, og_image, image_url, published_at, created_at, custom_fields'
+        'slug, title, excerpt, meta_title, meta_description, og_image, image_url, published_at, created_at, custom_fields, Category'
       )
       .eq('status', 'published')
       .order('published_at', { ascending: false, nullsFirst: false })
@@ -335,8 +433,14 @@ export async function getLatestPosts(limit = 10, excludeSlug?: string): Promise<
     if (!data) return [];
 
     const mapped: PostListItem[] = data.map((row: Record<string, unknown>) => {
-      const cf = (row.custom_fields as any) ?? {};
-      const categoryName = typeof cf?.category === 'string' ? cf.category : null;
+      const cf = (row.custom_fields as Record<string, unknown>) ?? {};
+      const categoryCol =
+        row.Category != null && typeof row.Category === 'string'
+          ? row.Category
+          : row.category != null && typeof row.category === 'string'
+            ? row.category
+            : null;
+      const category_name = blogListCategoryDisplayName(cf, categoryCol, nameByCategoryId);
       return {
         slug: row.slug as string,
         title: row.title as string | null,
@@ -344,7 +448,7 @@ export async function getLatestPosts(limit = 10, excludeSlug?: string): Promise<
         meta_title: row.meta_title as string | null,
         meta_description: row.meta_description as string | null,
         og_image: row.og_image as string | null,
-        category_name: categoryName,
+        category_name,
         category_slug: null,
         published_at: row.published_at as string | null,
         updated_at: null,

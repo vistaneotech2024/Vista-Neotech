@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { SERVICE_MENU_CATEGORIES } from '@/lib/service-menu-categories';
 
 type HeaderNavLink = { href: string; label: string; target?: string };
 
@@ -20,61 +21,6 @@ const brandLinks = [
   { href: '/brands/tripgate', label: 'Tripgate.in', external: 'https://tripgate.in', logo: '/images/tripgate-logo.png' },
   { href: '/brands/verifizy', label: 'Verifizy', external: 'https://www.verifizy.com', logo: '/images/verfizy.png' },
   { href: '/brands/mlmunion', label: 'MLM Union', external: 'https://www.mlmunion.in/', logo: '/images/mlm_union (2).png' },
-];
-
-// Service categories organized from WordPress data
-const serviceCategories = [
-  {
-    title: 'MLM & Direct Selling',
-    links: [
-      { href: '/mlm-software', label: 'MLM Software' },
-      { href: '/direct-selling-software', label: 'Direct Selling Software' },
-      { href: '/direct-selling-consultant-mlm', label: 'Direct Selling Consultant' },
-      { href: '/direct-selling-setup', label: 'Direct Selling Setup' },
-      { href: '/direct-selling-registration', label: 'Direct Selling Registration' },
-      { href: '/direct-selling-plans', label: 'Direct Selling Plans' },
-      { href: '/direct-selling-training', label: 'Direct Selling Training' },
-      { href: '/mlm-company-registration', label: 'MLM Company Registration' },
-      { href: '/mlm-business-plan', label: 'MLM Business Plan' },
-      { href: '/mlm-trainers-direct-selling-experts', label: 'MLM Trainers' },
-    ],
-  },
-  {
-    title: 'Software Development',
-    links: [
-      { href: '/software-development', label: 'Software Development' },
-      { href: '/web-development-company', label: 'Web Development' },
-      { href: '/android-app-development', label: 'Android App Development' },
-      { href: '/ios-app-development', label: 'iOS App Development' },
-      { href: '/shopping-portal-development', label: 'Shopping Portal Development' },
-      { href: '/travel-portal-development', label: 'Travel Portal Development' },
-      { href: '/mlm-software-development-company-in-delhi-india', label: 'MLM Software Development' },
-    ],
-  },
-  {
-    title: 'Digital Marketing',
-    links: [
-      { href: '/seo-services', label: 'SEO Services' },
-      { href: '/sem-services', label: 'SEM Services' },
-      { href: '/smo-services', label: 'SMO Services' },
-      { href: '/sms-marketing', label: 'SMS Marketing' },
-      { href: '/email-marketing', label: 'Email Marketing' },
-      { href: '/whatsapp-marketing', label: 'WhatsApp Marketing' },
-      { href: '/best-content-writing-services-delhi-ncr', label: 'Content Writing' },
-    ],
-  },
-  {
-    title: 'Design Services',
-    links: [
-      { href: '/graphic-designing', label: 'Graphic Designing' },
-      { href: '/logo-designing', label: 'Logo Designing' },
-      { href: '/web-designing-company', label: 'Web Designing' },
-      { href: '/poster-designing-flyers-designers-in-delhi-ncr', label: 'Poster & Flyer Design' },
-      { href: '/brochure-designing-2', label: 'Brochure Designing' },
-      { href: '/corporate-identity-designing', label: 'Corporate Identity' },
-      { href: '/digital-printing-services', label: 'Digital Printing' },
-    ],
-  },
 ];
 
 export type HeaderProps = {
@@ -190,7 +136,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
                 }}
               >
                 <div className="p-4 grid grid-cols-2 gap-4 max-h-[500px] overflow-y-auto">
-                  {serviceCategories.map((category) => (
+                  {SERVICE_MENU_CATEGORIES.map((category) => (
                     <div key={category.title} className="space-y-2">
                       <h4 className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--color-text-subtle)' }}>
                         {typeof category.title === 'string' ? category.title : ''}
@@ -458,7 +404,7 @@ export function Header({ navLinks: navLinksProp, industries = [] }: HeaderProps 
               </button>
               {servicesOpen && (
                 <div className="mt-2 ml-4 space-y-2 border-l-2 pl-4 max-h-[400px] overflow-y-auto" style={{ borderColor: 'var(--color-border)' }}>
-                  {serviceCategories.map((category) => (
+                  {SERVICE_MENU_CATEGORIES.map((category) => (
                     <div key={category.title} className="mt-4 first:mt-0">
                       <h5 className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-subtle)' }}>
                         {typeof category.title === 'string' ? category.title : ''}

@@ -26,7 +26,7 @@ export default async function AdminBlogEditPage({ params }: Params) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-6xl space-y-4 px-4 py-6 md:px-6 md:py-8">
       <div>
         <h1 className="text-2xl font-semibold" style={{ color: 'var(--color-text)' }}>
           Edit blog post

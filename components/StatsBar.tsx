@@ -6,12 +6,70 @@ import { IconChart, IconHeadset, IconRocket, IconUsers } from '@/components/ui/I
 const accentVar = (n: number) => `var(--color-accent-${n})`;
 const accentMutedVar = (n: number) => `var(--color-accent-${n}-muted)`;
 
-const stats = [
-  { value: '25+', label: 'Years', sub: 'experience', accent: 1 as const, icon: IconRocket },
-  { value: '3000+', label: 'Projects', sub: 'delivered', accent: 2 as const, icon: IconChart },
-  { value: '50+', label: 'Verticals', sub: 'industry', accent: 3 as const, icon: IconUsers },
-  { value: '24/7', label: 'Support', sub: '& training', accent: 4 as const, icon: IconHeadset },
+type StatDef =
+  | {
+      kind: 'count';
+      target: number;
+      suffix: string;
+      label: string;
+      sub: string;
+      accent: 1 | 2 | 3 | 4;
+      icon: typeof IconRocket;
+    }
+  | {
+      kind: 'literal';
+      value: string;
+      label: string;
+      sub: string;
+      accent: 1 | 2 | 3 | 4;
+      icon: typeof IconRocket;
+    };
+
+const stats: StatDef[] = [
+  { kind: 'count', target: 25, suffix: '+', label: 'Years', sub: 'experience', accent: 1, icon: IconRocket },
+  { kind: 'count', target: 3000, suffix: '+', label: 'Projects', sub: 'delivered', accent: 2, icon: IconChart },
+  { kind: 'count', target: 50, suffix: '+', label: 'Verticals', sub: 'industry', accent: 3, icon: IconUsers },
+  { kind: 'literal', value: '24/7', label: 'Support', sub: '& training', accent: 4, icon: IconHeadset },
 ];
+
+function easeOutCubic(t: number) {
+  return 1 - (1 - t) ** 3;
+}
+
+function CountUpNumber({ active, target, suffix }: { active: boolean; target: number; suffix: string }) {
+  const [n, setN] = useState(0);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!active) return;
+
+    const duration = target > 500 ? 2800 : 2000;
+    const t0 = performance.now();
+
+    const step = (now: number) => {
+      const t = Math.min((now - t0) / duration, 1);
+      setN(Math.round(target * easeOutCubic(t)));
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(step);
+      } else {
+        setN(target);
+        rafRef.current = null;
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(step);
+    return () => {
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [active, target]);
+
+  return (
+    <>
+      {n}
+      {suffix}
+    </>
+  );
+}
 
 export function StatsBar() {
   const [visibleItems, setVisibleItems] = useState<boolean[]>(new Array(stats.length).fill(false));
@@ -77,10 +135,14 @@ export function StatsBar() {
               </div>
               <div className="min-w-0">
                 <span
-                  className="block text-xl font-bold tracking-tight md:text-2xl"
+                  className="block text-xl font-bold tabular-nums tracking-tight md:text-2xl"
                   style={{ color: 'var(--color-text)' }}
                 >
-                  {s.value}
+                  {s.kind === 'literal' ? (
+                    s.value
+                  ) : (
+                    <CountUpNumber active={visibleItems[index]} target={s.target} suffix={s.suffix} />
+                  )}
                 </span>
                 <p className="mt-0.5 text-xs font-medium md:text-sm" style={{ color: 'var(--color-text-muted)' }}>
                   {s.label} <span style={{ color: 'var(--color-text-subtle)' }}>{s.sub}</span>

@@ -1,9 +1,12 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import type { CSSProperties } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { TechHeroBg } from '@/components/TechHeroBg';
 import { Button } from '@/components/Button';
 import type { HomeHeroConfig } from '@/lib/cms/hero';
+
+const HERO_VIDEO_SRC = '/video/7792455-hd_1920_1080_25fps.mp4';
 
 type Props = {
   config: HomeHeroConfig;
@@ -16,6 +19,23 @@ export function HomeHeroCarousel({ config }: Props) {
   );
 
   const [index, setIndex] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => {
+      if (mq.matches) {
+        el.pause();
+      } else {
+        void el.play().catch(() => {});
+      }
+    };
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   useEffect(() => {
     if (!config.autoplay || slides.length <= 1) return;
@@ -46,9 +66,36 @@ export function HomeHeroCarousel({ config }: Props) {
   return (
     <section
       className="relative min-h-[75vh] overflow-hidden pt-20 pb-24 md:min-h-[78vh] md:pt-24 md:pb-28"
-      style={{ backgroundColor: 'var(--color-hero-bg)' }}
+      style={
+        {
+          backgroundColor: '#070708',
+          '--color-hero-text': '#f7f7f8',
+          '--color-hero-text-muted': 'rgba(247, 247, 248, 0.78)',
+        } as CSSProperties
+      }
     >
-      <TechHeroBg />
+      <div className="absolute inset-0 z-0" aria-hidden>
+        <video
+          ref={videoRef}
+          className="h-full w-full object-cover"
+          src={HERO_VIDEO_SRC}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        aria-hidden
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(6,7,10,0.82) 0%, rgba(6,7,10,0.38) 42%, rgba(6,7,10,0.72) 100%)',
+        }}
+      />
+      <TechHeroBg transparentBase />
 
       <div
         className={`container-tight relative z-10 flex min-h-[60vh] flex-col justify-center gap-6 md:min-h-[65vh] ${alignClass}`}

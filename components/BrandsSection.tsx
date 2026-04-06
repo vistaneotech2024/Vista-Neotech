@@ -263,7 +263,11 @@ export function BrandsSection() {
   ];
 
   return (
-    <section className="section-padding relative overflow-hidden" style={{ backgroundColor: 'var(--color-bg)' }}>
+    <section
+      className="section-padding relative overflow-hidden"
+      style={{ backgroundColor: 'var(--color-bg)' }}
+      aria-labelledby="brands-section-title"
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden opacity-30">
         <div
@@ -278,14 +282,24 @@ export function BrandsSection() {
 
       <div className="container-wide relative z-10">
         {/* Section Header */}
-        <div className="mb-10 text-center">
-          <p className="section-label mb-4">Our Brands</p>
-          <h2 className="display-3 mb-6" style={{ color: 'var(--color-text)' }}>
-            Powering Innovation Across Industries
+        <div className="mb-12 mx-auto max-w-3xl text-center md:mb-14">
+          <div className="mb-4 flex justify-center animate-fade-in-up">
+            <p className="section-label mb-0">Our Brands</p>
+          </div>
+          <h2
+            id="brands-section-title"
+            className="display-3 animate-fade-in-up text-balance leading-tight"
+            style={{ color: 'var(--color-text)', animationDelay: '0.08s' }}
+          >
+            Powering Innovation{' '}
+            <span className="block sm:inline">Across Industries</span>
           </h2>
-          <p className="prose-lead mx-auto max-w-2xl" style={{ color: 'var(--color-text-muted)' }}>
-            Vista Neotech&apos;s portfolio of cutting-edge solutions, each designed to transform industries through
-            technology and expertise.
+          <p
+            className="mx-auto mt-5 max-w-2xl text-base leading-relaxed md:mt-6 md:text-lg"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Vista Neotech&apos;s portfolio of purpose-built brands—each platform engineered to help its industry move
+            forward with reliable technology and deep domain expertise.
           </p>
         </div>
 

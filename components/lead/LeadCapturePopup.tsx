@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { VISTA_OPEN_LEAD_POPUP_EVENT } from '@/lib/vista-lead-popup-event';
 
 // ─── When the popup appears (first match wins, then it won’t show again this session) ───
 const TRIGGERS = {
@@ -53,6 +54,16 @@ export function LeadCapturePopup() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted || typeof window === 'undefined') return;
+    const onOpenRequest = () => {
+      setOpen(true);
+      setMinimized(false);
+    };
+    window.addEventListener(VISTA_OPEN_LEAD_POPUP_EVENT, onOpenRequest);
+    return () => window.removeEventListener(VISTA_OPEN_LEAD_POPUP_EVENT, onOpenRequest);
+  }, [mounted]);
 
   useEffect(() => {
     if (!mounted) return;

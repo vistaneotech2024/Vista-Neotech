@@ -30,7 +30,6 @@
     "/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/loading.css",
       "static/chunks/app/loading.js"
     ],
     "/not-found": [
@@ -48,30 +47,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(main)/[slug]/loading.js"
     ],
-    "/admin/page": [
+    "/(main)/contact/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/page.js"
+      "static/chunks/app/(main)/contact/page.js"
     ],
-    "/admin/layout": [
+    "/blog/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/layout.js"
+      "static/chunks/app/blog/page.js"
     ],
-    "/admin/blog/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/blog/page.js"
-    ],
-    "/admin/indexing/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/admin/indexing/page.js"
-    ],
-    "/secureadmin/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/secureadmin/login/page.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

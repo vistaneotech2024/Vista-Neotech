@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { RichTextEditor } from '@/components/editor/RichTextEditor';
+import { type BlogCategoryRow, type BlogSubcategoryRow } from '@/lib/blog-category-tree';
 
 function slugify(input: string) {
   return String(input || '')
@@ -18,12 +19,6 @@ type Props = {
   triggerLabel?: string;
 };
 
-type BlogCategory = {
-  id: string;
-  name: string;
-  is_active: boolean;
-};
-
 export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
   const router = useRouter();
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -33,7 +28,8 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
   const [slug, setSlug] = useState('');
   const [slugTouched, setSlugTouched] = useState(false);
   const [status, setStatus] = useState<'draft' | 'published'>('published');
-  const [categoryId, setCategoryId] = useState('');
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>([]);
+  const [selectedSubcategoryIds, setSelectedSubcategoryIds] = useState<string[]>([]);
   const [metaTitle, setMetaTitle] = useState('');
   const [metaDescription, setMetaDescription] = useState('');
   const [focusKeyword, setFocusKeyword] = useState('');
@@ -45,7 +41,8 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
   const [saving, setSaving] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [categories, setCategories] = useState<BlogCategory[]>([]);
+  const [categories, setCategories] = useState<BlogCategoryRow[]>([]);
+  const [subcategories, setSubcategories] = useState<BlogSubcategoryRow[]>([]);
   const [loadingCategories, setLoadingCategories] = useState(false);
 
   const [aiDialogOpen, setAiDialogOpen] = useState(false);
@@ -55,26 +52,42 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
   const [aiError, setAiError] = useState<string | null>(null);
 
   const canSubmit = useMemo(() => {
+    const hasTaxonomy = selectedCategoryIds.length > 0 || selectedSubcategoryIds.length > 0;
     return (
       title.trim().length > 0 &&
       slug.trim().length > 0 &&
-      categoryId.trim().length > 0 &&
+      hasTaxonomy &&
       content.trim().length > 0 &&
       !saving
     );
-  }, [title, slug, categoryId, content, saving]);
+  }, [title, slug, selectedCategoryIds, selectedSubcategoryIds, content, saving]);
 
-  const selectedCategoryName = useMemo(() => {
-    const c = categories.find((x) => x.id === categoryId);
-    return c?.name ?? '';
-  }, [categories, categoryId]);
+  const taxonomyDisplayLabel = useMemo(() => {
+    const parts: string[] = [];
+    for (const c of categories) {
+      if (selectedCategoryIds.includes(c.id)) parts.push(c.name);
+    }
+    for (const s of subcategories) {
+      if (selectedSubcategoryIds.includes(s.id)) parts.push(s.name);
+    }
+    return parts.join(', ');
+  }, [categories, subcategories, selectedCategoryIds, selectedSubcategoryIds]);
+
+  function toggleCategoryId(id: string) {
+    setSelectedCategoryIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+  }
+
+  function toggleSubcategoryId(id: string) {
+    setSelectedSubcategoryIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+  }
 
   const reset = useCallback(() => {
     setTitle('');
     setSlug('');
     setSlugTouched(false);
     setStatus('published');
-    setCategoryId('');
+    setSelectedCategoryIds([]);
+    setSelectedSubcategoryIds([]);
     setMetaTitle('');
     setMetaDescription('');
     setFocusKeyword('');
@@ -128,13 +141,38 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
 
     let cancelled = false;
     setLoadingCategories(true);
-    fetch('/api/admin/blog-categories', { method: 'GET' })
-      .then(async (res) => {
-        const body = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(body?.error || 'Failed to load categories');
-        const list = Array.isArray(body?.categories) ? (body.categories as BlogCategory[]) : [];
-        const active = list.filter((c) => c && c.is_active);
-        if (!cancelled) setCategories(active);
+    Promise.all([
+      fetch('/api/admin/blog-categories', { method: 'GET' }),
+      fetch('/api/admin/blog-subcategories', { method: 'GET' }),
+    ])
+      .then(async ([catRes, subRes]) => {
+        const catBody = await catRes.json().catch(() => ({}));
+        const subBody = await subRes.json().catch(() => ({}));
+        if (!catRes.ok) throw new Error(catBody?.error || 'Failed to load categories');
+        if (!subRes.ok) throw new Error(subBody?.error || 'Failed to load subcategories');
+        const catList = Array.isArray(catBody?.categories) ? catBody.categories : [];
+        const subList = Array.isArray(subBody?.subcategories) ? subBody.subcategories : [];
+        const activeCats = catList
+          .map((c: Record<string, unknown>) => ({
+            id: String(c.id),
+            name: String(c.name ?? ''),
+            is_active: !!c.is_active,
+          }))
+          .filter((c: BlogCategoryRow) => c.is_active);
+        const activeSubs = subList
+          .map((s: Record<string, unknown>) => ({
+            id: String(s.id),
+            name: String(s.name ?? ''),
+            is_active: !!s.is_active,
+            category_ids: Array.isArray(s.category_ids)
+              ? (s.category_ids as unknown[]).map((x) => String(x)).filter(Boolean)
+              : [],
+          }))
+          .filter((s: BlogSubcategoryRow) => s.is_active);
+        if (!cancelled) {
+          setCategories(activeCats);
+          setSubcategories(activeSubs);
+        }
       })
       .catch((e: any) => {
         if (!cancelled) setError(e?.message || 'Failed to load categories');
@@ -262,9 +300,10 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
           metaDescription: metaDescription.trim(),
           focusKeyword: focusKeyword.trim(),
           canonicalUrl: '',
+          categoryIds: selectedCategoryIds,
+          subcategoryIds: selectedSubcategoryIds,
           customFields: {
-            categoryId: categoryId.trim(),
-            category: selectedCategoryName,
+            category: taxonomyDisplayLabel,
           },
           imageUrl: finalImageUrl,
           excerpt: '',
@@ -354,53 +393,113 @@ export function CreateBlogPostModal({ triggerLabel = 'Create blog' }: Props) {
 
             <form onSubmit={onSubmit} className="max-h-[80vh] overflow-auto p-4 sm:p-5">
               <div className="grid gap-4">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <label className="block">
-                    <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
-                      Title *
-                    </span>
-                    <input
-                      name="title"
-                      value={title}
-                      onChange={(e) => {
-                        const nextTitle = e.target.value;
-                        setTitle(nextTitle);
-                        if (!slugTouched) setSlug(slugify(nextTitle));
-                      }}
-                      className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-                      style={{
-                        backgroundColor: 'var(--color-bg)',
-                        borderColor: 'var(--color-border)',
-                        color: 'var(--color-text)',
-                      }}
-                    />
-                  </label>
+                <label className="block">
+                  <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                    Title *
+                  </span>
+                  <input
+                    name="title"
+                    value={title}
+                    onChange={(e) => {
+                      const nextTitle = e.target.value;
+                      setTitle(nextTitle);
+                      if (!slugTouched) setSlug(slugify(nextTitle));
+                    }}
+                    className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
+                    style={{
+                      backgroundColor: 'var(--color-bg)',
+                      borderColor: 'var(--color-border)',
+                      color: 'var(--color-text)',
+                    }}
+                  />
+                </label>
 
-                  <label className="block">
+                <div className="block">
                     <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
-                      Category *
+                      Categories &amp; subcategories *
                     </span>
-                    <select
-                      value={categoryId}
-                      onChange={(e) => setCategoryId(e.target.value)}
-                      className="mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2"
-                      style={{
-                        backgroundColor: 'var(--color-bg)',
-                        borderColor: 'var(--color-border)',
-                        color: 'var(--color-text)',
-                      }}
-                    >
-                      <option value="">{loadingCategories ? 'Loading categories…' : 'Select Category'}</option>
-                      {categories.map((c) => (
-                        <option key={c.id} value={c.id}>
-                          {c.name}
-                        </option>
-                      ))}
-                    </select>
                     <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                      This list comes from Admin → Blog categories.
+                      Pick any combination. At least one category or subcategory is required. Managed under Admin → Blog categories.
                     </p>
-                  </label>
+                    <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                      <fieldset
+                        className="rounded-2xl border p-3"
+                        style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}
+                      >
+                        <legend className="px-1 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--color-text-muted)' }}>
+                          Categories
+                        </legend>
+                        {loadingCategories ? (
+                          <p className="py-2 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                            Loading…
+                          </p>
+                        ) : categories.length === 0 ? (
+                          <p className="py-2 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                            No active categories.
+                          </p>
+                        ) : (
+                          <ul className="max-h-40 space-y-2 overflow-y-auto pr-1">
+                            {categories.map((c) => (
+                              <li key={c.id}>
+                                <label className="flex cursor-pointer items-start gap-2 text-sm" style={{ color: 'var(--color-text)' }}>
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedCategoryIds.includes(c.id)}
+                                    onChange={() => toggleCategoryId(c.id)}
+                                    className="mt-0.5 rounded border"
+                                    style={{ borderColor: 'var(--color-border)' }}
+                                  />
+                                  <span>{c.name}</span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </fieldset>
+                      <fieldset
+                        className="rounded-2xl border p-3"
+                        style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-bg)' }}
+                      >
+                        <legend className="px-1 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--color-text-muted)' }}>
+                          Subcategories
+                        </legend>
+                        {loadingCategories ? (
+                          <p className="py-2 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                            Loading…
+                          </p>
+                        ) : subcategories.length === 0 ? (
+                          <p className="py-2 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                            No active subcategories.
+                          </p>
+                        ) : (
+                          <ul className="max-h-40 space-y-2 overflow-y-auto pr-1">
+                            {subcategories.map((s) => {
+                              const parentLabels = s.category_ids
+                                .map((cid) => categories.find((c) => c.id === cid)?.name)
+                                .filter((n): n is string => !!n);
+                              const hint = parentLabels.length ? ` (${parentLabels.join(', ')})` : '';
+                              return (
+                                <li key={s.id}>
+                                  <label className="flex cursor-pointer items-start gap-2 text-sm" style={{ color: 'var(--color-text)' }}>
+                                    <input
+                                      type="checkbox"
+                                      checked={selectedSubcategoryIds.includes(s.id)}
+                                      onChange={() => toggleSubcategoryId(s.id)}
+                                      className="mt-0.5 rounded border"
+                                      style={{ borderColor: 'var(--color-border)' }}
+                                    />
+                                    <span>
+                                      {s.name}
+                                      <span style={{ color: 'var(--color-text-muted)' }}>{hint}</span>
+                                    </span>
+                                  </label>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
+                      </fieldset>
+                    </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">

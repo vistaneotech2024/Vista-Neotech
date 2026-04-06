@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
 import { createAdminSupabase } from '@/lib/supabase-admin';
 import { isUuid, pickCategoryIdInput } from '@/lib/parse-blog-category-id';
+import { blogCategoryIdsExist, blogSubcategoryIdsExist } from '@/lib/blog-post-category';
+import {
+  mergeTaxonomyIntoCustomFields,
+  pickTaxonomyIdsFromBody,
+  primaryCategoryColumn,
+} from '@/lib/blog-post-taxonomy';
 
 export async function POST(req: NextRequest) {
   await requireAdmin();
@@ -34,7 +40,6 @@ export async function POST(req: NextRequest) {
   const twitterDescription = typeof body.twitterDescription === 'string' ? body.twitterDescription.trim() : null;
   const twitterImage = typeof body.twitterImage === 'string' ? body.twitterImage.trim() : null;
   const schemaMarkup = body.schemaMarkup ?? null;
-  const customFields = body.customFields ?? {};
   const imageUrl = typeof body.imageUrl === 'string' ? body.imageUrl.trim() : null;
   const excerpt = typeof body.excerpt === 'string' ? body.excerpt : '';
   const content = typeof body.content === 'string' ? body.content : '';
@@ -50,54 +55,78 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid status' }, { status: 400 });
   }
 
-  const categoryIdRaw = pickCategoryIdInput(body);
-  let categoryColumn: string | undefined;
-  if (categoryIdRaw) {
-    if (!isUuid(categoryIdRaw)) {
-      return NextResponse.json({ error: 'Invalid category id' }, { status: 400 });
+  const baseCustomFields =
+    body.customFields != null && typeof body.customFields === 'object' && !Array.isArray(body.customFields)
+      ? ({ ...body.customFields } as Record<string, unknown>)
+      : {};
+
+  let { categoryIds, subcategoryIds } = pickTaxonomyIdsFromBody(body);
+  if (categoryIds.length === 0 && subcategoryIds.length === 0) {
+    const legacy = pickCategoryIdInput(body);
+    if (legacy && isUuid(legacy)) {
+      categoryIds = [legacy];
     }
-    const { data: categoryRow, error: categoryError } = await supabase
-      .from('blog_categories')
-      .select('id')
-      .eq('id', categoryIdRaw)
-      .maybeSingle();
-    if (categoryError || !categoryRow) {
-      return NextResponse.json({ error: 'Unknown category' }, { status: 400 });
-    }
-    categoryColumn = categoryIdRaw;
   }
+  if (categoryIds.length === 0 && subcategoryIds.length === 0) {
+    return NextResponse.json(
+      { error: 'Select at least one category and/or subcategory' },
+      { status: 400 },
+    );
+  }
+
+  if (!(await blogCategoryIdsExist(supabase, categoryIds))) {
+    return NextResponse.json({ error: 'One or more categories were not found' }, { status: 400 });
+  }
+  if (!(await blogSubcategoryIdsExist(supabase, subcategoryIds))) {
+    return NextResponse.json({ error: 'One or more subcategories were not found' }, { status: 400 });
+  }
+
+  const categoryDisplay =
+    typeof baseCustomFields.category === 'string' && baseCustomFields.category.trim()
+      ? baseCustomFields.category.trim()
+      : '';
+
+  const customFields = mergeTaxonomyIntoCustomFields(
+    baseCustomFields,
+    categoryIds,
+    subcategoryIds,
+    categoryDisplay,
+  );
+
+  const categoryColumn = primaryCategoryColumn(categoryIds, subcategoryIds);
 
   const published_at = status === 'published' ? new Date().toISOString() : null;
 
-  const { data, error } = await supabase
-    .from('posts')
-    .insert({
-      content_type: 'post',
-      title,
-      slug,
-      status,
-      meta_title: metaTitle,
-      meta_description: metaDescription,
-      focus_keyword: focusKeyword,
-      canonical_url: canonicalUrl,
-      og_title: ogTitle,
-      og_description: ogDescription,
-      og_image: ogImage,
-      og_type: ogType,
-      twitter_card: twitterCard,
-      twitter_title: twitterTitle,
-      twitter_description: twitterDescription,
-      twitter_image: twitterImage,
-      schema_markup: schemaMarkup,
-      custom_fields: customFields,
-      image_url: imageUrl,
-      excerpt,
-      content,
-      published_at,
-      ...(categoryColumn !== undefined ? { Category: categoryColumn } : {}),
-    })
-    .select('id')
-    .maybeSingle();
+  const insertRow: Record<string, unknown> = {
+    content_type: 'post',
+    title,
+    slug,
+    status,
+    meta_title: metaTitle,
+    meta_description: metaDescription,
+    focus_keyword: focusKeyword,
+    canonical_url: canonicalUrl,
+    og_title: ogTitle,
+    og_description: ogDescription,
+    og_image: ogImage,
+    og_type: ogType,
+    twitter_card: twitterCard,
+    twitter_title: twitterTitle,
+    twitter_description: twitterDescription,
+    twitter_image: twitterImage,
+    schema_markup: schemaMarkup,
+    custom_fields: customFields,
+    image_url: imageUrl,
+    excerpt,
+    content,
+    published_at,
+  };
+
+  if (categoryColumn) {
+    insertRow.Category = categoryColumn;
+  }
+
+  const { data, error } = await supabase.from('posts').insert(insertRow).select('id').maybeSingle();
 
   if (error) {
     return NextResponse.json({ error: 'Failed to create post' }, { status: 500 });
@@ -110,4 +139,3 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({ ok: true, id });
 }
-

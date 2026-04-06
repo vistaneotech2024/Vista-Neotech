@@ -14,6 +14,11 @@ const nextConfig = (phase) => ({
       { protocol: 'http', hostname: 'vistaneotech.com', pathname: '/**' },
       { protocol: 'http', hostname: 'www.vistaneotech.com', pathname: '/**' },
       { protocol: 'https', hostname: 'tbctgfdcjhyoijmvwiku.supabase.co', pathname: '/storage/v1/object/public/**' },
+      // Google Places reviewer profile photos (Place Details API)
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'lh4.googleusercontent.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'lh5.googleusercontent.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'lh6.googleusercontent.com', pathname: '/**' },
     ],
   },
   experimental: {

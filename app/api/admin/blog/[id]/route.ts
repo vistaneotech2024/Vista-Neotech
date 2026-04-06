@@ -4,6 +4,12 @@ import { createAdminSupabase } from '@/lib/supabase-admin';
 import { submitUrlToBing } from '@/lib/bing-submit';
 import { getBingWebmasterApiKey } from '@/lib/indexing-settings';
 import { isUuid, pickCategoryIdForUpdate } from '@/lib/parse-blog-category-id';
+import { blogCategoryIdsExist, blogPostCategoryExists, blogSubcategoryIdsExist } from '@/lib/blog-post-category';
+import {
+  mergeTaxonomyIntoCustomFields,
+  normalizeUuidList,
+  primaryCategoryColumn,
+} from '@/lib/blog-post-taxonomy';
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -53,61 +59,87 @@ export async function POST(req: NextRequest, { params }: Params) {
   }
 
   const nowIso = new Date().toISOString();
-  const { data: existing } = await supabase
+  const { data: existingRow } = await supabase
     .from('posts')
-    .select('published_at')
+    .select('published_at, custom_fields, Category')
     .eq('id', id)
     .maybeSingle();
-  const shouldSetPublishedAt = status === 'published' && !existing?.published_at;
+  const shouldSetPublishedAt = status === 'published' && !existingRow?.published_at;
 
-  const categoryPatch = pickCategoryIdForUpdate(body);
-  let categoryColumn: string | null | undefined;
-  if (categoryPatch !== 'omit') {
-    if (categoryPatch === null) {
-      categoryColumn = null;
-    } else if (!isUuid(categoryPatch)) {
-      return NextResponse.json({ error: 'Invalid category id' }, { status: 400 });
-    } else {
-      const { data: categoryRow, error: categoryError } = await supabase
-        .from('blog_categories')
-        .select('id')
-        .eq('id', categoryPatch)
-        .maybeSingle();
-      if (categoryError || !categoryRow) {
-        return NextResponse.json({ error: 'Unknown category' }, { status: 400 });
+  const existingCf =
+    existingRow?.custom_fields != null &&
+    typeof existingRow.custom_fields === 'object' &&
+    !Array.isArray(existingRow.custom_fields)
+      ? ({ ...(existingRow.custom_fields as Record<string, unknown>) } as Record<string, unknown>)
+      : {};
+  const incomingCf =
+    customFields != null && typeof customFields === 'object' && !Array.isArray(customFields)
+      ? ({ ...(customFields as Record<string, unknown>) } as Record<string, unknown>)
+      : {};
+  let mergedCf: Record<string, unknown> = { ...existingCf, ...incomingCf };
+
+  let categoryUpdate: string | null | undefined = undefined;
+  const taxonomyTouched = 'categoryIds' in body || 'subcategoryIds' in body;
+
+  if (taxonomyTouched) {
+    const catIds = normalizeUuidList(body.categoryIds);
+    const subIds = normalizeUuidList(body.subcategoryIds);
+    if (!(await blogCategoryIdsExist(supabase, catIds))) {
+      return NextResponse.json({ error: 'One or more categories were not found' }, { status: 400 });
+    }
+    if (!(await blogSubcategoryIdsExist(supabase, subIds))) {
+      return NextResponse.json({ error: 'One or more subcategories were not found' }, { status: 400 });
+    }
+    const label =
+      typeof mergedCf.category === 'string' && mergedCf.category.trim() ? mergedCf.category.trim() : '';
+    mergedCf = mergeTaxonomyIntoCustomFields(mergedCf, catIds, subIds, label);
+    categoryUpdate = primaryCategoryColumn(catIds, subIds);
+  } else {
+    const categoryPatch = pickCategoryIdForUpdate(body);
+    if (categoryPatch !== 'omit') {
+      if (categoryPatch === null) {
+        categoryUpdate = null;
+      } else if (!isUuid(categoryPatch)) {
+        return NextResponse.json({ error: 'Invalid category id' }, { status: 400 });
+      } else {
+        const exists = await blogPostCategoryExists(supabase, categoryPatch);
+        if (!exists) {
+          return NextResponse.json({ error: 'Unknown category or subcategory' }, { status: 400 });
+        }
+        categoryUpdate = categoryPatch;
       }
-      categoryColumn = categoryPatch;
     }
   }
 
-  const { error } = await supabase
-    .from('posts')
-    .update({
-      title: title || slug || '(untitled)',
-      slug,
-      status,
-      meta_title: metaTitle,
-      meta_description: metaDescription,
-      focus_keyword: focusKeyword,
-      canonical_url: canonicalUrl,
-      og_title: ogTitle,
-      og_description: ogDescription,
-      og_image: ogImage,
-      og_type: ogType,
-      twitter_card: twitterCard,
-      twitter_title: twitterTitle,
-      twitter_description: twitterDescription,
-      twitter_image: twitterImage,
-      schema_markup: schemaMarkup,
-      custom_fields: customFields,
-      image_url: imageUrl,
-      excerpt,
-      content,
-      updated_at: nowIso,
-      ...(shouldSetPublishedAt ? { published_at: nowIso } : {}),
-      ...(categoryColumn !== undefined ? { Category: categoryColumn } : {}),
-    })
-    .eq('id', id);
+  const updatePayload: Record<string, unknown> = {
+    title: title || slug || '(untitled)',
+    slug,
+    status,
+    meta_title: metaTitle,
+    meta_description: metaDescription,
+    focus_keyword: focusKeyword,
+    canonical_url: canonicalUrl,
+    og_title: ogTitle,
+    og_description: ogDescription,
+    og_image: ogImage,
+    og_type: ogType,
+    twitter_card: twitterCard,
+    twitter_title: twitterTitle,
+    twitter_description: twitterDescription,
+    twitter_image: twitterImage,
+    schema_markup: schemaMarkup,
+    custom_fields: mergedCf,
+    image_url: imageUrl,
+    excerpt,
+    content,
+    updated_at: nowIso,
+    ...(shouldSetPublishedAt ? { published_at: nowIso } : {}),
+  };
+  if (categoryUpdate !== undefined) {
+    updatePayload.Category = categoryUpdate;
+  }
+
+  const { error } = await supabase.from('posts').update(updatePayload).eq('id', id);
 
   if (error) {
     return NextResponse.json({ error: 'Failed to save post' }, { status: 500 });

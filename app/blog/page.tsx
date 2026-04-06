@@ -159,7 +159,7 @@ export default async function BlogIndexPage({
                     color: active ? 'var(--color-accent-1)' : 'var(--color-text)',
                   }}
                 >
-                  {c.name}
+                  {c.displayName}
                 </Link>
               );
             })}

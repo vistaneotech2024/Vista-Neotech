@@ -3,6 +3,7 @@ import { HomeHeroCarousel } from '@/components/HomeHeroCarousel';
 import { getHomeHeroConfig } from '@/lib/cms/hero';
 import { getPageBySlugFromDB, type PageFaqItemField } from '@/lib/cms/pages-db';
 import { TrustBar } from '@/components/TrustBar';
+// import { GoogleReviewsSection } from '@/components/GoogleReviewsSection'; // re-enable when Google Places is configured
 import { StatsBar } from '@/components/StatsBar';
 import { ProcessTimeline } from '@/components/ProcessTimeline';
 import { BentoServices } from '@/components/BentoServices';
@@ -11,6 +12,7 @@ import { ProsePageContent } from '@/components/ui/ProsePageContent';
 import { FaqSection, type FaqItem } from '@/components/ui/FaqSection';
 import { getExploreMoreLinks } from '@/lib/internal-links';
 import { RelatedInternalLinks } from '@/components/ui/RelatedInternalLinks';
+import { ServiceMarqueeBar } from '@/components/ServiceMarqueeBar';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -53,11 +55,17 @@ export default async function HomePage() {
     <main className="home-page-compact">
       <HomeHeroCarousel config={heroConfig} />
 
+      <BentoServices />
+
+      <ServiceMarqueeBar />
+
       <TrustBar />
 
       <BrandsSection />
 
       <StatsBar />
+
+      {/* <GoogleReviewsSection /> */}
 
       <ProcessTimeline />
 
@@ -112,8 +120,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <BentoServices />
 
       {/* Explore More – internal linking to priority conversion pages */}
       <RelatedInternalLinks

@@ -76,10 +76,21 @@ export function ProcessTimeline() {
       </div>
 
       <div className="container-wide relative z-10">
-        <div className="mb-10">
-          <p className="section-label mb-4 animate-fade-in-up">Your journey</p>
-          <h2 className="display-3 max-w-3xl animate-fade-in-up" style={{ color: 'var(--color-text)', animationDelay: '0.1s' }}>
-            From consultation to scale—a clear path to growth.
+        <div className="mb-10 mx-auto max-w-3xl text-center">
+          <div className="mb-4 flex justify-center animate-fade-in-up">
+            <p className="section-label mb-0">Your journey</p>
+          </div>
+          <h2
+            className="display-3 animate-fade-in-up text-balance leading-tight"
+            style={{ color: 'var(--color-text)', animationDelay: '0.1s' }}
+          >
+            <span className="block">From consultation to scale</span>
+            <span
+              className="mt-3 block text-lg font-semibold normal-case tracking-normal sm:text-xl md:mt-4 md:text-2xl"
+              style={{ color: 'var(--color-text-muted)' }}
+            >
+              A clear path to growth.
+            </span>
           </h2>
         </div>
 

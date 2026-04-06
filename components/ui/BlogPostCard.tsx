@@ -55,12 +55,6 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
     >
       {/* Featured image — fixed aspect for uniform card height */}
       <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-[var(--color-bg-muted)]">
-        <span
-          className="absolute left-4 top-3 z-10 text-[10px] font-bold uppercase tracking-[0.22em] text-white drop-shadow"
-          style={{ color: 'rgba(255,255,255,0.95)' }}
-        >
-          BLOG
-        </span>
         {post.featured_image_url ? (
           <OptimizedBlogImage
             src={post.featured_image_url}
@@ -71,14 +65,12 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           />
         ) : (
           <div
-            className="absolute inset-0 flex items-center justify-center px-4 text-center"
+            className="absolute inset-0"
             style={{
               background: 'linear-gradient(145deg, #1e3a5f 0%, #0f172a 100%)',
             }}
-          >
-            {/* Keep layout consistent even if image is missing */}
-            <span className="text-xs font-bold uppercase tracking-[0.22em] text-white/90">BLOG</span>
-          </div>
+            aria-hidden
+          />
         )}
       </div>
 

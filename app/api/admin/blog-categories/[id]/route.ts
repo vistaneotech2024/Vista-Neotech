@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/admin-auth';
 import { createAdminSupabase } from '@/lib/supabase-admin';
+import { isUuid } from '@/lib/parse-blog-category-id';
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -11,6 +12,10 @@ export async function PATCH(req: NextRequest, { params }: Params) {
 
   if (!supabase) {
     return NextResponse.json({ error: 'Server not configured' }, { status: 500 });
+  }
+
+  if (!isUuid(id)) {
+    return NextResponse.json({ error: 'Invalid category id' }, { status: 400 });
   }
 
   let body: any;
@@ -62,4 +67,3 @@ export async function DELETE(_: NextRequest, { params }: Params) {
 
   return NextResponse.json({ ok: true });
 }
-
